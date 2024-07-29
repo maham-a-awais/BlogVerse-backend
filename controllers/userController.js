@@ -1,6 +1,8 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
+const responseStructure = require("../utils/helpers/responseStructure");
+const { validate } = require("deep-email-validator");
 const { User, Token } = require("../models/index");
 const { sendingMail } = require("../nodemailer/mailing");
 const { SECRET_KEY, JWT_EXPIRATION, EMAIL } = require("../config/.localEnv");
@@ -8,6 +10,13 @@ const { SECRET_KEY, JWT_EXPIRATION, EMAIL } = require("../config/.localEnv");
 const signUp = async (req, res) => {
   try {
     const { email, password, fullName, isVerified } = req.body;
+    const validationResult = await validate(email);
+
+    if (!validationResult.valid) {
+      return res
+        .status(400)
+        .json(responseStructure(400, "Invalid Email", "Fail"));
+    }
     const salt = await bcrypt.genSalt(10);
     const user = await User.create({
       fullName,
