@@ -1,0 +1,121 @@
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":{}}
+{"code":"EAUTH","command":"AUTH PLAIN","level":"error","response":"535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-36b367d9859sm11757226f8f.28 - gsmtp","responseCode":535}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":{}}
+{"code":"EAUTH","command":"AUTH PLAIN","level":"error","response":"535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-36b367c0668sm11825888f8f.10 - gsmtp","responseCode":535}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":{}}
+{"code":"EAUTH","command":"AUTH PLAIN","level":"error","response":"535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-36b368638fbsm11686555f8f.103 - gsmtp","responseCode":535}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":{}}
+{"level":"info","message":"EMAIL sent successfully"}
+{"level":"info","message":{"createdAt":"2024-07-29T10:12:44.346Z","id":4,"token":"1be28fcb8850732aeaed36e0792a0e11","updatedAt":"2024-07-29T10:12:44.346Z","userId":4}}
+{"level":"error"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":{}}
+{"level":"info","message":"EMAIL sent successfully"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"EMAIL sent successfully"}
+{"level":"error","message":"TypeError: logger.data is not a function"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":{"createdAt":"2024-07-29T10:21:50.309Z","email":"mahamawais814@gmail.com","fullName":"Maham Awais","id":7,"isVerified":false,"password":"$2b$10$9r687aNjUcZj4i.51Zl18eKfQay7ERcW1pFZoiDLIMmWF.jDhTi96","updatedAt":"2024-07-29T10:21:50.309Z"}}
+{"level":"info","message":{"createdAt":"2024-07-29T10:21:50.321Z","id":7,"token":"7a0b6aa4cf51f43e7a0b199700bbea80","updatedAt":"2024-07-29T10:21:50.321Z","userId":7}}
+{"level":"info","message":[1]}
+{"level":"info","message":{"createdAt":"2024-07-29T10:21:50.309Z","email":"mahamawais814@gmail.com","fullName":"Maham Awais","id":7,"isVerified":true,"password":"$2b$10$9r687aNjUcZj4i.51Zl18eKfQay7ERcW1pFZoiDLIMmWF.jDhTi96","updatedAt":"2024-07-29T10:25:30.694Z"}}
+{"level":"info","message":"{\"id\":7,\"fullName\":\"Maham Awais\",\"email\":\"mahamawais814@gmail.com\",\"password\":\"$2b$10$9r687aNjUcZj4i.51Zl18eKfQay7ERcW1pFZoiDLIMmWF.jDhTi96\",\"isVerified\":true,\"createdAt\":\"2024-07-29T10:21:50.309Z\",\"updatedAt\":\"2024-07-29T10:25:30.694Z\"}"}
+{"level":"info","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzIyMjQ4NzM0LCJleHAiOjE3MjIyNTIzMzR9.hN2RenMtHFfrVkEt-JUbj-ccd5ML3c8ZEI2j9GjfjbI"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"date":"Mon Jul 29 2024 15:49:41 GMT+0500 (Pakistan Standard Time)","error":{},"exception":true,"level":"error","message":"uncaughtException: Unexpected token '?'\n/home/maham/Documents/Blog/Blog/utils/helpers/responseStructure.js:5\n    data ? data : error,\n         ^\n\nSyntaxError: Unexpected token '?'\n    at wrapSafe (node:internal/modules/cjs/loader:1281:20)\n    at Module._compile (node:internal/modules/cjs/loader:1321:27)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Module.require (node:internal/modules/cjs/loader:1233:19)\n    at require (node:internal/modules/helpers:179:18)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/controllers/userController.js:8:27)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)","os":{"loadavg":[1.25,1.02,0.99],"uptime":24090.14},"process":{"argv":["/home/maham/.nvm/versions/node/v20.15.1/bin/node","/home/maham/Documents/Blog/Blog/app.js"],"cwd":"/home/maham/Documents/Blog/Blog","execPath":"/home/maham/.nvm/versions/node/v20.15.1/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":17051,"external":2221344,"heapTotal":33193984,"heapUsed":21958896,"rss":80371712},"pid":44602,"uid":1000,"version":"v20.15.1"},"stack":"/home/maham/Documents/Blog/Blog/utils/helpers/responseStructure.js:5\n    data ? data : error,\n         ^\n\nSyntaxError: Unexpected token '?'\n    at wrapSafe (node:internal/modules/cjs/loader:1281:20)\n    at Module._compile (node:internal/modules/cjs/loader:1321:27)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Module.require (node:internal/modules/cjs/loader:1233:19)\n    at require (node:internal/modules/helpers:179:18)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/controllers/userController.js:8:27)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)","trace":[{"column":20,"file":"node:internal/modules/cjs/loader","function":"wrapSafe","line":1281,"method":null,"native":false},{"column":27,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1321,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1416,"method":".js","native":false},{"column":32,"file":"node:internal/modules/cjs/loader","function":"Module.load","line":1208,"method":"load","native":false},{"column":12,"file":"node:internal/modules/cjs/loader","function":"Module._load","line":1024,"method":"_load","native":false},{"column":19,"file":"node:internal/modules/cjs/loader","function":"Module.require","line":1233,"method":"require","native":false},{"column":18,"file":"node:internal/modules/helpers","function":"require","line":179,"method":null,"native":false},{"column":27,"file":"/home/maham/Documents/Blog/Blog/controllers/userController.js","function":null,"line":8,"method":null,"native":false},{"column":14,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1358,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1416,"method":".js","native":false}]}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":{"createdAt":"2024-07-29T10:21:50.309Z","email":"mahamawais814@gmail.com","fullName":"Maham Awais","id":7,"isVerified":true,"password":"$2b$10$9r687aNjUcZj4i.51Zl18eKfQay7ERcW1pFZoiDLIMmWF.jDhTi96","updatedAt":"2024-07-29T10:25:30.694Z"}}
+{"level":"info","message":"{\"id\":7,\"fullName\":\"Maham Awais\",\"email\":\"mahamawais814@gmail.com\",\"password\":\"$2b$10$9r687aNjUcZj4i.51Zl18eKfQay7ERcW1pFZoiDLIMmWF.jDhTi96\",\"isVerified\":true,\"createdAt\":\"2024-07-29T10:21:50.309Z\",\"updatedAt\":\"2024-07-29T10:25:30.694Z\"}"}
+{"level":"info","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzIyMjUwOTQxLCJleHAiOjE3MjIyNTQ1NDF9.crPPvX_l3w-JqbQuDZ7jF9Bf4SB63JFRLO24KWckQNM"}
+{"level":"info","message":{"createdAt":"2024-07-29T10:21:50.321Z","id":7,"token":"7a0b6aa4cf51f43e7a0b199700bbea80","updatedAt":"2024-07-29T10:21:50.321Z","userId":7}}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
