@@ -1,5 +1,7 @@
 const nodemailer = require("nodemailer");
-const { EMAIL, PASSWORD } = require("../config/.localEnv");
+const { EMAIL, EMAIL_PASSWORD } = require("../config/.localEnv");
+const logger = require("../logger/logger");
+const { error } = require("winston");
 
 module.exports.sendingMail = async ({ from, to, subject, html }) => {
   try {
@@ -13,12 +15,16 @@ module.exports.sendingMail = async ({ from, to, subject, html }) => {
       service: "gmail",
       auth: {
         user: EMAIL,
-        pass: PASSWORD,
+        pass: EMAIL_PASSWORD,
       },
     });
-    await transporter.sendMail(mailOptions);
-    console.log("EMAIL sent successfully");
+    await transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        logger.error(`Error sending email: ${error}`);
+        return err;
+      } else logger.info(`Email sent successfully!`);
+    });
   } catch (error) {
-    console.log(error);
+    logger.error(error);
   }
 };

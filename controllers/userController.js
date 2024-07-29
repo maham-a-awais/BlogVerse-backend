@@ -3,17 +3,24 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const { User, Token } = require("../models/index");
 const { sendingMail } = require("../nodemailer/mailing");
-const { SECRET_KEY, JWT_EXPIRATION, EMAIL } = require("../config/.localEnv");
+const {
+  SECRET_KEY,
+  JWT_EXPIRATION,
+  EMAIL,
+  PASSWORD_RESET_EXPIRATION,
+} = require("../config/.localEnv");
+const logger = require("../logger/logger");
+const responseStructure = require("../utils/helpers/responseStructure");
+const { error } = require("winston");
 
 const signUp = async (req, res) => {
   try {
-    const { email, password, fullName, isVerified } = req.body;
+    const { email, password, fullName } = req.body;
     const salt = await bcrypt.genSalt(10);
     const user = await User.create({
       fullName,
       email,
       password: await bcrypt.hash(password, 10),
-      isVerified,
     });
 
     if (user) {
@@ -23,21 +30,20 @@ const signUp = async (req, res) => {
       });
       if (token) {
         sendingMail({
-          from: "no-reply@gmail.com",
+          from: EMAIL,
           to: `${email}`,
           subject: "Account Verification Link",
           html: `<h1>Please verify your account</h1><br><p>Hello ${fullName},To verify your account, pleace click on the link below:</p><br><a href=http://localhost:3000/api/users/verify-email/${user.id}/${token.token}>Verification Link</a>`,
         });
       } else {
-        res.status(400).json({ message: "Failed to create token" });
+        res.status(400).json(responseStructure(400, "Internal Server Error"));
       }
-      console.log("user", JSON.stringify(user, null, 2));
       return res
         .status(201)
-        .json({ message: "User created successfully", user });
+        .json(responseStructure(201, "User created successfully", user));
     }
   } catch (error) {
-    console.log(error);
+    logger.error(error, "This is an error:");
   }
 };
 
@@ -50,39 +56,56 @@ const verifyEmail = async (req, res) => {
         userId: id,
       },
     });
-    console.log(userToken);
+    logger.info(userToken);
     if (!userToken) {
-      return res.status(400).json({
-        message:
-          "Your verification link may have expired. Please click on resend for verify your email",
-      });
+      return res
+        .status(400)
+        .json(
+          responseStructure(
+            400,
+            "Your verification link may have expired. Please click on resend for verify your email"
+          )
+        );
     } else {
       const user = await User.findOne({ where: { id } });
       if (!user) {
-        console.log(user);
-        return res.status(401).send({
-          message:
-            "We were unable to find a user for this verification. Please sign up!",
-        });
+        logger.info(user);
+        return res
+          .status(401)
+          .send(
+            responseStructure(
+              401,
+              "We were unable to find a user for this verification. Please sign up!"
+            )
+          );
       } else if (user.isVerified) {
         return res
           .status(200)
-          .send("User has already been verified. Please login");
+          .send(
+            responseStructure(
+              200,
+              "User has already been verified. Please login"
+            )
+          );
       } else {
         const updateUser = await User.update(
           { isVerified: true },
           { where: { id } }
         );
-        console.log(updateUser);
+        logger.info(updateUser);
         if (!updateUser) {
-          return res.status(500).send({ message: error.message });
+          return res
+            .status(500)
+            .send(responseStructure(500, "User could not be verified"));
         } else {
-          return res.status(200).send("User has been verified");
+          return res
+            .status(200)
+            .send(responseStructure(200, "User has been verified", updateUser));
         }
       }
     }
   } catch (error) {
-    console.log(error);
+    logger.error(`${error}`);
   }
 };
 
@@ -90,7 +113,7 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });
-    console.log(user);
+    logger.info(user);
     if (user) {
       const isSame = await bcrypt.compare(password, user.password);
       if (isSame) {
@@ -102,25 +125,85 @@ const login = async (req, res) => {
             maxAge: 1 * 24 * 60 * 60,
             httpOnly: true,
           });
-          console.log("user", JSON.stringify(user));
-          console.log(token);
+          logger.info(JSON.stringify(user));
+          logger.info(token);
 
-          return res.status(201).send(user);
+          return res
+            .status(200)
+            .send(responseStructure(200, "User is verified", user));
         } else {
-          return res.status(401).send("User not verified");
+          return res
+            .status(401)
+            .send(responseStructure(401, "User is not verified"));
         }
       } else {
-        return res.status(401).send("Authentication failed");
+        return res
+          .status(401)
+          .send(responseStructure(401, "Authentication failed"));
       }
     } else {
-      return res.status(401).send("Authentication failed");
+      return res
+        .status(401)
+        .send(responseStructure(401, "Authentication failed"));
     }
   } catch (error) {
-    console.log(error);
+    logger.error(`${error}`);
   }
 };
+
+const forgotPassword = async (req, res) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    });
+    if (!user) {
+      return res
+        .status(409)
+        .json(responseStructure(409, "Email doesn't exist!"));
+    }
+    const token = jwt.sign({ id: user.id }, SECRET_KEY, {
+      expiresIn: PASSWORD_RESET_EXPIRATION,
+    });
+    const errorSendingMail = sendingMail({
+      from: EMAIL,
+      to: `${email}`,
+      subject: "Password Reset Link",
+      html: `<h1>Please reset your password</h1><br><p>Hello ${fullName}, pleace click on the link below:</p><br><a href=http://localhost:3000/api/users/reset-password/${user.id}/${token}>Reset your password</a>`,
+    });
+    if (errorSendingMail)
+      return res
+        .status(501)
+        .json(
+          responseStructure(501, "Email could not be sent!", "Server Error")
+        );
+  } catch (error) {
+    logger.error(`Middleware: ${error}`);
+  }
+};
+
+const resetPassword = async (req, res) => {
+  try {
+    const { id, token } = req.params;
+    const { password } = req.body;
+    const decodedToken = jwt.verify(token, SECRET_KEY);
+    if (id === decodedToken.id) {
+      const saltRounds = await bcrypt.genSalt(10);
+      const hashPassword = await bcrypt.hash(password, saltRounds);
+      await User.findbyIdAndUpdate({ id }, { password: hashPassword });
+      return res
+        .status(201)
+        .json(responseStructure(201, "Successful Password Reset!"));
+    }
+  } catch (error) {
+    logger.error(`Error in reset password: ${error}`);
+  }
+};
+
 module.exports = {
   signUp,
   login,
   verifyEmail,
+  forgotPassword,
 };

@@ -1,21 +1,24 @@
 const express = require("express");
 const { User } = require("../models/index");
-
-const saveUser = async (req, res, next) => {
+const logger = require("../logger/logger");
+const responseStructure = require("../utils/helpers/responseStructure");
+const { error } = require("winston");
+const userExists = async (req, res, next) => {
   try {
-    const username = await User.findOne({
+    const user = await User.findOne({
       where: {
         email: req.body.email,
       },
     });
-
-    if (username) {
-      return res.status(409).json({ message: "Email already exists" });
+    if (user) {
+      return res
+        .status(409)
+        .json(responseStructure(409, "Email already exists"));
     }
     next();
   } catch (error) {
-    console.log(`Middleware: ${error}`);
+    logger.error(`Middleware: ${error}`);
   }
 };
 
-module.exports = saveUser;
+module.exports = userExists;

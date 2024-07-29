@@ -1,18 +1,15 @@
 const express = require("express");
 const userController = require("../controllers/userController");
-const { signUp, login, verifyEmail } = userController;
-const saveUser = require("../middleware/userAuth");
+const { signUp, login, verifyEmail, forgotPassword, resetPassword } =
+  userController;
+const userExists = require("../middleware/userAuth");
 
 const router = express.Router();
 
-//signup endpoint
-//passing the middlieware function to the signup
-router.post("/signup", saveUser, signUp);
-
-//login route
+router.post("/signup", userExists, signUp);
 router.post("/login", login);
-
-//email verification route
 router.get("/verify-email/:id/:token", verifyEmail);
+router.post("/forgot-password", forgotPassword);
+router.post("/reset-password/:id/:token", resetPassword);
 
 module.exports = router;
