@@ -1,7 +1,6 @@
-const responseStructure = require("../utils/helpers/responseStructure");
+const getResponse = require("../utils/helpers/responseStructure");
 const logger = require("../logger/logger");
 const { ReasonPhrases } = require("http-status-codes");
-const joi = require("joi");
 
 const validationMiddleware = (schema) => {
   return (req, res, next) => {
@@ -11,9 +10,7 @@ const validationMiddleware = (schema) => {
         logger.error(error.message);
         res
           .status(400)
-          .json(
-            responseStructure(400, error.message, ReasonPhrases.BAD_REQUEST)
-          );
+          .json(getResponse(400, error.message, ReasonPhrases.BAD_REQUEST));
       } else {
         next();
       }
