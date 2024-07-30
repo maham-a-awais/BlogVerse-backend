@@ -1,6 +1,6 @@
 const { response } = require("express");
 
-const responseStructure = (statusCode, message, response, data) => {
+const getResponse = (statusCode, message, response, data) => {
   const result = {
     statusCode,
     message,
@@ -10,4 +10,4 @@ const responseStructure = (statusCode, message, response, data) => {
   return result;
 };
 
-module.exports = responseStructure;
+module.exports = getResponse;

@@ -6,9 +6,9 @@ const db = require("./config/database");
 const userRoutes = require("./routes/userRoutes"); //ADD USER ROUTES
 const { PORT } = require("./config/.localEnv");
 const logger = require("./logger/logger");
-const responseStructure = require("./utils/helpers/responseStructure");
+const getResponse = require("./utils/helpers/responseStructure");
 const cors = require("cors");
-// const xss = require("xss");
+const DICTIONARY = require("./utils/constants/dictionary");
 const { ReasonPhrases } = require("http-status-codes");
 db.authenticate()
   .then(() => logger.info("Database connected"))
@@ -33,9 +33,7 @@ function logErrors(err, req, res, next) {
 function errorHandler(err, req, res, next) {
   res
     .status(500)
-    .send(
-      responseStructure(500, "Error!", ReasonPhrases.INTERNAL_SERVER_ERROR)
-    );
+    .send(getResponse(500, "Error!", ReasonPhrases.INTERNAL_SERVER_ERROR));
 }
 
 app.use("/api/users", userRoutes);

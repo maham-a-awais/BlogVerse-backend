@@ -4,7 +4,7 @@ const { validate } = require("deep-email-validator");
 const { sendingMail } = require("../nodemailer/mailing");
 const { User, Token } = require("../models/index");
 const logger = require("../logger/logger");
-const responseStructure = require("../utils/helpers/responseStructure");
+const getResponse = require("../utils/helpers/responseStructure");
 const { ReasonPhrases } = require("http-status-codes");
 const { hash, compareHash } = require("../utils/helpers/bcryptHelper");
 const {
@@ -18,7 +18,7 @@ const userSignUpService = async (fullName, email, password) => {
   try {
     const validationResult = await validate(email);
     if (!validationResult.valid) {
-      const result = responseStructure(
+      const result = getResponse(
         400,
         "Invalid Email Address!",
         ReasonPhrases.BAD_REQUEST
@@ -45,19 +45,14 @@ const userSignUpService = async (fullName, email, password) => {
           html: `<h1>Please verify your account</h1><br><p>Hello ${fullName},To verify your account, pleace click on the link below:</p><br><a href=http://localhost:3000/api/users/verify-email/${user.id}/${token.token}>Verification Link</a>`,
         });
       } else {
-        const result = responseStructure(
+        const result = getResponse(
           500,
           "Token could not be generated",
           ReasonPhrases.INTERNAL_SERVER_ERROR
         );
         return result;
       }
-      const result = responseStructure(
-        201,
-        "User Created!",
-        ReasonPhrases.OK,
-        user
-      );
+      const result = getResponse(201, "User Created!", ReasonPhrases.OK, user);
       return result;
     }
   } catch (error) {
@@ -75,7 +70,7 @@ const verifyEmailService = async (token, id) => {
       },
     });
     if (!userToken) {
-      const result = responseStructure(
+      const result = getResponse(
         502,
         "Your verification link may have expired. Please click on resend for verify your email",
         ReasonPhrases.BAD_GATEWAY
@@ -85,14 +80,14 @@ const verifyEmailService = async (token, id) => {
       const user = await User.findOne({ where: { id } });
       if (!user) {
         logger.info(user);
-        const result = responseStructure(
+        const result = getResponse(
           404,
           "We were unable to find a user for this verification. Please sign up!",
           ReasonPhrases.NOT_FOUND
         );
         return result;
       } else if (user.isVerified) {
-        const result = responseStructure(
+        const result = getResponse(
           200,
           "User has already been verified. Please login",
           ReasonPhrases.OK,
@@ -105,14 +100,14 @@ const verifyEmailService = async (token, id) => {
           { where: { id } }
         );
         if (!updateUser) {
-          const result = responseStructure(
+          const result = getResponse(
             500,
             "User could not be verified",
             ReasonPhrases.INTERNAL_SERVER_ERROR
           );
           return result;
         } else {
-          const result = responseStructure(
+          const result = getResponse(
             200,
             "User has been verified",
             ReasonPhrases.OK
@@ -134,14 +129,14 @@ const userLoginService = async (email, password) => {
       // const isSame = await bcrypt.compare(password, user.password);
       if (compareHash(password, user.password)) {
         if (user.isVerified) {
-          const result = responseStructure(
+          const result = getResponse(
             200,
             "User is verified. Login Successful!",
             ReasonPhrases.OK
           );
           return result;
         } else {
-          const result = responseStructure(
+          const result = getResponse(
             401,
             "User is not verified",
             ReasonPhrases.UNAUTHORIZED
@@ -149,7 +144,7 @@ const userLoginService = async (email, password) => {
           return result;
         }
       } else {
-        const result = responseStructure(
+        const result = getResponse(
           401,
           "Authentication failed. Invalid credentials!",
           ReasonPhrases.UNAUTHORIZED
@@ -157,7 +152,7 @@ const userLoginService = async (email, password) => {
         return result;
       }
     } else {
-      const result = responseStructure(
+      const result = getResponse(
         404,
         "User doesn't exist",
         ReasonPhrases.NOT_FOUND
@@ -178,7 +173,7 @@ const userForgotPassword = async (email) => {
       },
     });
     if (!user) {
-      const result = responseStructure(
+      const result = getResponse(
         409,
         "Email doesn't exist!",
         ReasonPhrases.CONFLICT
@@ -195,14 +190,14 @@ const userForgotPassword = async (email) => {
       html: `<h1>Please reset your password</h1><br><p>Hello ${user.fullName}, pleace click on the link below:</p><br><a href=http://localhost:3000/api/users/reset-password/${user.id}/${token}>Reset your password</a>`,
     });
     if (!errorSendingMail) {
-      const result = responseStructure(
+      const result = getResponse(
         500,
         "Email could not be sent!",
         ReasonPhrases.INTERNAL_SERVER_ERROR
       );
       return result;
     } else {
-      const result = responseStructure(
+      const result = getResponse(
         200,
         "Password reset link has been sent to your email",
         ReasonPhrases.OK
@@ -221,14 +216,14 @@ const resetPasswordService = async (id, token, password) => {
     if (id == decodedToken.id) {
       const hashPassword = await hash(password);
       await User.update({ password: hashPassword }, { where: { id } });
-      const result = responseStructure(
+      const result = getResponse(
         200,
         "Successful Password Reset! Please login to your account",
         ReasonPhrases.OK
       );
       return result;
     } else {
-      const result = responseStructure(
+      const result = getResponse(
         401,
         "Invalid token!",
         ReasonPhrases.UNAUTHORIZED
@@ -243,15 +238,10 @@ const resetPasswordService = async (id, token, password) => {
 const allUsersService = async () => {
   try {
     const users = await User.findAll();
-    const result = responseStructure(
-      200,
-      "Users Found!",
-      ReasonPhrases.OK,
-      users
-    );
+    const result = getResponse(200, "Users Found!", ReasonPhrases.OK, users);
     return result;
   } catch (error) {
-    const result = responseStructure(
+    const result = getResponse(
       500,
       "Error find users!",
       ReasonPhrases.INTERNAL_SERVER_ERROR
@@ -264,15 +254,10 @@ const userByIdService = async (id) => {
   try {
     const user = await User.findByPk(id);
     if (user) {
-      const result = responseStructure(
-        200,
-        "User found!",
-        ReasonPhrases.OK,
-        user
-      );
+      const result = getResponse(200, "User found!", ReasonPhrases.OK, user);
       return result;
     } else {
-      const result = responseStructure(
+      const result = getResponse(
         404,
         "User could not be found!",
         ReasonPhrases.NOT_FOUND
@@ -280,7 +265,7 @@ const userByIdService = async (id) => {
       return result;
     }
   } catch (error) {
-    const result = responseStructure(
+    const result = getResponse(
       500,
       "Error fetching user!",
       ReasonPhrases.INTERNAL_SERVER_ERROR
@@ -297,10 +282,10 @@ const updateUserService = async (id, email, fullName, password, avatar) => {
         { email, fullName, password, avatar },
         { where: { id } }
       );
-      const result = responseStructure(200, "User updated!", ReasonPhrases.OK);
+      const result = getResponse(200, "User updated!", ReasonPhrases.OK);
       return result;
     } else {
-      const result = responseStructure(
+      const result = getResponse(
         404,
         "User not found",
         ReasonPhrases.NOT_FOUND
@@ -308,7 +293,7 @@ const updateUserService = async (id, email, fullName, password, avatar) => {
       return result;
     }
   } catch (error) {
-    const result = responseStructure(
+    const result = getResponse(
       500,
       "Error fetching user!",
       ReasonPhrases.INTERNAL_SERVER_ERROR
@@ -322,14 +307,14 @@ const deleteUserService = async (id) => {
     const user = await User.findByPk(id);
     if (user) {
       await user.destroy();
-      const result = responseStructure(
+      const result = getResponse(
         200,
         "User Deleted Successfully!",
         ReasonPhrases.OK
       );
       return result;
     } else {
-      const result = responseStructure(
+      const result = getResponse(
         404,
         "User not found",
         ReasonPhrases.NOT_FOUND
@@ -337,7 +322,7 @@ const deleteUserService = async (id) => {
       return result;
     }
   } catch (error) {
-    const result = responseStructure(
+    const result = getResponse(
       500,
       "Error fetching user!",
       ReasonPhrases.INTERNAL_SERVER_ERROR
@@ -351,14 +336,10 @@ const userLogoutService = async (id) => {
   try {
     const user = await User.findByPk(id);
     if (user) {
-      const result = responseStructure(
-        200,
-        "Logout Sucessful",
-        ReasonPhrases.OK
-      );
+      const result = getResponse(200, "Logout Sucessful", ReasonPhrases.OK);
       return result;
     } else {
-      const result = responseStructure(
+      const result = getResponse(
         404,
         "User not found",
         ReasonPhrases.NOT_FOUND
@@ -366,7 +347,7 @@ const userLogoutService = async (id) => {
       return result;
     }
   } catch (error) {
-    const result = responseStructure(
+    const result = getResponse(
       500,
       "Error loggingout!!",
       ReasonPhrases.INTERNAL_SERVER_ERROR
