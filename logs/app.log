@@ -119,3 +119,465 @@
 {"level":"info","message":"Database connected"}
 {"level":"info","message":"Server is listening on port: 3000"}
 {"level":"info","message":"Database connected"}
+{"date":"Tue Jul 30 2024 09:40:24 GMT+0500 (Pakistan Standard Time)","error":{},"exception":true,"level":"error","message":"uncaughtException: app.use() requires a middleware function\nTypeError: app.use() requires a middleware function\n    at Function.use (/home/maham/node_modules/express/lib/application.js:217:11)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/app.js:21:5)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)\n    at node:internal/main/run_main_module:28:49","os":{"loadavg":[1.58,1.14,0.94],"uptime":2115.49},"process":{"argv":["/home/maham/.nvm/versions/node/v20.15.1/bin/node","/home/maham/Documents/Blog/Blog/app.js"],"cwd":"/home/maham/Documents/Blog/Blog","execPath":"/home/maham/.nvm/versions/node/v20.15.1/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":17051,"external":2221304,"heapTotal":59092992,"heapUsed":28497856,"rss":95240192},"pid":8947,"uid":1000,"version":"v20.15.1"},"stack":"TypeError: app.use() requires a middleware function\n    at Function.use (/home/maham/node_modules/express/lib/application.js:217:11)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/app.js:21:5)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)\n    at node:internal/main/run_main_module:28:49","trace":[{"column":11,"file":"/home/maham/node_modules/express/lib/application.js","function":"Function.use","line":217,"method":"use","native":false},{"column":5,"file":"/home/maham/Documents/Blog/Blog/app.js","function":null,"line":21,"method":null,"native":false},{"column":14,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1358,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1416,"method":".js","native":false},{"column":32,"file":"node:internal/modules/cjs/loader","function":"Module.load","line":1208,"method":"load","native":false},{"column":12,"file":"node:internal/modules/cjs/loader","function":"Module._load","line":1024,"method":"_load","native":false},{"column":12,"file":"node:internal/modules/run_main","function":"Function.executeUserEntryPoint [as runMain]","line":174,"method":"executeUserEntryPoint [as runMain]","native":false},{"column":49,"file":"node:internal/main/run_main_module","function":null,"line":28,"method":null,"native":false}]}
+{"date":"Tue Jul 30 2024 09:42:27 GMT+0500 (Pakistan Standard Time)","error":{},"exception":true,"level":"error","message":"uncaughtException: app.use() requires a middleware function\nTypeError: app.use() requires a middleware function\n    at Function.use (/home/maham/node_modules/express/lib/application.js:217:11)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/app.js:21:5)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)\n    at node:internal/main/run_main_module:28:49","os":{"loadavg":[0.85,1.03,0.92],"uptime":2238.48},"process":{"argv":["/home/maham/.nvm/versions/node/v20.15.1/bin/node","/home/maham/Documents/Blog/Blog/app.js"],"cwd":"/home/maham/Documents/Blog/Blog","execPath":"/home/maham/.nvm/versions/node/v20.15.1/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":17051,"external":2221304,"heapTotal":59092992,"heapUsed":28572712,"rss":94851072},"pid":9148,"uid":1000,"version":"v20.15.1"},"stack":"TypeError: app.use() requires a middleware function\n    at Function.use (/home/maham/node_modules/express/lib/application.js:217:11)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/app.js:21:5)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)\n    at node:internal/main/run_main_module:28:49","trace":[{"column":11,"file":"/home/maham/node_modules/express/lib/application.js","function":"Function.use","line":217,"method":"use","native":false},{"column":5,"file":"/home/maham/Documents/Blog/Blog/app.js","function":null,"line":21,"method":null,"native":false},{"column":14,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1358,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1416,"method":".js","native":false},{"column":32,"file":"node:internal/modules/cjs/loader","function":"Module.load","line":1208,"method":"load","native":false},{"column":12,"file":"node:internal/modules/cjs/loader","function":"Module._load","line":1024,"method":"_load","native":false},{"column":12,"file":"node:internal/modules/run_main","function":"Function.executeUserEntryPoint [as runMain]","line":174,"method":"executeUserEntryPoint [as runMain]","native":false},{"column":49,"file":"node:internal/main/run_main_module","function":null,"line":28,"method":null,"native":false}]}
+{"date":"Tue Jul 30 2024 09:42:58 GMT+0500 (Pakistan Standard Time)","error":{},"exception":true,"level":"error","message":"uncaughtException: app.use() requires a middleware function\nTypeError: app.use() requires a middleware function\n    at Function.use (/home/maham/node_modules/express/lib/application.js:217:11)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/app.js:21:5)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)\n    at node:internal/main/run_main_module:28:49","os":{"loadavg":[0.92,1.03,0.92],"uptime":2269.59},"process":{"argv":["/home/maham/.nvm/versions/node/v20.15.1/bin/node","/home/maham/Documents/Blog/Blog/app.js"],"cwd":"/home/maham/Documents/Blog/Blog","execPath":"/home/maham/.nvm/versions/node/v20.15.1/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":17051,"external":2221304,"heapTotal":59092992,"heapUsed":28555312,"rss":95457280},"pid":9251,"uid":1000,"version":"v20.15.1"},"stack":"TypeError: app.use() requires a middleware function\n    at Function.use (/home/maham/node_modules/express/lib/application.js:217:11)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/app.js:21:5)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)\n    at node:internal/main/run_main_module:28:49","trace":[{"column":11,"file":"/home/maham/node_modules/express/lib/application.js","function":"Function.use","line":217,"method":"use","native":false},{"column":5,"file":"/home/maham/Documents/Blog/Blog/app.js","function":null,"line":21,"method":null,"native":false},{"column":14,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1358,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1416,"method":".js","native":false},{"column":32,"file":"node:internal/modules/cjs/loader","function":"Module.load","line":1208,"method":"load","native":false},{"column":12,"file":"node:internal/modules/cjs/loader","function":"Module._load","line":1024,"method":"_load","native":false},{"column":12,"file":"node:internal/modules/run_main","function":"Function.executeUserEntryPoint [as runMain]","line":174,"method":"executeUserEntryPoint [as runMain]","native":false},{"column":49,"file":"node:internal/main/run_main_module","function":null,"line":28,"method":null,"native":false}]}
+{"date":"Tue Jul 30 2024 09:43:23 GMT+0500 (Pakistan Standard Time)","error":{},"exception":true,"level":"error","message":"uncaughtException: app.use() requires a middleware function\nTypeError: app.use() requires a middleware function\n    at Function.use (/home/maham/node_modules/express/lib/application.js:217:11)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/app.js:21:5)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)\n    at node:internal/main/run_main_module:28:49","os":{"loadavg":[1.15,1.07,0.94],"uptime":2293.8},"process":{"argv":["/home/maham/.nvm/versions/node/v20.15.1/bin/node","/home/maham/Documents/Blog/Blog/app.js"],"cwd":"/home/maham/Documents/Blog/Blog","execPath":"/home/maham/.nvm/versions/node/v20.15.1/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":17051,"external":2221304,"heapTotal":58830848,"heapUsed":28276832,"rss":94998528},"pid":9366,"uid":1000,"version":"v20.15.1"},"stack":"TypeError: app.use() requires a middleware function\n    at Function.use (/home/maham/node_modules/express/lib/application.js:217:11)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/app.js:21:5)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)\n    at node:internal/main/run_main_module:28:49","trace":[{"column":11,"file":"/home/maham/node_modules/express/lib/application.js","function":"Function.use","line":217,"method":"use","native":false},{"column":5,"file":"/home/maham/Documents/Blog/Blog/app.js","function":null,"line":21,"method":null,"native":false},{"column":14,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1358,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1416,"method":".js","native":false},{"column":32,"file":"node:internal/modules/cjs/loader","function":"Module.load","line":1208,"method":"load","native":false},{"column":12,"file":"node:internal/modules/cjs/loader","function":"Module._load","line":1024,"method":"_load","native":false},{"column":12,"file":"node:internal/modules/run_main","function":"Function.executeUserEntryPoint [as runMain]","line":174,"method":"executeUserEntryPoint [as runMain]","native":false},{"column":49,"file":"node:internal/main/run_main_module","function":null,"line":28,"method":null,"native":false}]}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":{"createdAt":"2024-07-29T10:21:50.309Z","email":"mahamawais814@gmail.com","fullName":"Maham Awais","id":7,"isVerified":true,"password":"$2b$10$9r687aNjUcZj4i.51Zl18eKfQay7ERcW1pFZoiDLIMmWF.jDhTi96","updatedAt":"2024-07-29T10:25:30.694Z"}}
+{"level":"info","message":"{\"id\":7,\"fullName\":\"Maham Awais\",\"email\":\"mahamawais814@gmail.com\",\"password\":\"$2b$10$9r687aNjUcZj4i.51Zl18eKfQay7ERcW1pFZoiDLIMmWF.jDhTi96\",\"isVerified\":true,\"createdAt\":\"2024-07-29T10:21:50.309Z\",\"updatedAt\":\"2024-07-29T10:25:30.694Z\"}"}
+{"level":"info","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzIyMzE0Nzk4LCJleHAiOjE3MjIzMTgzOTh9.mA31F7w6GHSmJS1JXOZUDqj3T_dADuSfLpwyfeLpl14"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":{"createdAt":"2024-07-29T10:21:50.309Z","email":"mahamawais814@gmail.com","fullName":"Maham Awais","id":7,"isVerified":true,"password":"$2b$10$9r687aNjUcZj4i.51Zl18eKfQay7ERcW1pFZoiDLIMmWF.jDhTi96","updatedAt":"2024-07-29T10:25:30.694Z"}}
+{"level":"info","message":"{\"id\":7,\"fullName\":\"Maham Awais\",\"email\":\"mahamawais814@gmail.com\",\"password\":\"$2b$10$9r687aNjUcZj4i.51Zl18eKfQay7ERcW1pFZoiDLIMmWF.jDhTi96\",\"isVerified\":true,\"createdAt\":\"2024-07-29T10:21:50.309Z\",\"updatedAt\":\"2024-07-29T10:25:30.694Z\"}"}
+{"level":"info","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzIyMzE0ODUzLCJleHAiOjE3MjIzMTg0NTN9.36TgGbTOCSX9P6s4Z78bzr6fhhOLn6PrB7Ow4a05EIA"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":{"createdAt":"2024-07-29T10:21:50.309Z","email":"mahamawais814@gmail.com","fullName":"Maham Awais","id":7,"isVerified":true,"password":"$2b$10$9r687aNjUcZj4i.51Zl18eKfQay7ERcW1pFZoiDLIMmWF.jDhTi96","updatedAt":"2024-07-29T10:25:30.694Z"}}
+{"level":"info","message":"{\"id\":7,\"fullName\":\"Maham Awais\",\"email\":\"mahamawais814@gmail.com\",\"password\":\"$2b$10$9r687aNjUcZj4i.51Zl18eKfQay7ERcW1pFZoiDLIMmWF.jDhTi96\",\"isVerified\":true,\"createdAt\":\"2024-07-29T10:21:50.309Z\",\"updatedAt\":\"2024-07-29T10:25:30.694Z\"}"}
+{"level":"info","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzIyMzE0ODgxLCJleHAiOjE3MjIzMTg0ODF9.ZIYmbZ0RIuvH_X3XCC4Fs9FX8ibuBtw0P1Tu2VzrpNA"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":{"createdAt":"2024-07-29T10:21:50.309Z","email":"mahamawais814@gmail.com","fullName":"Maham Awais","id":7,"isVerified":true,"password":"$2b$10$9r687aNjUcZj4i.51Zl18eKfQay7ERcW1pFZoiDLIMmWF.jDhTi96","updatedAt":"2024-07-29T10:25:30.694Z"}}
+{"level":"info","message":"{\"id\":7,\"fullName\":\"Maham Awais\",\"email\":\"mahamawais814@gmail.com\",\"password\":\"$2b$10$9r687aNjUcZj4i.51Zl18eKfQay7ERcW1pFZoiDLIMmWF.jDhTi96\",\"isVerified\":true,\"createdAt\":\"2024-07-29T10:21:50.309Z\",\"updatedAt\":\"2024-07-29T10:25:30.694Z\"}"}
+{"level":"info","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzIyMzE0OTAzLCJleHAiOjE3MjIzMTg1MDN9.g8_RmKqvhBMeQUYz3uUSDtR7277-o5UetQRHGxLj8s0"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":{"createdAt":"2024-07-29T10:21:50.309Z","email":"mahamawais814@gmail.com","fullName":"Maham Awais","id":7,"isVerified":true,"password":"$2b$10$9r687aNjUcZj4i.51Zl18eKfQay7ERcW1pFZoiDLIMmWF.jDhTi96","updatedAt":"2024-07-29T10:25:30.694Z"}}
+{"level":"info","message":"{\"id\":7,\"fullName\":\"Maham Awais\",\"email\":\"mahamawais814@gmail.com\",\"password\":\"$2b$10$9r687aNjUcZj4i.51Zl18eKfQay7ERcW1pFZoiDLIMmWF.jDhTi96\",\"isVerified\":true,\"createdAt\":\"2024-07-29T10:21:50.309Z\",\"updatedAt\":\"2024-07-29T10:25:30.694Z\"}"}
+{"level":"info","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzIyMzE0OTI5LCJleHAiOjE3MjIzMTg1Mjl9.kXPKDIJWl9BVxn1aV0xcbfaK6MPd3eMnE6KjyXX8fHE"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Email sent successfully!"}
+{"level":"info","message":{"createdAt":"2024-07-30T04:52:30.910Z","email":"buttmaham984@gmail.com","fullName":"Maham","id":8,"isVerified":false,"password":"$2b$10$IUfQtss06aF12t/D.ZC05uzjIu2kcJR4Whkr2Db74nzLxu4DgXZGi","updatedAt":"2024-07-30T04:52:30.910Z"}}
+{"level":"info","message":{"createdAt":"2024-07-30T04:52:30.916Z","id":8,"token":"9f71a9a8073a174757b9e67c4374738b","updatedAt":"2024-07-30T04:52:30.916Z","userId":8}}
+{"level":"info","message":[1]}
+{"level":"info","message":{"createdAt":"2024-07-30T04:52:30.910Z","email":"buttmaham984@gmail.com","fullName":"Maham","id":8,"isVerified":true,"password":"$2b$10$IUfQtss06aF12t/D.ZC05uzjIu2kcJR4Whkr2Db74nzLxu4DgXZGi","updatedAt":"2024-07-30T04:53:50.670Z"}}
+{"level":"info","message":"{\"id\":8,\"fullName\":\"Maham\",\"email\":\"buttmaham984@gmail.com\",\"password\":\"$2b$10$IUfQtss06aF12t/D.ZC05uzjIu2kcJR4Whkr2Db74nzLxu4DgXZGi\",\"isVerified\":true,\"createdAt\":\"2024-07-30T04:52:30.910Z\",\"updatedAt\":\"2024-07-30T04:53:50.670Z\"}"}
+{"level":"info","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzIyMzE1MjQ1LCJleHAiOjE3MjIzMTg4NDV9.oz61unlVNe3I-aLkmDUz2uOJ9lzkeHApIy-jFNvVnaM"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":{"createdAt":"2024-07-30T04:52:30.916Z","id":8,"token":"9f71a9a8073a174757b9e67c4374738b","updatedAt":"2024-07-30T04:52:30.916Z","userId":8}}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":null}
+{"level":"info","message":null}
+{"level":"info","message":{"createdAt":"2024-07-30T04:52:30.910Z","email":"buttmaham984@gmail.com","fullName":"Maham","id":8,"isVerified":true,"password":"$2b$10$IUfQtss06aF12t/D.ZC05uzjIu2kcJR4Whkr2Db74nzLxu4DgXZGi","updatedAt":"2024-07-30T04:53:50.670Z"}}
+{"level":"error","message":"Error: data and hash arguments required"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":{"createdAt":"2024-07-30T04:52:30.910Z","email":"buttmaham984@gmail.com","fullName":"Maham","id":8,"isVerified":true,"password":"$2b$10$IUfQtss06aF12t/D.ZC05uzjIu2kcJR4Whkr2Db74nzLxu4DgXZGi","updatedAt":"2024-07-30T04:53:50.670Z"}}
+{"level":"error","message":"Error: data and hash arguments required"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":{"createdAt":"2024-07-30T04:52:30.910Z","email":"buttmaham984@gmail.com","fullName":"Maham","id":8,"isVerified":true,"password":"$2b$10$IUfQtss06aF12t/D.ZC05uzjIu2kcJR4Whkr2Db74nzLxu4DgXZGi","updatedAt":"2024-07-30T04:53:50.670Z"}}
+{"level":"error","message":"Error: data and hash arguments required"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":{"createdAt":"2024-07-30T04:52:30.910Z","email":"buttmaham984@gmail.com","fullName":"Maham","id":8,"isVerified":true,"password":"$2b$10$IUfQtss06aF12t/D.ZC05uzjIu2kcJR4Whkr2Db74nzLxu4DgXZGi","updatedAt":"2024-07-30T04:53:50.670Z"}}
+{"level":"error","message":"Error: data and hash arguments required"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":{"createdAt":"2024-07-30T04:52:30.910Z","email":"buttmaham984@gmail.com","fullName":"Maham","id":8,"isVerified":true,"password":"$2b$10$IUfQtss06aF12t/D.ZC05uzjIu2kcJR4Whkr2Db74nzLxu4DgXZGi","updatedAt":"2024-07-30T04:53:50.670Z"}}
+{"level":"error","message":"Error: data and hash arguments required"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Email sent successfully!"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Email sent successfully!"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Email sent successfully!"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":"Error in reset password: AssertionError [ERR_ASSERTION]: Expected plain object, array or sequelize method in the options.where parameter"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":{"createdAt":"2024-07-30T04:52:30.910Z","email":"buttmaham984@gmail.com","fullName":"Maham","id":8,"isVerified":true,"password":"$2b$10$.XulDP4BWjj7QDNt12dqi.UbS0NJws6/gGieGLXJc39EAHMbDzGyS","updatedAt":"2024-07-30T05:32:30.890Z"}}
+{"level":"info","message":{"createdAt":"2024-07-30T04:52:30.910Z","email":"buttmaham984@gmail.com","fullName":"Maham","id":8,"isVerified":true,"password":"$2b$10$.XulDP4BWjj7QDNt12dqi.UbS0NJws6/gGieGLXJc39EAHMbDzGyS","updatedAt":"2024-07-30T05:32:30.890Z"}}
+{"level":"info","message":"{\"id\":8,\"fullName\":\"Maham\",\"email\":\"buttmaham984@gmail.com\",\"password\":\"$2b$10$.XulDP4BWjj7QDNt12dqi.UbS0NJws6/gGieGLXJc39EAHMbDzGyS\",\"isVerified\":true,\"createdAt\":\"2024-07-30T04:52:30.910Z\",\"updatedAt\":\"2024-07-30T05:32:30.890Z\"}"}
+{"level":"info","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzIyMzE3NTY5LCJleHAiOjE3MjIzMjExNjl9.-IOpPhWskKiSZlJnRMXS0UbPOzAQGD-Ik7z1os5KMR4"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"date":"Tue Jul 30 2024 10:49:12 GMT+0500 (Pakistan Standard Time)","error":{"code":"ERR_HTTP_HEADERS_SENT"},"exception":true,"level":"error","message":"uncaughtException: Cannot set headers after they are sent to the client\nError [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client\n    at ServerResponse.setHeader (node:_http_outgoing:659:11)\n    at ServerResponse.header (/home/maham/node_modules/express/lib/response.js:795:10)\n    at ServerResponse.send (/home/maham/node_modules/express/lib/response.js:175:12)\n    at ServerResponse.json (/home/maham/node_modules/express/lib/response.js:279:15)\n    at getAllUsers (/home/maham/Documents/Blog/Blog/controllers/userController.js:313:8)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","os":{"loadavg":[1.06,1.03,1.07],"uptime":6243.26},"process":{"argv":["/home/maham/.nvm/versions/node/v20.15.1/bin/node","/home/maham/Documents/Blog/Blog/app.js"],"cwd":"/home/maham/Documents/Blog/Blog","execPath":"/home/maham/.nvm/versions/node/v20.15.1/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":64801,"external":2307348,"heapTotal":26578944,"heapUsed":25549760,"rss":80777216},"pid":19431,"uid":1000,"version":"v20.15.1"},"stack":"Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client\n    at ServerResponse.setHeader (node:_http_outgoing:659:11)\n    at ServerResponse.header (/home/maham/node_modules/express/lib/response.js:795:10)\n    at ServerResponse.send (/home/maham/node_modules/express/lib/response.js:175:12)\n    at ServerResponse.json (/home/maham/node_modules/express/lib/response.js:279:15)\n    at getAllUsers (/home/maham/Documents/Blog/Blog/controllers/userController.js:313:8)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","trace":[{"column":11,"file":"node:_http_outgoing","function":"ServerResponse.setHeader","line":659,"method":"setHeader","native":false},{"column":10,"file":"/home/maham/node_modules/express/lib/response.js","function":"ServerResponse.header","line":795,"method":"header","native":false},{"column":12,"file":"/home/maham/node_modules/express/lib/response.js","function":"ServerResponse.send","line":175,"method":"send","native":false},{"column":15,"file":"/home/maham/node_modules/express/lib/response.js","function":"ServerResponse.json","line":279,"method":"json","native":false},{"column":8,"file":"/home/maham/Documents/Blog/Blog/controllers/userController.js","function":"getAllUsers","line":313,"method":null,"native":false},{"column":5,"file":"node:internal/process/task_queues","function":"process.processTicksAndRejections","line":95,"method":"processTicksAndRejections","native":false}]}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":{"createdAt":"2024-07-30T04:52:30.910Z","email":"buttmaham984@gmail.com","fullName":"Maham","id":8,"isVerified":true,"password":"$2b$10$.XulDP4BWjj7QDNt12dqi.UbS0NJws6/gGieGLXJc39EAHMbDzGyS","updatedAt":"2024-07-30T05:32:30.890Z"}}
+{"level":"info","message":"{\"id\":8,\"fullName\":\"Maham\",\"email\":\"buttmaham984@gmail.com\",\"password\":\"$2b$10$.XulDP4BWjj7QDNt12dqi.UbS0NJws6/gGieGLXJc39EAHMbDzGyS\",\"isVerified\":true,\"createdAt\":\"2024-07-30T04:52:30.910Z\",\"updatedAt\":\"2024-07-30T05:32:30.890Z\"}"}
+{"level":"info","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzIyMzE5Mzk1LCJleHAiOjE3MjIzMjI5OTV9.ylmW2VA4GIHzIq7i7eRVeH1rx9MZGE7AdM0ZNEZ8Szw"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"date":"Tue Jul 30 2024 11:23:20 GMT+0500 (Pakistan Standard Time)","error":{},"exception":true,"level":"error","message":"uncaughtException: Unexpected token 'catch'\n/home/maham/Documents/Blog/Blog/services/userServices.js:59\n  } catch (error) {\n    ^^^^^\n\nSyntaxError: Unexpected token 'catch'\n    at wrapSafe (node:internal/modules/cjs/loader:1281:20)\n    at Module._compile (node:internal/modules/cjs/loader:1321:27)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Module.require (node:internal/modules/cjs/loader:1233:19)\n    at require (node:internal/modules/helpers:179:18)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/controllers/userController.js:13:31)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)","os":{"loadavg":[1.24,1.1,1.06],"uptime":8291.21},"process":{"argv":["/home/maham/.nvm/versions/node/v20.15.1/bin/node","/home/maham/Documents/Blog/Blog/app.js"],"cwd":"/home/maham/Documents/Blog/Blog","execPath":"/home/maham/.nvm/versions/node/v20.15.1/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":17051,"external":2221344,"heapTotal":33718272,"heapUsed":22190744,"rss":81522688},"pid":24427,"uid":1000,"version":"v20.15.1"},"stack":"/home/maham/Documents/Blog/Blog/services/userServices.js:59\n  } catch (error) {\n    ^^^^^\n\nSyntaxError: Unexpected token 'catch'\n    at wrapSafe (node:internal/modules/cjs/loader:1281:20)\n    at Module._compile (node:internal/modules/cjs/loader:1321:27)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Module.require (node:internal/modules/cjs/loader:1233:19)\n    at require (node:internal/modules/helpers:179:18)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/controllers/userController.js:13:31)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)","trace":[{"column":20,"file":"node:internal/modules/cjs/loader","function":"wrapSafe","line":1281,"method":null,"native":false},{"column":27,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1321,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1416,"method":".js","native":false},{"column":32,"file":"node:internal/modules/cjs/loader","function":"Module.load","line":1208,"method":"load","native":false},{"column":12,"file":"node:internal/modules/cjs/loader","function":"Module._load","line":1024,"method":"_load","native":false},{"column":19,"file":"node:internal/modules/cjs/loader","function":"Module.require","line":1233,"method":"require","native":false},{"column":18,"file":"node:internal/modules/helpers","function":"require","line":179,"method":null,"native":false},{"column":31,"file":"/home/maham/Documents/Blog/Blog/controllers/userController.js","function":null,"line":13,"method":null,"native":false},{"column":14,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1358,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1416,"method":".js","native":false}]}
+{"date":"Tue Jul 30 2024 11:23:39 GMT+0500 (Pakistan Standard Time)","error":{},"exception":true,"level":"error","message":"uncaughtException: Unexpected token 'catch'\n/home/maham/Documents/Blog/Blog/services/userServices.js:61\n  } catch (error) {\n    ^^^^^\n\nSyntaxError: Unexpected token 'catch'\n    at wrapSafe (node:internal/modules/cjs/loader:1281:20)\n    at Module._compile (node:internal/modules/cjs/loader:1321:27)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Module.require (node:internal/modules/cjs/loader:1233:19)\n    at require (node:internal/modules/helpers:179:18)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/controllers/userController.js:13:31)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)","os":{"loadavg":[1.34,1.13,1.07],"uptime":8310.47},"process":{"argv":["/home/maham/.nvm/versions/node/v20.15.1/bin/node","/home/maham/Documents/Blog/Blog/app.js"],"cwd":"/home/maham/Documents/Blog/Blog","execPath":"/home/maham/.nvm/versions/node/v20.15.1/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":17051,"external":2221344,"heapTotal":34242560,"heapUsed":21681264,"rss":81162240},"pid":24517,"uid":1000,"version":"v20.15.1"},"stack":"/home/maham/Documents/Blog/Blog/services/userServices.js:61\n  } catch (error) {\n    ^^^^^\n\nSyntaxError: Unexpected token 'catch'\n    at wrapSafe (node:internal/modules/cjs/loader:1281:20)\n    at Module._compile (node:internal/modules/cjs/loader:1321:27)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Module.require (node:internal/modules/cjs/loader:1233:19)\n    at require (node:internal/modules/helpers:179:18)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/controllers/userController.js:13:31)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)","trace":[{"column":20,"file":"node:internal/modules/cjs/loader","function":"wrapSafe","line":1281,"method":null,"native":false},{"column":27,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1321,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1416,"method":".js","native":false},{"column":32,"file":"node:internal/modules/cjs/loader","function":"Module.load","line":1208,"method":"load","native":false},{"column":12,"file":"node:internal/modules/cjs/loader","function":"Module._load","line":1024,"method":"_load","native":false},{"column":19,"file":"node:internal/modules/cjs/loader","function":"Module.require","line":1233,"method":"require","native":false},{"column":18,"file":"node:internal/modules/helpers","function":"require","line":179,"method":null,"native":false},{"column":31,"file":"/home/maham/Documents/Blog/Blog/controllers/userController.js","function":null,"line":13,"method":null,"native":false},{"column":14,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1358,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1416,"method":".js","native":false}]}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":{}}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":{}}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Email sent successfully!"}
+{"level":"info","message":{"createdAt":"2024-07-30T06:42:04.910Z","email":"maham.awais@kwanso.com","fullName":"maham kwanso","id":10,"isVerified":false,"password":"$2b$10$z3yey8L4UcWh8PoDvG30uec.fszrjXXVLz1IW7x7WHVuow.vcNP1y","updatedAt":"2024-07-30T06:42:04.910Z"}}
+{"level":"info","message":{"createdAt":"2024-07-30T06:42:04.915Z","id":10,"token":"bd5e6ab8e44a2ff762e334b333cb2cc5","updatedAt":"2024-07-30T06:42:04.915Z","userId":10}}
+{"level":"info","message":[1]}
+{"level":"info","message":{"createdAt":"2024-07-30T06:42:04.910Z","email":"maham.awais@kwanso.com","fullName":"maham kwanso","id":10,"isVerified":true,"password":"$2b$10$z3yey8L4UcWh8PoDvG30uec.fszrjXXVLz1IW7x7WHVuow.vcNP1y","updatedAt":"2024-07-30T06:42:48.973Z"}}
+{"level":"info","message":"{\"id\":10,\"fullName\":\"maham kwanso\",\"email\":\"maham.awais@kwanso.com\",\"password\":\"$2b$10$z3yey8L4UcWh8PoDvG30uec.fszrjXXVLz1IW7x7WHVuow.vcNP1y\",\"isVerified\":true,\"createdAt\":\"2024-07-30T06:42:04.910Z\",\"updatedAt\":\"2024-07-30T06:42:48.973Z\"}"}
+{"level":"error","message":"ReferenceError: token is not defined"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":{"createdAt":"2024-07-30T06:42:04.910Z","email":"maham.awais@kwanso.com","fullName":"maham kwanso","id":10,"isVerified":true,"password":"$2b$10$z3yey8L4UcWh8PoDvG30uec.fszrjXXVLz1IW7x7WHVuow.vcNP1y","updatedAt":"2024-07-30T06:42:48.973Z"}}
+{"level":"info","message":"{\"id\":10,\"fullName\":\"maham kwanso\",\"email\":\"maham.awais@kwanso.com\",\"password\":\"$2b$10$z3yey8L4UcWh8PoDvG30uec.fszrjXXVLz1IW7x7WHVuow.vcNP1y\",\"isVerified\":true,\"createdAt\":\"2024-07-30T06:42:04.910Z\",\"updatedAt\":\"2024-07-30T06:42:48.973Z\"}"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"date":"Tue Jul 30 2024 13:53:58 GMT+0500 (Pakistan Standard Time)","error":{},"exception":true,"level":"error","message":"uncaughtException: Joi is not defined\nReferenceError: Joi is not defined\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/utils/validations/userValidation.js:13:15)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Module.require (node:internal/modules/cjs/loader:1233:19)\n    at require (node:internal/modules/helpers:179:18)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/routes/userRoutes.js:15:24)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)","os":{"loadavg":[0.7,0.34,0.26],"uptime":17328.81},"process":{"argv":["/home/maham/.nvm/versions/node/v20.15.1/bin/node","/home/maham/Documents/Blog/Blog/app.js"],"cwd":"/home/maham/Documents/Blog/Blog","execPath":"/home/maham/.nvm/versions/node/v20.15.1/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":17051,"external":2221304,"heapTotal":59879424,"heapUsed":35854032,"rss":100417536},"pid":47355,"uid":1000,"version":"v20.15.1"},"stack":"ReferenceError: Joi is not defined\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/utils/validations/userValidation.js:13:15)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Module.require (node:internal/modules/cjs/loader:1233:19)\n    at require (node:internal/modules/helpers:179:18)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/routes/userRoutes.js:15:24)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)","trace":[{"column":15,"file":"/home/maham/Documents/Blog/Blog/utils/validations/userValidation.js","function":null,"line":13,"method":null,"native":false},{"column":14,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1358,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1416,"method":".js","native":false},{"column":32,"file":"node:internal/modules/cjs/loader","function":"Module.load","line":1208,"method":"load","native":false},{"column":12,"file":"node:internal/modules/cjs/loader","function":"Module._load","line":1024,"method":"_load","native":false},{"column":19,"file":"node:internal/modules/cjs/loader","function":"Module.require","line":1233,"method":"require","native":false},{"column":18,"file":"node:internal/modules/helpers","function":"require","line":179,"method":null,"native":false},{"column":24,"file":"/home/maham/Documents/Blog/Blog/routes/userRoutes.js","function":null,"line":15,"method":null,"native":false},{"column":14,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1358,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1416,"method":".js","native":false}]}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"date":"Tue Jul 30 2024 14:01:54 GMT+0500 (Pakistan Standard Time)","error":{},"exception":true,"level":"error","message":"uncaughtException: Unexpected end of input\n/home/maham/Documents/Blog/Blog/middleware/validation.js:27\n\n\n\nSyntaxError: Unexpected end of input\n    at wrapSafe (node:internal/modules/cjs/loader:1281:20)\n    at Module._compile (node:internal/modules/cjs/loader:1321:27)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Module.require (node:internal/modules/cjs/loader:1233:19)\n    at require (node:internal/modules/helpers:179:18)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/routes/userRoutes.js:16:30)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)","os":{"loadavg":[0.76,0.69,0.47],"uptime":17805.51},"process":{"argv":["/home/maham/.nvm/versions/node/v20.15.1/bin/node","/home/maham/Documents/Blog/Blog/app.js"],"cwd":"/home/maham/Documents/Blog/Blog","execPath":"/home/maham/.nvm/versions/node/v20.15.1/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":17051,"external":2221304,"heapTotal":60141568,"heapUsed":36381736,"rss":100204544},"pid":48828,"uid":1000,"version":"v20.15.1"},"stack":"/home/maham/Documents/Blog/Blog/middleware/validation.js:27\n\n\n\nSyntaxError: Unexpected end of input\n    at wrapSafe (node:internal/modules/cjs/loader:1281:20)\n    at Module._compile (node:internal/modules/cjs/loader:1321:27)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Module.require (node:internal/modules/cjs/loader:1233:19)\n    at require (node:internal/modules/helpers:179:18)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/routes/userRoutes.js:16:30)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)","trace":[{"column":20,"file":"node:internal/modules/cjs/loader","function":"wrapSafe","line":1281,"method":null,"native":false},{"column":27,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1321,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1416,"method":".js","native":false},{"column":32,"file":"node:internal/modules/cjs/loader","function":"Module.load","line":1208,"method":"load","native":false},{"column":12,"file":"node:internal/modules/cjs/loader","function":"Module._load","line":1024,"method":"_load","native":false},{"column":19,"file":"node:internal/modules/cjs/loader","function":"Module.require","line":1233,"method":"require","native":false},{"column":18,"file":"node:internal/modules/helpers","function":"require","line":179,"method":null,"native":false},{"column":30,"file":"/home/maham/Documents/Blog/Blog/routes/userRoutes.js","function":null,"line":16,"method":null,"native":false},{"column":14,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1358,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1416,"method":".js","native":false}]}
+{"date":"Tue Jul 30 2024 14:01:57 GMT+0500 (Pakistan Standard Time)","error":{},"exception":true,"level":"error","message":"uncaughtException: Unexpected end of input\n/home/maham/Documents/Blog/Blog/middleware/validation.js:27\n\n\n\nSyntaxError: Unexpected end of input\n    at wrapSafe (node:internal/modules/cjs/loader:1281:20)\n    at Module._compile (node:internal/modules/cjs/loader:1321:27)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Module.require (node:internal/modules/cjs/loader:1233:19)\n    at require (node:internal/modules/helpers:179:18)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/routes/userRoutes.js:16:30)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)","os":{"loadavg":[0.76,0.69,0.47],"uptime":17808.64},"process":{"argv":["/home/maham/.nvm/versions/node/v20.15.1/bin/node","/home/maham/Documents/Blog/Blog/app.js"],"cwd":"/home/maham/Documents/Blog/Blog","execPath":"/home/maham/.nvm/versions/node/v20.15.1/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":17051,"external":2221304,"heapTotal":60141568,"heapUsed":36221608,"rss":100331520},"pid":48891,"uid":1000,"version":"v20.15.1"},"stack":"/home/maham/Documents/Blog/Blog/middleware/validation.js:27\n\n\n\nSyntaxError: Unexpected end of input\n    at wrapSafe (node:internal/modules/cjs/loader:1281:20)\n    at Module._compile (node:internal/modules/cjs/loader:1321:27)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Module.require (node:internal/modules/cjs/loader:1233:19)\n    at require (node:internal/modules/helpers:179:18)\n    at Object.<anonymous> (/home/maham/Documents/Blog/Blog/routes/userRoutes.js:16:30)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)","trace":[{"column":20,"file":"node:internal/modules/cjs/loader","function":"wrapSafe","line":1281,"method":null,"native":false},{"column":27,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1321,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1416,"method":".js","native":false},{"column":32,"file":"node:internal/modules/cjs/loader","function":"Module.load","line":1208,"method":"load","native":false},{"column":12,"file":"node:internal/modules/cjs/loader","function":"Module._load","line":1024,"method":"_load","native":false},{"column":19,"file":"node:internal/modules/cjs/loader","function":"Module.require","line":1233,"method":"require","native":false},{"column":18,"file":"node:internal/modules/helpers","function":"require","line":179,"method":null,"native":false},{"column":30,"file":"/home/maham/Documents/Blog/Blog/routes/userRoutes.js","function":null,"line":16,"method":null,"native":false},{"column":14,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1358,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1416,"method":".js","native":false}]}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'validate')"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":"Please enter your full name"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":"Please enter your full name"}
+{"level":"error","message":"\"email\" must be a valid email"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":"Invalid email format."}
+{"level":"info","message":"Email sent successfully!"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":"Invalid email format."}
+{"level":"error","message":"\"password\" is not allowed to be empty"}
+{"level":"error","message":"Password must contain only letters, numbers, or \"@\" and be between 6 and 30 characters long."}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":"Email cannot be empty"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":"Password cannot be empty"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}

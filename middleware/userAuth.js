@@ -2,7 +2,7 @@ const express = require("express");
 const { User } = require("../models/index");
 const logger = require("../logger/logger");
 const responseStructure = require("../utils/helpers/responseStructure");
-const { error } = require("winston");
+
 const userExists = async (req, res, next) => {
   try {
     const user = await User.findOne({
