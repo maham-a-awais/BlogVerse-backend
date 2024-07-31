@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const { EMAIL, EMAIL_PASSWORD } = require("../config/.localEnv");
+const { EMAIL, EMAIL_PASSWORD } = require("../config/localEnv");
 const logger = require("../logger/logger");
 const { error } = require("winston");
 

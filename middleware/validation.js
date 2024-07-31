@@ -1,4 +1,4 @@
-const getResponse = require("../utils/helpers/responseStructure");
+const { getResponse } = require("../utils/helpers/getResponse");
 const logger = require("../logger/logger");
 const { ReasonPhrases } = require("http-status-codes");
 

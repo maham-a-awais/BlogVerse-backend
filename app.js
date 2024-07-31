@@ -1,24 +1,22 @@
 const express = require("express");
-const dotenv = require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
 const db = require("./config/database");
-const userRoutes = require("./routes/userRoutes"); //ADD USER ROUTES
-const { PORT } = require("./config/.localEnv");
 const logger = require("./logger/logger");
-const getResponse = require("./utils/helpers/responseStructure");
+const getResponse = require("./utils/helpers/getResponse");
 const cors = require("cors");
-const DICTIONARY = require("./utils/constants/dictionary");
 const { ReasonPhrases } = require("http-status-codes");
-db.authenticate()
-  .then(() => logger.info("Database connected"))
-  .catch((err) => logger.error("Error connecting to database:", err));
+const { PORT } = require("./config/localEnv");
+const userRoutes = require("./routes/userRoutes"); //ADD USER ROUTES
+const postRoutes = require("./routes/postRoutes"); //ADD POST ROUTES
+const DICTIONARY = require("./utils/constants/dictionary");
+const apiRouter = express.Router();
+require("dotenv").config();
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-// app.use(xss());
 
 app.use(cookieParser());
 app.use(helmet());
@@ -35,8 +33,14 @@ function errorHandler(err, req, res, next) {
     .status(500)
     .send(getResponse(500, "Error!", ReasonPhrases.INTERNAL_SERVER_ERROR));
 }
+db.authenticate()
+  .then(() => logger.info("Database connected"))
+  .catch((err) => logger.error("Error connecting to database:", err));
 
-app.use("/api/users", userRoutes);
+apiRouter.use("/users", userRoutes);
+apiRouter.use("/posts", postRoutes);
+
+app.use("/api", apiRouter);
 
 app.listen(PORT, (err, res) => {
   logger.info(`Server is listening on port: ${PORT}`);

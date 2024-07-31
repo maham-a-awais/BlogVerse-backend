@@ -1,30 +1,31 @@
 const jwt = require("jsonwebtoken");
-const crypto = require("crypto");
 const { validate } = require("deep-email-validator");
 const { sendingMail } = require("../nodemailer/mailing");
 const { User, Token } = require("../models/index");
 const logger = require("../logger/logger");
-const getResponse = require("../utils/helpers/responseStructure");
 const { ReasonPhrases } = require("http-status-codes");
 const { hash, compareHash } = require("../utils/helpers/bcryptHelper");
+const {
+  getResponse,
+  addTokenToResponse,
+} = require("../utils/helpers/getResponse");
 const {
   SECRET_KEY,
   EMAIL,
   PASSWORD_RESET_EXPIRATION,
-} = require("../config/.localEnv");
+  JWT_EXPIRATION,
+} = require("../config/localEnv");
 
 //USER SIGN UP
 const userSignUpService = async (fullName, email, password) => {
   try {
     const validationResult = await validate(email);
     if (!validationResult.valid) {
-      const result = getResponse(
+      return getResponse(
         400,
         "Invalid Email Address!",
         ReasonPhrases.BAD_REQUEST
-        // validationResult.reason
       );
-      return result;
     }
     const user = await User.create({
       fullName,
@@ -35,7 +36,10 @@ const userSignUpService = async (fullName, email, password) => {
     if (user) {
       const token = await Token.create({
         userId: user.id,
-        token: crypto.randomBytes(16).toString("hex"),
+        // token: crypto.randomBytes(16).toString("hex"),
+        token: jwt.sign({ id: user.id }, SECRET_KEY, {
+          expiresIn: JWT_EXPIRATION,
+        }),
       });
       if (token) {
         sendingMail({
@@ -45,18 +49,27 @@ const userSignUpService = async (fullName, email, password) => {
           html: `<h1>Please verify your account</h1><br><p>Hello ${fullName},To verify your account, pleace click on the link below:</p><br><a href=http://localhost:3000/api/users/verify-email/${user.id}/${token.token}>Verification Link</a>`,
         });
       } else {
-        const result = getResponse(
+        return getResponse(
           500,
           "Token could not be generated",
           ReasonPhrases.INTERNAL_SERVER_ERROR
         );
-        return result;
       }
-      const result = getResponse(201, "User Created!", ReasonPhrases.OK, user);
-      return result;
+      const response = getResponse(
+        201,
+        "User Created!",
+        ReasonPhrases.OK,
+        user
+      );
+      return addTokenToResponse(response, user);
     }
   } catch (error) {
-    logger.error(error, "This is an error:");
+    logger.error(error.message);
+    return getResponse(
+      500,
+      "Error signing up!",
+      ReasonPhrases.INTERNAL_SERVER_ERROR
+    );
   }
 };
 
@@ -70,54 +83,50 @@ const verifyEmailService = async (token, id) => {
       },
     });
     if (!userToken) {
-      const result = getResponse(
+      return getResponse(
         502,
         "Your verification link may have expired. Please click on resend for verify your email",
         ReasonPhrases.BAD_GATEWAY
       );
-      return result;
     } else {
       const user = await User.findOne({ where: { id } });
       if (!user) {
         logger.info(user);
-        const result = getResponse(
+        return getResponse(
           404,
           "We were unable to find a user for this verification. Please sign up!",
           ReasonPhrases.NOT_FOUND
         );
-        return result;
       } else if (user.isVerified) {
-        const result = getResponse(
+        return getResponse(
           200,
           "User has already been verified. Please login",
           ReasonPhrases.OK,
           user
         );
-        return result;
       } else {
         const updateUser = await User.update(
           { isVerified: true },
           { where: { id } }
         );
         if (!updateUser) {
-          const result = getResponse(
+          return getResponse(
             500,
             "User could not be verified",
             ReasonPhrases.INTERNAL_SERVER_ERROR
           );
-          return result;
         } else {
-          const result = getResponse(
-            200,
-            "User has been verified",
-            ReasonPhrases.OK
-          );
-          return result;
+          return getResponse(200, "User has been verified", ReasonPhrases.OK);
         }
       }
     }
   } catch (error) {
     logger.error(`${error}`);
+    return getResponse(
+      500,
+      "Error verifying email!",
+      ReasonPhrases.INTERNAL_SERVER_ERROR
+    );
   }
 };
 
@@ -129,38 +138,36 @@ const userLoginService = async (email, password) => {
       // const isSame = await bcrypt.compare(password, user.password);
       if (compareHash(password, user.password)) {
         if (user.isVerified) {
-          const result = getResponse(
+          const response = getResponse(
             200,
             "User is verified. Login Successful!",
             ReasonPhrases.OK
           );
-          return result;
+          return addTokenToResponse(response, user);
         } else {
-          const result = getResponse(
+          return getResponse(
             401,
             "User is not verified",
             ReasonPhrases.UNAUTHORIZED
           );
-          return result;
         }
       } else {
-        const result = getResponse(
+        return getResponse(
           401,
           "Authentication failed. Invalid credentials!",
           ReasonPhrases.UNAUTHORIZED
         );
-        return result;
       }
     } else {
-      const result = getResponse(
-        404,
-        "User doesn't exist",
-        ReasonPhrases.NOT_FOUND
-      );
-      return result;
+      return getResponse(404, "User doesn't exist", ReasonPhrases.NOT_FOUND);
     }
   } catch (error) {
     logger.error(`${error}`);
+    return getResponse(
+      500,
+      "Error logging in!",
+      ReasonPhrases.INTERNAL_SERVER_ERROR
+    );
   }
 };
 
@@ -173,12 +180,7 @@ const userForgotPassword = async (email) => {
       },
     });
     if (!user) {
-      const result = getResponse(
-        409,
-        "Email doesn't exist!",
-        ReasonPhrases.CONFLICT
-      );
-      return result;
+      return getResponse(409, "Email doesn't exist!", ReasonPhrases.CONFLICT);
     }
     const token = jwt.sign({ id: user.id }, SECRET_KEY, {
       expiresIn: PASSWORD_RESET_EXPIRATION,
@@ -190,22 +192,25 @@ const userForgotPassword = async (email) => {
       html: `<h1>Please reset your password</h1><br><p>Hello ${user.fullName}, pleace click on the link below:</p><br><a href=http://localhost:3000/api/users/reset-password/${user.id}/${token}>Reset your password</a>`,
     });
     if (!errorSendingMail) {
-      const result = getResponse(
+      return getResponse(
         500,
         "Email could not be sent!",
         ReasonPhrases.INTERNAL_SERVER_ERROR
       );
-      return result;
     } else {
-      const result = getResponse(
+      return getResponse(
         200,
         "Password reset link has been sent to your email",
         ReasonPhrases.OK
       );
-      return result;
     }
   } catch (error) {
     logger.error(`Middleware: ${error}`);
+    return getResponse(
+      500,
+      "Error! Password link could not be sent.",
+      ReasonPhrases.INTERNAL_SERVER_ERROR
+    );
   }
 };
 
@@ -216,37 +221,36 @@ const resetPasswordService = async (id, token, password) => {
     if (id == decodedToken.id) {
       const hashPassword = await hash(password);
       await User.update({ password: hashPassword }, { where: { id } });
-      const result = getResponse(
+      return getResponse(
         200,
         "Successful Password Reset! Please login to your account",
         ReasonPhrases.OK
       );
-      return result;
     } else {
-      const result = getResponse(
-        401,
-        "Invalid token!",
-        ReasonPhrases.UNAUTHORIZED
-      );
-      return result;
+      return getResponse(401, "Invalid token!", ReasonPhrases.UNAUTHORIZED);
     }
   } catch (error) {
     logger.error(`Error in reset password: ${error}`);
+    return getResponse(
+      500,
+      "Password could not be reset!",
+      ReasonPhrases.INTERNAL_SERVER_ERROR
+    );
   }
 };
 
 const allUsersService = async () => {
   try {
     const users = await User.findAll();
-    const result = getResponse(200, "Users Found!", ReasonPhrases.OK, users);
-    return result;
+    const response = getResponse(200, "Users Found!", ReasonPhrases.OK, users);
+    return response;
   } catch (error) {
-    const result = getResponse(
+    logger.error(error.message);
+    return getResponse(
       500,
       "Error find users!",
       ReasonPhrases.INTERNAL_SERVER_ERROR
     );
-    return result;
   }
 };
 
@@ -254,23 +258,22 @@ const userByIdService = async (id) => {
   try {
     const user = await User.findByPk(id);
     if (user) {
-      const result = getResponse(200, "User found!", ReasonPhrases.OK, user);
-      return result;
+      const response = getResponse(200, "User found!", ReasonPhrases.OK, user);
+      return response;
     } else {
-      const result = getResponse(
+      return getResponse(
         404,
         "User could not be found!",
         ReasonPhrases.NOT_FOUND
       );
-      return result;
     }
   } catch (error) {
-    const result = getResponse(
+    logger.error(error.message);
+    return getResponse(
       500,
       "Error fetching user!",
       ReasonPhrases.INTERNAL_SERVER_ERROR
     );
-    return result;
   }
 };
 
@@ -278,27 +281,21 @@ const updateUserService = async (id, email, fullName, password, avatar) => {
   try {
     const findUser = await User.findByPk(id);
     if (findUser) {
-      const user = await findUser.update(
+      await findUser.update(
         { email, fullName, password, avatar },
         { where: { id } }
       );
-      const result = getResponse(200, "User updated!", ReasonPhrases.OK);
-      return result;
+      return getResponse(200, "User updated!", ReasonPhrases.OK);
     } else {
-      const result = getResponse(
-        404,
-        "User not found",
-        ReasonPhrases.NOT_FOUND
-      );
-      return result;
+      return getResponse(404, "User not found", ReasonPhrases.NOT_FOUND);
     }
   } catch (error) {
-    const result = getResponse(
+    logger.error(error.message);
+    return getResponse(
       500,
       "Error fetching user!",
       ReasonPhrases.INTERNAL_SERVER_ERROR
     );
-    return result;
   }
 };
 
@@ -307,27 +304,17 @@ const deleteUserService = async (id) => {
     const user = await User.findByPk(id);
     if (user) {
       await user.destroy();
-      const result = getResponse(
-        200,
-        "User Deleted Successfully!",
-        ReasonPhrases.OK
-      );
-      return result;
+      return getResponse(200, "User Deleted Successfully!", ReasonPhrases.OK);
     } else {
-      const result = getResponse(
-        404,
-        "User not found",
-        ReasonPhrases.NOT_FOUND
-      );
-      return result;
+      return getResponse(404, "User not found", ReasonPhrases.NOT_FOUND);
     }
   } catch (error) {
-    const result = getResponse(
+    logger.error(error.message);
+    return getResponse(
       500,
       "Error fetching user!",
       ReasonPhrases.INTERNAL_SERVER_ERROR
     );
-    return result;
   }
 };
 
@@ -336,23 +323,17 @@ const userLogoutService = async (id) => {
   try {
     const user = await User.findByPk(id);
     if (user) {
-      const result = getResponse(200, "Logout Sucessful", ReasonPhrases.OK);
-      return result;
+      return getResponse(200, "Logout Sucessful", ReasonPhrases.OK);
     } else {
-      const result = getResponse(
-        404,
-        "User not found",
-        ReasonPhrases.NOT_FOUND
-      );
-      return result;
+      return getResponse(404, "User not found", ReasonPhrases.NOT_FOUND);
     }
   } catch (error) {
-    const result = getResponse(
+    logger.error(error.message);
+    return getResponse(
       500,
-      "Error loggingout!!",
+      "Error logging out!!",
       ReasonPhrases.INTERNAL_SERVER_ERROR
     );
-    return result;
   }
 };
 
