@@ -189,7 +189,7 @@ const userForgotPassword = async (email) => {
       from: EMAIL,
       to: `${email}`,
       subject: "Password Reset Link",
-      html: `<h1>Please reset your password</h1><br><p>Hello ${user.fullName}, pleace click on the link below:</p><br><a href=http://localhost:3000/api/users/reset-password/${user.id}/${token}>Reset your password</a>`,
+      html: `<h1>Please reset your password</h1><br><p>Hello ${user.fullName}, please click on the link below:</p><br><a href=http://localhost:3000/api/users/reset-password/${user.id}/${token}>Reset your password</a>`,
     });
     if (!errorSendingMail) {
       return getResponse(

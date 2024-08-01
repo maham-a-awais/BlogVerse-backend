@@ -1190,3 +1190,84 @@
 {"level":"info","message":"Database connected"}
 {"level":"info","message":"Server is listening on port: 3000"}
 {"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":"jwt expired"}
+{"date":"Wed Jul 31 2024 17:41:35 GMT+0500 (Pakistan Standard Time)","error":{},"exception":true,"level":"error","message":"uncaughtException: logger is not defined\nReferenceError: logger is not defined\n    at createCommentService (/home/maham/Documents/Blog/Blog/services/commentServices.js:25:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async createComment (/home/maham/Documents/Blog/Blog/controllers/commentController.js:6:20)","os":{"loadavg":[0.81,0.92,0.96],"uptime":30341.13},"process":{"argv":["/home/maham/.nvm/versions/node/v20.15.1/bin/node","/home/maham/Documents/Blog/Blog/app.js"],"cwd":"/home/maham/Documents/Blog/Blog","execPath":"/home/maham/.nvm/versions/node/v20.15.1/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":51880,"external":2294299,"heapTotal":29724672,"heapUsed":28000648,"rss":84045824},"pid":67769,"uid":1000,"version":"v20.15.1"},"stack":"ReferenceError: logger is not defined\n    at createCommentService (/home/maham/Documents/Blog/Blog/services/commentServices.js:25:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async createComment (/home/maham/Documents/Blog/Blog/controllers/commentController.js:6:20)","trace":[{"column":5,"file":"/home/maham/Documents/Blog/Blog/services/commentServices.js","function":"createCommentService","line":25,"method":null,"native":false},{"column":5,"file":"node:internal/process/task_queues","function":"process.processTicksAndRejections","line":95,"method":"processTicksAndRejections","native":false},{"column":20,"file":"/home/maham/Documents/Blog/Blog/controllers/commentController.js","function":"async createComment","line":6,"method":null,"native":false}]}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":"null value in column \"postId\" of relation \"Comments\" violates not-null constraint"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":"null value in column \"postId\" of relation \"Comments\" violates not-null constraint"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"date":"Wed Jul 31 2024 18:01:29 GMT+0500 (Pakistan Standard Time)","error":{},"exception":true,"level":"error","message":"uncaughtException: req is not defined\nReferenceError: req is not defined\n    at getAllComments (/home/maham/Documents/Blog/Blog/controllers/commentController.js:19:18)\n    at Layer.handle [as handle_request] (/home/maham/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/maham/node_modules/express/lib/router/route.js:149:13)\n    at Route.dispatch (/home/maham/node_modules/express/lib/router/route.js:119:3)\n    at Layer.handle [as handle_request] (/home/maham/node_modules/express/lib/router/layer.js:95:5)\n    at /home/maham/node_modules/express/lib/router/index.js:284:15\n    at param (/home/maham/node_modules/express/lib/router/index.js:365:14)\n    at param (/home/maham/node_modules/express/lib/router/index.js:376:14)\n    at Function.process_params (/home/maham/node_modules/express/lib/router/index.js:421:3)\n    at next (/home/maham/node_modules/express/lib/router/index.js:280:10)","os":{"loadavg":[2.08,1.39,1.11],"uptime":31535.41},"process":{"argv":["/home/maham/.nvm/versions/node/v20.15.1/bin/node","/home/maham/Documents/Blog/Blog/app.js"],"cwd":"/home/maham/Documents/Blog/Blog","execPath":"/home/maham/.nvm/versions/node/v20.15.1/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":25307,"external":2267470,"heapTotal":28938240,"heapUsed":26581616,"rss":82800640},"pid":71637,"uid":1000,"version":"v20.15.1"},"stack":"ReferenceError: req is not defined\n    at getAllComments (/home/maham/Documents/Blog/Blog/controllers/commentController.js:19:18)\n    at Layer.handle [as handle_request] (/home/maham/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/maham/node_modules/express/lib/router/route.js:149:13)\n    at Route.dispatch (/home/maham/node_modules/express/lib/router/route.js:119:3)\n    at Layer.handle [as handle_request] (/home/maham/node_modules/express/lib/router/layer.js:95:5)\n    at /home/maham/node_modules/express/lib/router/index.js:284:15\n    at param (/home/maham/node_modules/express/lib/router/index.js:365:14)\n    at param (/home/maham/node_modules/express/lib/router/index.js:376:14)\n    at Function.process_params (/home/maham/node_modules/express/lib/router/index.js:421:3)\n    at next (/home/maham/node_modules/express/lib/router/index.js:280:10)","trace":[{"column":18,"file":"/home/maham/Documents/Blog/Blog/controllers/commentController.js","function":"getAllComments","line":19,"method":null,"native":false},{"column":5,"file":"/home/maham/node_modules/express/lib/router/layer.js","function":"Layer.handle [as handle_request]","line":95,"method":"handle [as handle_request]","native":false},{"column":13,"file":"/home/maham/node_modules/express/lib/router/route.js","function":"next","line":149,"method":null,"native":false},{"column":3,"file":"/home/maham/node_modules/express/lib/router/route.js","function":"Route.dispatch","line":119,"method":"dispatch","native":false},{"column":5,"file":"/home/maham/node_modules/express/lib/router/layer.js","function":"Layer.handle [as handle_request]","line":95,"method":"handle [as handle_request]","native":false},{"column":15,"file":"/home/maham/node_modules/express/lib/router/index.js","function":null,"line":284,"method":null,"native":false},{"column":14,"file":"/home/maham/node_modules/express/lib/router/index.js","function":"param","line":365,"method":null,"native":false},{"column":14,"file":"/home/maham/node_modules/express/lib/router/index.js","function":"param","line":376,"method":null,"native":false},{"column":3,"file":"/home/maham/node_modules/express/lib/router/index.js","function":"Function.process_params","line":421,"method":"process_params","native":false},{"column":10,"file":"/home/maham/node_modules/express/lib/router/index.js","function":"next","line":280,"method":null,"native":false}]}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}

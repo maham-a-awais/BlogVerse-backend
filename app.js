@@ -9,7 +9,7 @@ const { ReasonPhrases } = require("http-status-codes");
 const { PORT } = require("./config/localEnv");
 const userRoutes = require("./routes/userRoutes"); //ADD USER ROUTES
 const postRoutes = require("./routes/postRoutes"); //ADD POST ROUTES
-const DICTIONARY = require("./utils/constants/dictionary");
+const commentRoutes = require("./routes/commentRoutes"); //ADD POST ROUTES
 const apiRouter = express.Router();
 require("dotenv").config();
 
@@ -39,6 +39,7 @@ db.authenticate()
 
 apiRouter.use("/users", userRoutes);
 apiRouter.use("/posts", postRoutes);
+apiRouter.use("/comments", commentRoutes);
 
 app.use("/api", apiRouter);
 
