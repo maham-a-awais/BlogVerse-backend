@@ -376,16 +376,20 @@ const userLogoutService = async (id) => {
 
 const refreshTokenService = async (token) => {
   try {
-    const { id: userId } = verifyToken(token);
-    const user = await User.findByPk(userId);
-    if (user) {
-      const response = getResponse(
-        StatusCodes.OK,
-        SUCCESS_MESSAGES.USER.NEW_TOKEN,
-        ReasonPhrases.OK
-      );
-      return addTokenToResponse(response, user);
+    const getToken = verifyToken(token);
+    logger.info(getToken);
+    if (!getToken.statusCode) {
+      const user = await User.findByPk(getToken.id);
+      if (user) {
+        const response = getResponse(
+          StatusCodes.OK,
+          SUCCESS_MESSAGES.USER.NEW_TOKEN,
+          ReasonPhrases.OK
+        );
+        return addTokenToResponse(response, user);
+      }
     }
+    return getToken;
   } catch (error) {
     logger.error(error.message);
     return getResponse(

@@ -7,6 +7,7 @@ const {
 } = require("../../config");
 const { getResponse } = require("./getResponse");
 const { ReasonPhrases } = require("http-status-codes");
+const logger = require("../../logger/logger");
 
 module.exports = {
   signAccessToken: (payload) => {
@@ -56,8 +57,10 @@ module.exports = {
 
   verifyToken: (token) => {
     try {
+      logger.info(jwt.verify(token, SECRET_KEY));
       return jwt.verify(token, SECRET_KEY, (err, res) => {
         if (err) {
+          logger.error(err.message);
           return null;
         }
         return res;

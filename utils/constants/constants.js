@@ -43,7 +43,7 @@ module.exports = {
       UPDATE_FAILED: "Failed to update comment. Please try again.",
       DELETION_FAILED: "Failed to delete comment. Please try again.",
       ID_REQUIRED: "Comment ID is required",
-      INVALID_PARENT_COMMENT_ID: "Parent comment not found",
+      PARENT_NOT_FOUND: "Parent comment not found",
     },
     // Generic errors
     INTERNAL_SERVER_ERROR: "An internal server error occurred",

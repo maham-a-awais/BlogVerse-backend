@@ -1,8 +1,11 @@
 const logger = require("../logger/logger");
-const { ReasonPhrases } = require("http-status-codes");
+const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const { getResponse } = require("../utils/helpers/getResponse");
-const { User, post, Comment } = require("../models/index");
-const { where } = require("sequelize");
+const { post, Comment } = require("../models/index");
+const {
+  ERROR_MESSAGES,
+  SUCCESS_MESSAGES,
+} = require("../utils/constants/constants");
 
 const createCommentService = async (userId, postId, body, parentCommentId) => {
   try {
@@ -22,7 +25,7 @@ const createCommentService = async (userId, postId, body, parentCommentId) => {
     } else {
       return getResponse(
         500,
-        "Reply to a non-existing comment",
+        ERROR_MESSAGES.COMMENT.PARENT_NOT_FOUND,
         ReasonPhrases.INTERNAL_SERVER_ERROR
       );
     }

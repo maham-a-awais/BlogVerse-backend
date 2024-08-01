@@ -1784,3 +1784,46 @@
 {"level":"info","message":"Database connected"}
 {"level":"info","message":"Server is listening on port: 3000"}
 {"level":"info","message":"Database connected"}
+{"level":"error","message":"jwt expired"}
+{"level":"error","message":"Cannot destructure property 'id' of 'verifyToken(...)' as it is null."}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":"error is not defined"}
+{"level":"error","message":"getResponse is not a function"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":"jwt expired"}
+{"level":"error","message":"Cannot destructure property 'id' of 'verifyToken(...)' as it is null."}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":"jwt expired"}
+{"level":"error","message":"Cannot destructure property 'id' of 'verifyToken(...)' as it is null."}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":"jwt expired"}
+{"level":"error","message":"Cannot read properties of null (reading 'statusCode')"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":"jwt expired"}
+{"level":"info","message":null}
+{"level":"error","message":"Cannot read properties of null (reading 'statusCode')"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"error","message":"jwt expired"}
+{"level":"error","message":"getResponse is not a function"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":{"exp":1722523133,"iat":1722519533,"id":16}}
+{"level":"info","message":{"exp":1722523133,"iat":1722519533,"id":16}}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
+{"level":"info","message":"Server is listening on port: 3000"}
+{"level":"info","message":"Database connected"}
