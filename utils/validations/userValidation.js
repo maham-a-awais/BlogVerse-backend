@@ -78,14 +78,19 @@ const updateUserSchema = joi
       "string.empty": "Please enter your full name",
       "any.require": "Full Name is required.",
     }),
-    email: joi.string().email().messages({
-      "string.empty": "Email cannot be empty",
-      "any.require": "Email is required.",
-      "string.email": "Invalid email format.",
+  })
+  .options({ abortEarly: false });
+
+const changePasswordSchema = joi
+  .object({
+    oldPassword: joi.string().required().messages({
+      "string.empty": "Please enter your old password",
+      "any.require": "Old Password is required.",
     }),
-    password: joi
+    newPassword: joi
       .string()
       .pattern(new RegExp("^[a-zA-Z0–9@]{6,30}$"))
+      .required()
       .messages({
         "string.empty": "Password cannot be empty",
         "string.pattern.base":
@@ -93,10 +98,12 @@ const updateUserSchema = joi
       }),
   })
   .options({ abortEarly: false });
+
 module.exports = {
   userSignupSchema,
   userLoginSchema,
   forgotPasswordSchema,
   resetPasswordSchema,
   updateUserSchema,
+  changePasswordSchema,
 };

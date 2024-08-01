@@ -10,4 +10,10 @@ module.exports = {
   SECRET_KEY: process.env.SECRET_KEY,
   JWT_EXPIRATION: process.env.JWT_EXPIRATION,
   PASSWORD_RESET_EXPIRATION: process.env.PASSWORD_RESET_EXPIRATION,
+  JWT_REFRESH_EXPIRATION: process.env.JWT_REFRESH_EXPIRATION,
+  cookieOptions: {
+    httpOnly: true,
+    secure: true,
+    sameSite: "strict",
+  },
 };

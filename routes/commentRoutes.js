@@ -3,11 +3,31 @@ const validationMiddleware = require("../middleware/validation");
 const router = express.Router();
 const { authenticate } = require("../middleware/userAuth");
 const {
+  createCommentSchema,
+  updateCommentSchema,
+} = require("../utils/validations/commentValidations");
+const {
   createComment,
   getAllComments,
+  getReplies,
+  updateComment,
+  deleteComment,
 } = require("../controllers/commentController");
 
-router.post("/", authenticate, createComment);
 router.get("/:postId", getAllComments);
+router.get("/:postId/:parentCommentId", getReplies);
+router.delete("/:postId/:id", authenticate, deleteComment);
+router.post(
+  "/:postId",
+  validationMiddleware(createCommentSchema),
+  authenticate,
+  createComment
+);
+router.put(
+  "/:postId/:id",
+  validationMiddleware(updateCommentSchema),
+  authenticate,
+  updateComment
+);
 
 module.exports = router;

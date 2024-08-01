@@ -7,7 +7,7 @@ const {
   searchPostService,
   searchMyPostService,
 } = require("../services/postServices");
-const logger = require("../logger/logger");
+const { sendResponse } = require("../utils/helpers/getResponse");
 
 const createPost = async (req, res) => {
   const userId = req.user.id;
@@ -21,22 +21,25 @@ const createPost = async (req, res) => {
     categoryId,
     image
   );
-  return res.status(response.statusCode).json(response);
+  // return res.status(response.statusCode).json(response);
+  return sendResponse(res, response);
 };
 
 const getAllPosts = async (req, res) => {
   const response = await getAllPostService();
-  return res.status(response.statusCode).json(response);
+  // return res.status(response.statusCode).json(response);
+  return sendResponse(res, response);
 };
 
 const getMyPosts = async (req, res) => {
   const userId = req.user.id;
   const response = await getMyPostService(userId);
-  return res.status(response.statusCode).json(response);
+  // return res.status(response.statusCode).json(response);
+  return sendResponse(res, response);
 };
 
 const updatePost = async (req, res) => {
-  const postId = req.params.postId;
+  const { postId } = req.params;
   const userId = req.user.id;
   const { title, body, minTimeToRead, categoryId, image } = req.body;
   const response = await updatePostService(
@@ -48,27 +51,31 @@ const updatePost = async (req, res) => {
     categoryId,
     image
   );
-  return res.status(response.statusCode).json(response);
+  // return res.status(response.statusCode).json(response);
+  return sendResponse(res, response);
 };
 
 const deletePost = async (req, res) => {
-  const postId = req.params.postId;
+  const { postId } = req.params;
   const userId = req.user.id;
   const response = await deletePostService(userId, postId);
-  return res.status(response.statusCode).json(response);
+  // return res.status(response.statusCode).json(response);
+  return sendResponse(res, response);
 };
 
 const searchPosts = async (req, res) => {
   const { categoryId, title } = req.query;
   const response = await searchPostService(categoryId, title);
-  return res.status(response.statusCode).json(response);
+  // return res.status(response.statusCode).json(response);
+  return sendResponse(res, response);
 };
 
 const searchMyPosts = async (req, res) => {
   const userId = req.user.id;
   const { categoryId, title } = req.query;
   const response = await searchMyPostService(userId, categoryId, title);
-  return res.status(response.statusCode).json(response);
+  // return res.status(response.statusCode).json(response);
+  return sendResponse(res, response);
 };
 
 module.exports = {
