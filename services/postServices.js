@@ -1,9 +1,14 @@
-const { User, post, category } = require("../models/index");
-const logger = require("../logger/logger");
-const { getResponse } = require("../utils/helpers/getResponse");
-const { ReasonPhrases } = require("http-status-codes");
 const sequelize = require("sequelize");
 const Op = sequelize.Op;
+const logger = require("../logger/logger");
+const { User, post, category } = require("../models/index");
+const { getResponse } = require("../utils/helpers/getResponse");
+const { StatusCodes, ReasonPhrases } = require("http-status-codes");
+const {
+  ERROR_MESSAGES,
+  SUCCESS_MESSAGES,
+} = require("../utils/constants/constants");
+
 const createPostService = async (
   userId,
   title,
@@ -13,20 +18,14 @@ const createPostService = async (
   image
 ) => {
   try {
-    logger.info(userId);
-    // const user = await User.findByPk(id);
     const user = await User.findByPk(userId);
-    logger.info("User:", user);
     if (user) {
-      //   logger.info("User found with id:", user.id);
       const categoryExists = await category.findOne({
         where: {
           id: categoryId,
         },
       });
       if (categoryExists) {
-        logger.info("In category exists");
-        logger.info(userId);
         const newPost = await post.create({
           userId: userId,
           categoryId,
@@ -36,20 +35,26 @@ const createPostService = async (
           image,
         });
         return getResponse(
-          201,
-          "Post Published!",
+          StatusCodes.CREATED,
+          SUCCESS_MESSAGES.POST.CREATED,
           ReasonPhrases.CREATED,
           newPost
         );
-      } else {
-        return getResponse(404, "Invalid Category", ReasonPhrases.NOT_FOUND);
       }
     } else {
-      return getResponse(404, "User doesn't exist", ReasonPhrases.NOT_FOUND);
+      return getResponse(
+        StatusCodes.NOT_FOUND,
+        ERROR_MESSAGES.USER.NOT_FOUND,
+        ReasonPhrases.NOT_FOUND
+      );
     }
   } catch (error) {
     logger.error(error.message);
-    return getResponse(500, "Error publishing post", ReasonPhrases.NOT_FOUND);
+    return getResponse(
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      ERROR_MESSAGES.POST.CREATION_FAILED,
+      ReasonPhrases.NOT_FOUND
+    );
   }
 };
 
@@ -60,19 +65,23 @@ const getAllPostService = async () => {
     });
     if (posts) {
       return getResponse(
-        200,
-        "Posts retrieved successfully",
+        StatusCodes.OK,
+        SUCCESS_MESSAGES.POST.RETRIEVED,
         ReasonPhrases.OK,
         posts
       );
     } else {
-      return getResponse(404, "Could not find posts!", ReasonPhrases.NOT_FOUND);
+      return getResponse(
+        StatusCodes.NOT_FOUND,
+        ERROR_MESSAGES.POST.NOT_FOUND,
+        ReasonPhrases.NOT_FOUND
+      );
     }
   } catch (error) {
     logger.error(error.message);
     return getResponse(
-      500,
-      "Error fetching posts",
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      ERROR_MESSAGES.POST.RETRIEVAL_FAILED,
       ReasonPhrases.INTERNAL_SERVER_ERROR
     );
   }
@@ -87,19 +96,23 @@ const getMyPostService = async (userId) => {
         order: [["createdAt", "DESC"]],
       });
       return getResponse(
-        200,
-        "Posts retrieved successfully",
+        StatusCodes.OK,
+        SUCCESS_MESSAGES.POST.RETRIEVED,
         ReasonPhrases.OK,
         posts
       );
     } else {
-      return getResponse(404, "Could not find posts!", ReasonPhrases.NOT_FOUND);
+      return getResponse(
+        StatusCodes.NOT_FOUND,
+        ERROR_MESSAGES.POST.NOT_FOUND,
+        ReasonPhrases.NOT_FOUND
+      );
     }
   } catch (error) {
     logger.error(error.message);
     return getResponse(
-      500,
-      `Error fetching ${user.fullName}'s posts`,
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      ERROR_MESSAGES.POST.RETRIEVAL_FAILED,
       ReasonPhrases.INTERNAL_SERVER_ERROR
     );
   }
@@ -128,21 +141,29 @@ const updatePostService = async (
         { where: { id: postId } }
       );
       if (updatePost)
-        return getResponse(200, "Post updated!", ReasonPhrases.OK);
+        return getResponse(
+          StatusCodes.OK,
+          SUCCESS_MESSAGES.POST.UPDATED,
+          ReasonPhrases.OK
+        );
       else
         return getResponse(
-          500,
-          "Post couldn't be updated!",
+          StatusCodes.INTERNAL_SERVER_ERROR,
+          ERROR_MESSAGES.POST.UPDATE_FAILED,
           ReasonPhrases.INTERNAL_SERVER_ERROR
         );
     } else {
-      return getResponse(404, "User doesn't exist!", ReasonPhrases.NOT_FOUND);
+      return getResponse(
+        StatusCodes.NOT_FOUND,
+        ERROR_MESSAGES.USER.NOT_FOUND,
+        ReasonPhrases.NOT_FOUND
+      );
     }
   } catch (error) {
     logger.error(error.message);
     return getResponse(
-      500,
-      `Error updating post`,
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      ERROR_MESSAGES.POST.UPDATE_FAILED,
       ReasonPhrases.INTERNAL_SERVER_ERROR
     );
   }
@@ -154,17 +175,29 @@ const deletePostService = async (userId, postId) => {
     if (user) {
       const findPost = await post.findByPk(postId);
       if (!findPost)
-        return getResponse(404, "Post doesn't exist!", ReasonPhrases.NOT_FOUND);
+        return getResponse(
+          StatusCodes.NOT_FOUND,
+          ERROR_MESSAGES.POST.NOT_FOUND,
+          ReasonPhrases.NOT_FOUND
+        );
       await post.destroy({ where: { id: postId } });
-      return getResponse(200, "Post Deleted Successfully!", ReasonPhrases.OK);
+      return getResponse(
+        StatusCodes.OK,
+        SUCCESS_MESSAGES.POST.DELETED,
+        ReasonPhrases.OK
+      );
     } else {
-      return getResponse(404, "User doesn't exist!", ReasonPhrases.NOT_FOUND);
+      return getResponse(
+        StatusCodes.NOT_FOUND,
+        ERROR_MESSAGES.USER.NOT_FOUND,
+        ReasonPhrases.NOT_FOUND
+      );
     }
   } catch (error) {
     logger.error(error.message);
     return getResponse(
-      500,
-      `Error deleting post`,
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      ERROR_MESSAGES.POST.DELETION_FAILED,
       ReasonPhrases.INTERNAL_SERVER_ERROR
     );
   }
@@ -173,7 +206,11 @@ const deletePostService = async (userId, postId) => {
 const searchPostService = async (categoryId, title) => {
   try {
     if (!categoryId && !title)
-      return getResponse(200, "Search by title or category", ReasonPhrases.OK);
+      return getResponse(
+        StatusCodes.BAD_REQUEST,
+        ERROR_MESSAGES.POST.SEARCH,
+        ReasonPhrases.BAD_REQUEST
+      );
     const findItems = {
       ...(title && { title: { [Op.iLike]: `%${title}%` } }),
       ...(categoryId && { categoryId }),
@@ -186,18 +223,22 @@ const searchPostService = async (categoryId, title) => {
     });
     if (posts) {
       return getResponse(
-        200,
-        "Posts retrieved successfully",
+        StatusCodes.OK,
+        SUCCESS_MESSAGES.POST.RETRIEVED,
         ReasonPhrases.OK,
         posts
       );
     }
-    return getResponse(404, "No posts found", ReasonPhrases.NOT_FOUND);
+    return getResponse(
+      StatusCodes.NOT_FOUND,
+      ERROR_MESSAGES.POST.NOT_FOUND,
+      ReasonPhrases.NOT_FOUND
+    );
   } catch (error) {
     logger.error(error.message);
     return getResponse(
-      500,
-      `Error searching for post`,
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      ERROR_MESSAGES.POST.SEARCH_FAILED,
       ReasonPhrases.INTERNAL_SERVER_ERROR
     );
   }
@@ -209,13 +250,23 @@ const searchMyPostService = async (userId, categoryId, title) => {
     const myPosts = getPosts.data.filter((post) => post.userId === userId);
     if (myPosts.length > 0) {
       return getResponse(
-        200,
-        "Posts retrieved successfully",
+        StatusCodes.OK,
+        SUCCESS_MESSAGES.POST.RETRIEVED,
         ReasonPhrases.OK,
         myPosts
       );
-    } else return getResponse(404, "No posts found", ReasonPhrases.NOT_FOUND);
-  } else return getResponse(404, "No posts found", ReasonPhrases.NOT_FOUND);
+    } else
+      return getResponse(
+        StatusCodes.NOT_FOUND,
+        ERROR_MESSAGES.POST.NOT_FOUND,
+        ReasonPhrases.NOT_FOUND
+      );
+  } else
+    return getResponse(
+      StatusCodes.NOT_FOUND,
+      ERROR_MESSAGES.POST.NOT_FOUND,
+      ReasonPhrases.NOT_FOUND
+    );
 };
 
 module.exports = {

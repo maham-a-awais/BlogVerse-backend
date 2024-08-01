@@ -18,6 +18,7 @@ const {
 const userSignUpService = async (fullName, email, password) => {
   try {
     const validationResult = await validate(email);
+
     if (!validationResult.valid) {
       return getResponse(
         StatusCodes.BAD_REQUEST,
@@ -25,6 +26,7 @@ const userSignUpService = async (fullName, email, password) => {
         ReasonPhrases.BAD_REQUEST
       );
     }
+
     const user = await User.create({
       fullName,
       email,
@@ -69,6 +71,7 @@ const verifyEmailService = async (token, id) => {
           id: getToken.id,
         },
       });
+
       if (verifyUser) {
         if (verifyUser.isVerified) {
           return getResponse(
@@ -167,6 +170,7 @@ const userForgotPassword = async (email) => {
         email,
       },
     });
+
     if (!user) {
       return getResponse(
         StatusCodes.CONFLICT,
@@ -174,6 +178,7 @@ const userForgotPassword = async (email) => {
         ReasonPhrases.CONFLICT
       );
     }
+
     const token = signAccessToken({ id: user.id });
     const errorSendingMail = sendingMail({
       from: EMAIL,
@@ -181,6 +186,7 @@ const userForgotPassword = async (email) => {
       subject: "Password Reset Link",
       html: `<h1>Please reset your password</h1><br><p>Hello ${user.fullName}, please click on the link below:</p><br><a href=http://localhost:3000/api/users/reset-password/${user.id}/${token}>Reset your password</a>`,
     });
+
     if (!errorSendingMail) {
       return getResponse(
         StatusCodes.INTERNAL_SERVER_ERROR,
