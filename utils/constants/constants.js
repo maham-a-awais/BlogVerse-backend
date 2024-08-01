@@ -31,7 +31,10 @@ module.exports = {
       CREATION_FAILED: "Failed to create post. Please try again.",
       UPDATE_FAILED: "Failed to update post. Please try again.",
       DELETION_FAILED: "Failed to delete post. Please try again.",
+      RETRIEVAL_FAILED: "Failed to retrieve post. Please try again.",
+      SEARCH_FAILED: "Failed to search for post. Please try again.",
       ID_REQUIRED: "Post ID is required",
+      SEARCH: "Search by title or category",
     },
     // Comment-related messages
     COMMENT: {
