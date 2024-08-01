@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const { getResponse } = require("../utils/helpers/getResponse");
 const { ReasonPhrases } = require("http-status-codes");
 
-const { SECRET_KEY } = require("../config/localEnv");
+const { SECRET_KEY } = require("../config");
 
 const userExists = async (req, res, next) => {
   try {

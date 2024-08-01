@@ -1,5 +1,4 @@
-const jwt = require("jsonwebtoken");
-const { SECRET_KEY, JWT_EXPIRATION } = require("../../config/localEnv");
+const { signRefreshToken, signAccessToken } = require("./jwtHelper");
 
 const getResponse = (statusCode, message, response, data) => {
   const result = {
@@ -11,12 +10,14 @@ const getResponse = (statusCode, message, response, data) => {
   return result;
 };
 
+const sendResponse = (res, response) => {
+  return res.status(response.statusCode).json(response);
+};
+
 const addTokenToResponse = (response, user) => {
-  const token = jwt.sign({ id: user.id }, SECRET_KEY, {
-    expiresIn: JWT_EXPIRATION,
-  });
-  response.token = token;
+  response.accessToken = signAccessToken({ id: user.id });
+  response.refreshToken = signRefreshToken({ id: user.id });
   return response;
 };
 
-module.exports = { getResponse, addTokenToResponse };
+module.exports = { getResponse, sendResponse, addTokenToResponse };
