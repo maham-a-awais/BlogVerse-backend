@@ -1,7 +1,7 @@
 const express = require("express");
-const { userExists, authenticate } = require("../middleware/userAuth");
 const validationMiddleware = require("../middleware/validation");
 const router = express.Router();
+const { userExists, authenticate } = require("../middleware/userAuth");
 const {
   signUp,
   login,
@@ -25,14 +25,15 @@ const {
   changePasswordSchema,
 } = require("../utils/validations/userValidation");
 
-router.get("/", getAllUsers);
-router.get("/:id", authenticate, getUserById);
+// router.get("/", getAllUsers);
+router.get("/", authenticate, getUserById);
 router.get("/verify-email/:id/:token", verifyEmail);
-router.delete("/:id", authenticate, deleteUser);
-router.get("/:id/logout", authenticate, userLogout);
+router.get("/logout", authenticate, userLogout);
+router.delete("/", authenticate, deleteUser);
 router.post("/login", validationMiddleware(userLoginSchema), login);
+router.post("/refresh-token", refreshToken);
 router.put(
-  "/:id",
+  "/",
   validationMiddleware(updateUserSchema),
   authenticate,
   updateUser
@@ -53,8 +54,6 @@ router.post(
   validationMiddleware(resetPasswordSchema),
   resetPassword
 );
-
-router.post("/refresh-token", refreshToken);
 router.post(
   "/change-password",
   validationMiddleware(changePasswordSchema),

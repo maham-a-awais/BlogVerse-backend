@@ -19,12 +19,14 @@ const createPostService = async (
 ) => {
   try {
     const user = await User.findByPk(userId);
+
     if (user) {
       const categoryExists = await category.findOne({
         where: {
           id: categoryId,
         },
       });
+
       if (categoryExists) {
         const newPost = await post.create({
           userId: userId,
@@ -63,7 +65,8 @@ const getAllPostService = async () => {
     const posts = await post.findAll({
       order: [["createdAt", "DESC"]], // Order by createdAt in descending order (newest first)
     });
-    if (posts) {
+
+    if (posts && posts.length > 0) {
       return getResponse(
         StatusCodes.OK,
         SUCCESS_MESSAGES.POST.RETRIEVED,
@@ -90,6 +93,7 @@ const getAllPostService = async () => {
 const getMyPostService = async (userId) => {
   try {
     const user = await User.findByPk(userId);
+
     if (user) {
       const posts = await post.findAll({
         where: { userId },
@@ -129,6 +133,7 @@ const updatePostService = async (
 ) => {
   try {
     const user = await User.findByPk(userId);
+
     if (user) {
       const updatePost = post.update(
         {
@@ -140,6 +145,7 @@ const updatePostService = async (
         },
         { where: { id: postId } }
       );
+
       if (updatePost)
         return getResponse(
           StatusCodes.OK,
@@ -172,8 +178,10 @@ const updatePostService = async (
 const deletePostService = async (userId, postId) => {
   try {
     const user = await User.findByPk(userId);
+
     if (user) {
       const findPost = await post.findByPk(postId);
+
       if (!findPost)
         return getResponse(
           StatusCodes.NOT_FOUND,
@@ -211,6 +219,7 @@ const searchPostService = async (categoryId, title) => {
         ERROR_MESSAGES.POST.SEARCH,
         ReasonPhrases.BAD_REQUEST
       );
+
     const findItems = {
       ...(title && { title: { [Op.iLike]: `%${title}%` } }),
       ...(categoryId && { categoryId }),
@@ -221,6 +230,7 @@ const searchPostService = async (categoryId, title) => {
         [Op.or]: findItems,
       },
     });
+
     if (posts) {
       return getResponse(
         StatusCodes.OK,
@@ -246,6 +256,7 @@ const searchPostService = async (categoryId, title) => {
 
 const searchMyPostService = async (userId, categoryId, title) => {
   const getPosts = await searchPostService(categoryId, title);
+
   if (getPosts.data) {
     const myPosts = getPosts.data.filter((post) => post.userId === userId);
     if (myPosts.length > 0) {

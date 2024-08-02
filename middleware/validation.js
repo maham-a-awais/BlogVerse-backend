@@ -1,6 +1,6 @@
-const { getResponse } = require("../utils/helpers/getResponse");
 const logger = require("../logger/logger");
-const { ReasonPhrases } = require("http-status-codes");
+const { getResponse } = require("../utils/helpers/getResponse");
+const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 
 const validationMiddleware = (schema) => {
   return (req, res, next) => {
@@ -9,8 +9,14 @@ const validationMiddleware = (schema) => {
       if (error) {
         logger.error(error.message);
         res
-          .status(400)
-          .json(getResponse(400, error.message, ReasonPhrases.BAD_REQUEST));
+          .status(StatusCodes.BAD_REQUEST)
+          .json(
+            getResponse(
+              StatusCodes.BAD_REQUEST,
+              error.message,
+              ReasonPhrases.BAD_REQUEST
+            )
+          );
       } else {
         next();
       }

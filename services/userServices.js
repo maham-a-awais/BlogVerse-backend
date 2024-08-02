@@ -61,10 +61,10 @@ const userSignUpService = async (fullName, email, password) => {
   }
 };
 
-//VERIFY USER EMAIL
 const verifyEmailService = async (token, id) => {
   try {
     const getToken = verifyToken(token);
+
     if (!getToken.statusCode) {
       const verifyUser = await User.findOne({
         where: {
@@ -118,10 +118,10 @@ const verifyEmailService = async (token, id) => {
   }
 };
 
-//USER LOGIN
 const userLoginService = async (email, password) => {
   try {
     const user = await User.findOne({ where: { email } });
+
     if (user) {
       if (await compareHash(password, user.password)) {
         if (user.isVerified) {
@@ -162,7 +162,6 @@ const userLoginService = async (email, password) => {
   }
 };
 
-//USER FORGOT PASSWORD
 const userForgotPassword = async (email) => {
   try {
     const user = await User.findOne({
@@ -210,10 +209,10 @@ const userForgotPassword = async (email) => {
   }
 };
 
-//USER RESET PASSWORD
 const resetPasswordService = async (id, token, password) => {
   try {
     const getToken = verifyToken(token);
+
     if (!getToken.statusCode) {
       if (id == getToken.id) {
         const hashPassword = await hash(password);
@@ -265,6 +264,7 @@ const allUsersService = async () => {
 const userByIdService = async (id) => {
   try {
     const user = await User.findByPk(id);
+
     if (user) {
       const response = getResponse(
         StatusCodes.OK,
@@ -290,14 +290,12 @@ const userByIdService = async (id) => {
   }
 };
 
-const updateUserService = async (id, email, fullName, password, avatar) => {
+const updateUserService = async (id, fullName, avatar) => {
   try {
     const findUser = await User.findByPk(id);
+
     if (findUser) {
-      await findUser.update(
-        { email, fullName, password, avatar },
-        { where: { id } }
-      );
+      await findUser.update({ fullName, avatar }, { where: { id } });
       return getResponse(
         StatusCodes.OK,
         SUCCESS_MESSAGES.USER.UPDATED,
@@ -323,6 +321,7 @@ const updateUserService = async (id, email, fullName, password, avatar) => {
 const deleteUserService = async (id) => {
   try {
     const user = await User.findByPk(id);
+
     if (user) {
       await user.destroy();
       return getResponse(
@@ -347,10 +346,11 @@ const deleteUserService = async (id) => {
   }
 };
 
-//A CHECK TO SEE IF USER IS LOGGED IN OR NOT
+//A CHECK TO SEE IF USER HAS TICKED REMEMBER ME
 const userLogoutService = async (id) => {
   try {
     const user = await User.findByPk(id);
+
     if (user) {
       return getResponse(
         StatusCodes.OK,
@@ -377,9 +377,10 @@ const userLogoutService = async (id) => {
 const refreshTokenService = async (token) => {
   try {
     const getToken = verifyToken(token);
-    logger.info(getToken);
+
     if (!getToken.statusCode) {
       const user = await User.findByPk(getToken.id);
+
       if (user) {
         const response = getResponse(
           StatusCodes.OK,

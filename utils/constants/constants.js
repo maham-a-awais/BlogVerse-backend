@@ -24,7 +24,10 @@ module.exports = {
       FETCH_USER_ERROR: "Error fetching user!",
       TOKEN: "Error Generating Token!!",
       CHANGING_PASSWORD: "Error changing password!!",
+      AUTHORIZATION_FAILED: "Error authenticating user!",
+      UNAUTHORIZED: "Unauthorized user!",
     },
+
     // Post-related messages
     POST: {
       NOT_FOUND: "Post not found",
@@ -36,19 +39,33 @@ module.exports = {
       ID_REQUIRED: "Post ID is required",
       SEARCH: "Search by title or category",
     },
+
     // Comment-related messages
     COMMENT: {
       NOT_FOUND: "Comment not found",
       CREATION_FAILED: "Failed to create comment. Please try again.",
       UPDATE_FAILED: "Failed to update comment. Please try again.",
       DELETION_FAILED: "Failed to delete comment. Please try again.",
+      RETRIEVAL_FAILED: "Failed to retrieve comments. Please try again.",
+      REPLIES_FAILED: "Failed to retrieve replies. Please try again.",
       ID_REQUIRED: "Comment ID is required",
       PARENT_NOT_FOUND: "Parent comment not found",
+      NO_COMMENT_FOR_POST: "No Comments for this Post!",
+      REPLIES_NOT_FOUND: "Replies not found!",
     },
+
+    TOKEN: {
+      SIGN: "Unable to sign token",
+      VERIFY: "Unable to verify token",
+    },
+
     // Generic errors
     INTERNAL_SERVER_ERROR: "An internal server error occurred",
     FORBIDDEN: "You don't have permission to perform this action",
+    DATABASE_ERROR: "Error connecting to database! ",
+    ERROR: "ERROR!",
   },
+
   SUCCESS_MESSAGES: {
     // User-related messages
     USER: {
@@ -66,8 +83,9 @@ module.exports = {
       EMAIL_VERIFIED: "Email verified successfully",
       VERIFY_EMAIL: "Please verify your email",
       PLEASE_LOG_IN: "Please login to your account",
-      // EMAIL_SENT: "Email sent successfully! ",
+      EMAIL_SENT: "Email sent successfully! ",
     },
+
     // Post-related messages
     POST: {
       CREATED: "Post created successfully",
@@ -76,14 +94,21 @@ module.exports = {
       UPDATED: "Post updated successfully",
       DELETED: "Post deleted successfully",
     },
+
     // Comment-related messages
     COMMENT: {
       CREATED: "Comment created successfully",
       RETRIEVED: "Comments retrieved successfully",
       UPDATED: "Comment updated successfully",
       DELETED: "Comment deleted successfully",
+      REPLIES: "Replies found!",
     },
+
+    DATABASE_CONN: "Database connected!",
+    SERVER: "Server is listening on port ",
+    SUCCESS: "SUCCESS!",
   },
+
   PASSWORD_PATTERN: {
     REGEXP:
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,

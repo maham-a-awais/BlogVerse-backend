@@ -1,9 +1,9 @@
-const { User } = require("../models/index");
-const logger = require("../logger/logger");
 const jwt = require("jsonwebtoken");
+const logger = require("../logger/logger");
+const { User } = require("../models/index");
 const { getResponse } = require("../utils/helpers/getResponse");
-const { ReasonPhrases } = require("http-status-codes");
-
+const { StatusCodes, ReasonPhrases } = require("http-status-codes");
+const { ERROR_MESSAGES } = require("../utils/constants/constants");
 const { SECRET_KEY } = require("../config");
 
 const userExists = async (req, res, next) => {
@@ -15,18 +15,24 @@ const userExists = async (req, res, next) => {
     });
     if (user) {
       return res
-        .status(409)
-        .json(getResponse(409, "Email already exists", ReasonPhrases.CONFLICT));
+        .status(StatusCodes.CONFLICT)
+        .json(
+          getResponse(
+            StatusCodes.CONFLICT,
+            ERROR_MESSAGES.USER.EMAIL_ALREADY_EXISTS,
+            ReasonPhrases.CONFLICT
+          )
+        );
     }
     next();
   } catch (error) {
-    logger.error(`Middleware: ${error}`);
+    logger.error(error);
     return res
-      .status(500)
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json(
         getResponse(
-          500,
-          "Error Signing up",
+          StatusCodes.INTERNAL_SERVER_ERROR,
+          ERROR_MESSAGES.USER.SIGN_UP,
           ReasonPhrases.INTERNAL_SERVER_ERROR
         )
       );
@@ -38,9 +44,13 @@ const authenticate = async (req, res, next) => {
     const authHeader = req.header("Authorization");
     if (!authHeader) {
       return res
-        .status(401)
+        .status(StatusCodes.UNAUTHORIZED)
         .json(
-          getResponse(401, "Unauthorized User!", ReasonPhrases.UNAUTHORIZED)
+          getResponse(
+            StatusCodes.UNAUTHORIZED,
+            ERROR_MESSAGES.USER.UNAUTHORIZED,
+            ReasonPhrases.UNAUTHORIZED
+          )
         );
     }
     const token = authHeader.split(" ")[1];
@@ -50,11 +60,11 @@ const authenticate = async (req, res, next) => {
   } catch (error) {
     logger.error(error.message);
     return res
-      .status(500)
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json(
         getResponse(
-          500,
-          "Error authenticating user!",
+          StatusCodes.INTERNAL_SERVER_ERROR,
+          ERROR_MESSAGES.USER.AUTHORIZATION_FAILED,
           ReasonPhrases.INTERNAL_SERVER_ERROR
         )
       );

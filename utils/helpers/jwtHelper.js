@@ -6,8 +6,9 @@ const {
   PASSWORD_RESET_EXPIRATION,
 } = require("../../config");
 const { getResponse } = require("./getResponse");
-const { ReasonPhrases } = require("http-status-codes");
+const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const logger = require("../../logger/logger");
+const { ERROR_MESSAGES } = require("../constants/constants");
 
 module.exports = {
   signAccessToken: (payload) => {
@@ -18,8 +19,8 @@ module.exports = {
     } catch (error) {
       logger.error(error.message);
       getResponse(
-        500,
-        "Unable to sign token",
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        ERROR_MESSAGES.TOKEN.SIGN,
         ReasonPhrases.INTERNAL_SERVER_ERROR
       );
     }
@@ -33,8 +34,8 @@ module.exports = {
     } catch (error) {
       logger.error(error.message);
       getResponse(
-        500,
-        "Unable to sign token",
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        ERROR_MESSAGES.TOKEN.SIGN,
         ReasonPhrases.INTERNAL_SERVER_ERROR
       );
     }
@@ -48,8 +49,8 @@ module.exports = {
     } catch (error) {
       logger.error(error.message);
       getResponse(
-        500,
-        "Unable to sign token",
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        ERROR_MESSAGES.TOKEN.SIGN,
         ReasonPhrases.INTERNAL_SERVER_ERROR
       );
     }
@@ -68,8 +69,8 @@ module.exports = {
     } catch (error) {
       logger.error(error.message);
       getResponse(
-        500,
-        "Unable to verify token",
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        ERROR_MESSAGES.TOKEN.VERIFY,
         ReasonPhrases.INTERNAL_SERVER_ERROR
       );
     }
