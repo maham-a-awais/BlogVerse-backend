@@ -21,78 +21,78 @@ Blog App is a platform where users can create, edit, and delete posts. They can 
 
 root
 |
-├───controllers
-|   └─ postController.js
-|   └─ userController.js
+├── controllers
+|   ├─ postController.js
+|   ├─ userController.js
 |   └─ commentController.js
 |
-├───services
-│   └─ commentServices.js
-│   └─ postServices.js
+├── services
+│   ├─ commentServices.js
+│   ├─ postServices.js
 │   └─ userServices.js
 |
-├───routes
-|   └─ index.js
-│   └─ commentRoutes.js
-│   └─ postRoutes.js
+├── routes
+|   ├─ index.js
+│   ├─ commentRoutes.js
+│   ├─ postRoutes.js
 │   └─ userRoutes.js
 |
-├───models
-│   └─ comment.js
-│   └─ post.js
-│   └─ category.js
-│   └─ user.js
+├── models
+│   ├─ comment.js
+│   ├─ post.js
+│   ├─ category.js
+│   ├─ user.js
 │   └─ index.js
 |
-├───migrations
-│   └─ 20240728132355-create-user.js
-│   └─ 20240730100923-addColumnsUser.js
-│   └─ 20240730114446-create-category.js
-│   └─ 20240731042938-create-post.js
-│   └─ 20240731114359-create-comment.js
-│   └─ 20240801100523-foreignKey.js
-│   └─ 20240801101105-fk-comment.js
+├── migrations
+│   ├─ 20240728132355-create-user.js
+│   ├─ 20240730100923-addColumnsUser.js
+│   ├─ 20240730114446-create-category.js
+│   ├─ 20240731042938-create-post.js
+│   ├─ 20240731114359-create-comment.js
+│   ├─ 20240801100523-foreignKey.js
+│   ├─ 20240801101105-fk-comment.js
 │   └─ 20240801101717-fk-parentComment.js
 |
-├───seeders
+├── seeders
 │   └─ 20240730115604-insertCategory.js
 |
-├───utils
-│   └─ constants
+├── utils
+│   ├─ constants
 |   |  └─ constants.js
 |   |
 │   └─ helpers
-|   |  └─ bcryptHelper.js
-|   |  └─ jwtHelper.js
+|   |  ├─ bcryptHelper.js
+|   |  ├─ jwtHelper.js
 |   |  └─ getResponse.js
 |   |
 │   └─ validations
-|   |  └─ commentValidations.js
-|   |  └─ postValidations.js
-|   |  └─ userValidations.js
+|   |  ├─ commentValidations.js
+|   |  ├─ postValidations.js
+|   └  └─ userValidations.js
 |
-├───middleware
-│   └─ userAuth.js
+├── middleware
+│   ├─ userAuth.js
 │   └─ validation.js
 |
-├───logger
+├── logger
 │   └─ logger.js
 |
-├───nodemailer
+├── nodemailer
 │   └─ mailing.js
 |
-├───logs
+├── logs
 │   └─ app.log
 |
-├───config
-│   └─ config.js
-│   └─ database.js
+├── config
+│   ├─ config.js
+│   ├─ database.js
 │   └─ index.js
 |
-├───README.md
-├───package.json
-├───env
-└───app.js
+├── README.md
+├── package.json
+├── env
+└── app.js
 
 
 ```
