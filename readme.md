@@ -32,6 +32,7 @@ root
 │ userServices.js
 
 ├───routes
+| index.js
 │ commentRoutes.js
 │ postRoutes.js
 │ userRoutes.js

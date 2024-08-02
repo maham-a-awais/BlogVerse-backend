@@ -1909,3 +1909,5 @@
 {"level":"info","message":"Database connected!"}
 {"level":"info","message":"Server is listening on port 3000"}
 {"level":"info","message":"Database connected!"}
+{"level":"error","message":"jwt expired"}
+{"level":"info","message":{"exp":1722582712,"iat":1722575512,"id":16}}
