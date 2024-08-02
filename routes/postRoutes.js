@@ -23,14 +23,14 @@ router.get("/search", searchPosts);
 router.get("/search-my-posts", authenticate, searchMyPosts);
 router.post(
   "/",
-  validationMiddleware(createPostSchema),
   authenticate,
+  validationMiddleware(createPostSchema),
   createPost
 );
 router.put(
   "/:postId",
-  validationMiddleware(updatePostSchema),
   authenticate,
+  validationMiddleware(updatePostSchema),
   updatePost
 );
 

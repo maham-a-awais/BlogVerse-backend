@@ -19,14 +19,14 @@ router.get("/:postId/:parentCommentId", getReplies);
 router.delete("/:postId/:id", authenticate, deleteComment);
 router.post(
   "/:postId",
-  validationMiddleware(createCommentSchema),
   authenticate,
+  validationMiddleware(createCommentSchema),
   createComment
 );
 router.put(
   "/:postId/:id",
-  validationMiddleware(updateCommentSchema),
   authenticate,
+  validationMiddleware(updateCommentSchema),
   updateComment
 );
 

@@ -1,5 +1,5 @@
 const logger = require("../logger/logger");
-const { getResponse } = require("../utils/helpers/getResponse");
+const { getResponse, sendResponse } = require("../utils/helpers/getResponse");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 
 const validationMiddleware = (schema) => {
@@ -8,20 +8,36 @@ const validationMiddleware = (schema) => {
       const { error } = schema.validate(req.body);
       if (error) {
         logger.error(error.message);
-        res
-          .status(StatusCodes.BAD_REQUEST)
-          .json(
-            getResponse(
-              StatusCodes.BAD_REQUEST,
-              error.message,
-              ReasonPhrases.BAD_REQUEST
-            )
-          );
+        sendResponse(
+          res,
+          getResponse(
+            StatusCodes.BAD_REQUEST,
+            error.message,
+            ReasonPhrases.BAD_REQUEST
+          )
+        );
+        // res
+        //   .status(StatusCodes.BAD_REQUEST)
+        //   .json(
+        //     getResponse(
+        //       StatusCodes.BAD_REQUEST,
+        //       error.message,
+        //       ReasonPhrases.BAD_REQUEST
+        //     )
+        //   );
       } else {
         next();
       }
     } catch (error) {
       logger.error(error.message);
+      return sendResponse(
+        res,
+        getResponse(
+          StatusCodes.INTERNAL_SERVER_ERROR,
+          error.message,
+          ReasonPhrases.INTERNAL_SERVER_ERROR
+        )
+      );
     }
   };
 };

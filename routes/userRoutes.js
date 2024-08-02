@@ -56,8 +56,8 @@ router.post(
 );
 router.post(
   "/change-password",
-  validationMiddleware(changePasswordSchema),
   authenticate,
+  validationMiddleware(changePasswordSchema),
   changePassword
 );
 

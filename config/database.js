@@ -6,3 +6,6 @@ const db = new sequelize(DATABASE, USERNAME, PASSWORD, {
 });
 
 module.exports = db;
+
+//const config = require("./config")
+//const sequelize = new sequelize(config[env]);
