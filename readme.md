@@ -19,8 +19,6 @@ Blog App is a platform where users can create, edit, and delete posts. They can 
 
 ```
 
-```
-
 root
 |
 ├───controllers
@@ -95,7 +93,6 @@ root
 | env
 └─── app.js
 
-```
 
 ```
 
@@ -109,52 +106,59 @@ To manage the database schema and seed data, use the following Sequelize CLI com
 
 1. **Run Migrations:**
 
-   ```
-   npx sequelize-cli db:migrate
+```
 
-   ```
+npx sequelize-cli db:migrate
+
+```
 
 2. **Undo Migrations:**
 
-   ```
-   npx sequelize-cli db:migrate:undo
+```
 
-   ```
+npx sequelize-cli db:migrate:undo
+
+```
 
 3. **Generate a New Model:**
 
-   ```
-   npx sequelize-cli model:generate --name ModelName --attributes attribute1:type,attribute2:type
+```
 
-   ```
+npx sequelize-cli model:generate --name ModelName --attributes attribute1:type,attribute2:type
+
+```
 
 4. **Generate a New Migration:**
 
-   ```
-   npx sequelize-cli migration:generate --name migration_name
+```
 
-   ```
+npx sequelize-cli migration:generate --name migration_name
+
+```
 
 5. **Generate Seed Files:**
 
-   ```
-   npx sequelize-cli seed:generate --name seed_name
+```
 
-   ```
+npx sequelize-cli seed:generate --name seed_name
+
+```
 
 6. **Run Seed Files:**
 
-   ```
-   npx sequelize-cli db:seed:all
+```
 
-   ```
+npx sequelize-cli db:seed:all
+
+```
 
 7. **Undo Seed Files:**
 
-   ```
-   npx sequelize-cli db:seed:undo:all
+```
 
-   ```
+npx sequelize-cli db:seed:undo:all
+
+```
 
 ## API Endpoints
 
@@ -195,3 +199,7 @@ To manage the database schema and seed data, use the following Sequelize CLI com
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). You are free to use, modify, and distribute this software as long as the original authors are credited.
 
 ---
+
+```
+
+```
