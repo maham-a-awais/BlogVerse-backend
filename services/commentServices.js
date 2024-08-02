@@ -17,17 +17,39 @@ const createCommentService = async (userId, postId, body, parentCommentId) => {
         ERROR_MESSAGES.POST.NOT_FOUND,
         ReasonPhrases.NOT_FOUND
       );
+    let findComment;
+    if (parentCommentId) {
+      findComment = await Comment.findOne({
+        where: { id: parentCommentId, postId },
+      });
 
-    const findComment = await Comment.findOne({
-      where: { id: parentCommentId, postId },
-    });
+      if (findComment) {
+        const newComment = await Comment.create({
+          userId,
+          postId,
+          body,
+          parentCommentId,
+        });
 
-    if (findComment) {
+        if (newComment)
+          return getResponse(
+            StatusCodes.CREATED,
+            SUCCESS_MESSAGES.COMMENT.CREATED,
+            ReasonPhrases.CREATED,
+            newComment
+          );
+      } else {
+        return getResponse(
+          StatusCodes.NOT_FOUND,
+          ERROR_MESSAGES.COMMENT.PARENT_NOT_FOUND,
+          ReasonPhrases.NOT_FOUND
+        );
+      }
+    } else {
       const newComment = await Comment.create({
         userId,
         postId,
         body,
-        parentCommentId,
       });
 
       if (newComment)
@@ -37,14 +59,7 @@ const createCommentService = async (userId, postId, body, parentCommentId) => {
           ReasonPhrases.CREATED,
           newComment
         );
-    } else {
-      return getResponse(
-        StatusCodes.NOT_FOUND,
-        ERROR_MESSAGES.COMMENT.PARENT_NOT_FOUND,
-        ReasonPhrases.NOT_FOUND
-      );
     }
-
     return getResponse(
       StatusCodes.INTERNAL_SERVER_ERROR,
       ERROR_MESSAGES.COMMENT.CREATION_FAILED,

@@ -1911,3 +1911,40 @@
 {"level":"info","message":"Database connected!"}
 {"level":"error","message":"jwt expired"}
 {"level":"info","message":{"exp":1722582712,"iat":1722575512,"id":16}}
+{"level":"error","message":"Password cannot be empty"}
+{"level":"error","message":"Password must contain only letters, numbers, or \"@\" and be between 6 and 30 characters long."}
+{"level":"info","message":"Email sent successfully! "}
+{"level":"error","message":"Password cannot be empty"}
+{"level":"info","message":{"exp":1722585052,"iat":1722581452,"id":17}}
+{"level":"info","message":{"exp":1722585052,"iat":1722581452,"id":17}}
+{"level":"info","message":"Server is listening on port 3000"}
+{"level":"info","message":"Database connected!"}
+{"level":"info","message":{"exp":1722585052,"iat":1722581452,"id":17}}
+{"level":"info","message":"Server is listening on port 3000"}
+{"level":"info","message":"Database connected!"}
+{"level":"info","message":{"exp":1722585052,"iat":1722581452,"id":17}}
+{"level":"error","message":"\"minTimeToRead\" must be a number"}
+{"level":"error","message":"Post body cannot be empty"}
+{"level":"error","message":"Please enter a title"}
+{"level":"error","message":"\"categoryId\" must be a number"}
+{"level":"error","message":"\"title\" length must be at least 5 characters long. \"body\" is required. \"minTimeToRead\" is required"}
+{"level":"error","message":"jwt expired"}
+{"level":"error","message":"WHERE parameter \"id\" has invalid \"undefined\" value"}
+{"level":"error","message":"WHERE parameter \"id\" has invalid \"undefined\" value"}
+{"level":"info","message":"Server is listening on port 3000"}
+{"level":"info","message":"Database connected!"}
+{"level":"info","message":"Server is listening on port 3000"}
+{"level":"info","message":"Database connected!"}
+{"level":"info","message":"Server is listening on port 3000"}
+{"level":"info","message":"Database connected!"}
+{"level":"info","message":"Server is listening on port 3000"}
+{"level":"info","message":"Database connected!"}
+{"level":"error","message":"WHERE parameter \"id\" has invalid \"undefined\" value"}
+{"level":"info","message":"Server is listening on port 3000"}
+{"level":"info","message":"Database connected!"}
+{"level":"info","message":"Server is listening on port 3000"}
+{"level":"info","message":"Database connected!"}
+{"level":"info","message":"Server is listening on port 3000"}
+{"level":"info","message":"Database connected!"}
+{"level":"info","message":"Server is listening on port 3000"}
+{"level":"info","message":"Database connected!"}
