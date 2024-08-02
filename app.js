@@ -6,10 +6,7 @@ const db = require("./config/database");
 const logger = require("./logger/logger");
 const getResponse = require("./utils/helpers/getResponse");
 const cors = require("cors");
-const apiRouter = express.Router();
-const userRoutes = require("./routes/userRoutes");
-const postRoutes = require("./routes/postRoutes");
-const commentRoutes = require("./routes/commentRoutes");
+const apiRouter = require("./routes/index");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const { PORT } = require("./config/index");
 const {
@@ -21,7 +18,6 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-
 app.use(cookieParser());
 app.use(helmet());
 
@@ -43,13 +39,10 @@ function errorHandler(err, req, res, next) {
       )
     );
 }
+
 db.authenticate()
   .then(() => logger.info(SUCCESS_MESSAGES.DATABASE_CONN))
   .catch((err) => logger.error(ERROR_MESSAGES.DATABASE_ERROR + err));
-
-apiRouter.use("/users", userRoutes);
-apiRouter.use("/posts", postRoutes);
-apiRouter.use("/comments", commentRoutes);
 
 app.use("/api", apiRouter);
 
