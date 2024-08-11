@@ -8,7 +8,6 @@ const {
   verifyEmail,
   forgotPassword,
   resetPassword,
-  getAllUsers,
   getUserById,
   updateUser,
   deleteUser,
@@ -124,6 +123,7 @@ router.get("/logout", authenticate, userLogout);
  *         description: User deleted successfully
  */
 router.delete("/", authenticate, deleteUser);
+
 /**
  * @swagger
  * /users/login:
@@ -150,6 +150,7 @@ router.delete("/", authenticate, deleteUser);
  *         description: Logged in successfully
  */
 router.post("/login", validationMiddleware(userLoginSchema), login);
+
 /**
  * @swagger
  * /users/refresh-token:
@@ -163,6 +164,7 @@ router.post("/login", validationMiddleware(userLoginSchema), login);
  *         description: Token refreshed successfully
  */
 router.post("/refresh-token", refreshToken);
+
 /**
  * @swagger
  * components:
@@ -307,6 +309,7 @@ router.post(
   validationMiddleware(resetPasswordSchema),
   resetPassword
 );
+
 /**
  * @swagger
  * components:
