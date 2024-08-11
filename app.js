@@ -6,6 +6,7 @@ const db = require("./config/database");
 const logger = require("./logger/logger");
 const getResponse = require("./utils/helpers/getResponse");
 const cors = require("cors");
+const swagger = require("./swagger");
 const apiRouter = require("./routes/index");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const { PORT } = require("./config/index");
@@ -45,6 +46,8 @@ db.authenticate()
   .catch((err) => logger.error(ERROR_MESSAGES.DATABASE_ERROR + err));
 
 app.use("/api", apiRouter);
+
+swagger(app);
 
 app.listen(PORT, (err, res) => {
   logger.info(SUCCESS_MESSAGES.SERVER + PORT);

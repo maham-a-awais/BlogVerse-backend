@@ -60,68 +60,6 @@ const createPostService = async (
   }
 };
 
-const getAllPostService = async () => {
-  try {
-    const posts = await post.findAll({
-      order: [["createdAt", "DESC"]], // Order by createdAt in descending order (newest first)
-    });
-
-    if (posts && posts.length > 0) {
-      return getResponse(
-        StatusCodes.OK,
-        SUCCESS_MESSAGES.POST.RETRIEVED,
-        ReasonPhrases.OK,
-        posts
-      );
-    } else {
-      return getResponse(
-        StatusCodes.NOT_FOUND,
-        ERROR_MESSAGES.POST.NOT_FOUND,
-        ReasonPhrases.NOT_FOUND
-      );
-    }
-  } catch (error) {
-    logger.error(error.message);
-    return getResponse(
-      StatusCodes.INTERNAL_SERVER_ERROR,
-      ERROR_MESSAGES.POST.RETRIEVAL_FAILED,
-      ReasonPhrases.INTERNAL_SERVER_ERROR
-    );
-  }
-};
-
-const getMyPostService = async (userId) => {
-  try {
-    const user = await User.findByPk(userId);
-
-    if (user) {
-      const posts = await post.findAll({
-        where: { userId },
-        order: [["createdAt", "DESC"]],
-      });
-      return getResponse(
-        StatusCodes.OK,
-        SUCCESS_MESSAGES.POST.RETRIEVED,
-        ReasonPhrases.OK,
-        posts
-      );
-    } else {
-      return getResponse(
-        StatusCodes.NOT_FOUND,
-        ERROR_MESSAGES.POST.NOT_FOUND,
-        ReasonPhrases.NOT_FOUND
-      );
-    }
-  } catch (error) {
-    logger.error(error.message);
-    return getResponse(
-      StatusCodes.INTERNAL_SERVER_ERROR,
-      ERROR_MESSAGES.POST.RETRIEVAL_FAILED,
-      ReasonPhrases.INTERNAL_SERVER_ERROR
-    );
-  }
-};
-
 const updatePostService = async (
   userId,
   postId,
@@ -211,32 +149,101 @@ const deletePostService = async (userId, postId) => {
   }
 };
 
-const searchPostService = async (categoryId, title) => {
+const getMyPostService = async (
+  userId,
+  { title, categoryId },
+  limit,
+  offset
+) => {
   try {
-    if (!categoryId && !title)
-      return getResponse(
-        StatusCodes.BAD_REQUEST,
-        ERROR_MESSAGES.POST.SEARCH,
-        ReasonPhrases.BAD_REQUEST
-      );
+    const user = await User.findByPk(userId);
 
+    if (user) {
+      const findItems = {
+        ...(title && { title: { [Op.iLike]: `%${title}%` } }),
+        ...(categoryId && { categoryId }),
+      };
+
+      const posts = await post.findAndCountAll({
+        where: {
+          userId,
+          ...(Object.keys(findItems).length > 0 && {
+            [Op.or]: findItems,
+          }),
+        },
+        order: [["createdAt", "DESC"]],
+        limit,
+        offset,
+      });
+
+      const totalPages = Math.ceil(posts.count / limit);
+      const currentPage = Math.floor(offset / limit) + 1;
+
+      if (posts.rows) {
+        return getResponse(
+          StatusCodes.OK,
+          SUCCESS_MESSAGES.POST.RETRIEVED,
+          ReasonPhrases.OK,
+          {
+            posts: posts.rows,
+            totalPages,
+            currentPage,
+          }
+        );
+      }
+      return getResponse(
+        StatusCodes.NOT_FOUND,
+        ERROR_MESSAGES.POST.NOT_FOUND,
+        ReasonPhrases.NOT_FOUND
+      );
+    } else {
+      return getResponse(
+        StatusCodes.NOT_FOUND,
+        ERROR_MESSAGES.USER.NOT_FOUND,
+        ReasonPhrases.NOT_FOUND
+      );
+    }
+  } catch (error) {
+    logger.error(error.message);
+    return getResponse(
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      ERROR_MESSAGES.POST.RETRIEVAL_FAILED,
+      ReasonPhrases.INTERNAL_SERVER_ERROR
+    );
+  }
+};
+
+const getAllPostService = async ({ title, categoryId }, limit, offset) => {
+  try {
     const findItems = {
       ...(title && { title: { [Op.iLike]: `%${title}%` } }),
       ...(categoryId && { categoryId }),
     };
 
-    const posts = await post.findAll({
+    const posts = await post.findAndCountAll({
       where: {
-        [Op.or]: findItems,
+        ...(Object.keys(findItems).length > 0 && {
+          [Op.or]: findItems,
+        }),
       },
+      order: [["createdAt", "DESC"]],
+      limit,
+      offset,
     });
 
-    if (posts) {
+    const totalPages = Math.ceil(posts.count / limit);
+    const currentPage = Math.floor(offset / limit) + 1;
+
+    if (posts.rows) {
       return getResponse(
         StatusCodes.OK,
         SUCCESS_MESSAGES.POST.RETRIEVED,
         ReasonPhrases.OK,
-        posts
+        {
+          posts: posts.rows,
+          totalPages,
+          currentPage,
+        }
       );
     }
     return getResponse(
@@ -248,36 +255,10 @@ const searchPostService = async (categoryId, title) => {
     logger.error(error.message);
     return getResponse(
       StatusCodes.INTERNAL_SERVER_ERROR,
-      ERROR_MESSAGES.POST.SEARCH_FAILED,
+      ERROR_MESSAGES.POST.RETRIEVAL_FAILED,
       ReasonPhrases.INTERNAL_SERVER_ERROR
     );
   }
-};
-
-const searchMyPostService = async (userId, categoryId, title) => {
-  const getPosts = await searchPostService(categoryId, title);
-
-  if (getPosts.data) {
-    const myPosts = getPosts.data.filter((post) => post.userId === userId);
-    if (myPosts.length > 0) {
-      return getResponse(
-        StatusCodes.OK,
-        SUCCESS_MESSAGES.POST.RETRIEVED,
-        ReasonPhrases.OK,
-        myPosts
-      );
-    } else
-      return getResponse(
-        StatusCodes.NOT_FOUND,
-        ERROR_MESSAGES.POST.NOT_FOUND,
-        ReasonPhrases.NOT_FOUND
-      );
-  } else
-    return getResponse(
-      StatusCodes.NOT_FOUND,
-      ERROR_MESSAGES.POST.NOT_FOUND,
-      ReasonPhrases.NOT_FOUND
-    );
 };
 
 module.exports = {
@@ -286,6 +267,4 @@ module.exports = {
   getMyPostService,
   updatePostService,
   deletePostService,
-  searchPostService,
-  searchMyPostService,
 };

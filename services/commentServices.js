@@ -75,19 +75,26 @@ const createCommentService = async (userId, postId, body, parentCommentId) => {
   }
 };
 
-const getAllCommentService = async (postId) => {
+const getAllCommentService = async (postId, limit, offset) => {
   try {
-    const comments = await Comment.findAll({
+    const comments = await Comment.findAndCountAll({
       where: { postId, parentCommentId: null },
       order: [["createdAt", "DESC"]],
+      limit,
+      offset,
     });
 
-    if (comments && comments.length > 0)
+    const totalComments = Math.ceil(comments.count / limit);
+
+    if (comments.rows && comments.rows.length > 0)
       return getResponse(
         StatusCodes.OK,
         SUCCESS_MESSAGES.COMMENT.RETRIEVED,
         ReasonPhrases.OK,
-        comments
+        {
+          comments: comments.rows,
+          totalComments,
+        }
       );
 
     return getResponse(
@@ -105,19 +112,26 @@ const getAllCommentService = async (postId) => {
   }
 };
 
-const getAllRepliesService = async (postId, parentCommentId) => {
+const getAllRepliesService = async (postId, parentCommentId, limit, offset) => {
   try {
-    const replies = await Comment.findAll({
+    const replies = await Comment.findAndCountAll({
       where: { postId, parentCommentId },
       order: [["createdAt"]],
+      limit,
+      offset,
     });
 
-    if (replies)
+    const totalReplies = Math.ceil(replies.count / limit);
+
+    if (replies.rows)
       return getResponse(
         StatusCodes.OK,
         SUCCESS_MESSAGES.COMMENT.REPLIES,
         ReasonPhrases.OK,
-        replies
+        {
+          replies: replies.rows,
+          totalPages,
+        }
       );
 
     return getResponse(

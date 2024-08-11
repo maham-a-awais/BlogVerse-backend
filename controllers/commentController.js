@@ -22,13 +22,13 @@ const createComment = async (req, res) => {
 
 const getAllComments = async (req, res) => {
   const postId = req.params.postId;
-  const response = await getAllCommentService(postId);
+  const response = await getAllCommentService(postId, 3, 0);
   return sendResponse(res, response);
 };
 
 const getReplies = async (req, res) => {
   const { postId, parentCommentId } = req.params;
-  const response = await getAllRepliesService(postId, parentCommentId);
+  const response = await getAllRepliesService(postId, parentCommentId, 3, 0);
   return sendResponse(res, response);
 };
 
