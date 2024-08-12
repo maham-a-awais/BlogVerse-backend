@@ -1,2 +1,0 @@
-# Blog
-Kwanso Training Project
