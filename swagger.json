@@ -1,0 +1,705 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Documentation",
+    "description": "API Documentation",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "Users",
+      "description": "Operations related to users"
+    },
+    {
+      "name": "Posts",
+      "description": "Operations related to posts"
+    },
+    {
+      "name": "Comments",
+      "description": "Operations related to comments"
+    }
+  ],
+  "servers": [
+    {
+      "url": "http://localhost:3000/api"
+    }
+  ],
+  "paths": {
+    "/posts": {
+      "get": {
+        "summary": "Get all posts",
+        "description": "Retrieve a list of all posts",
+        "tags": ["Posts"],
+        "responses": {
+          "200": {
+            "description": "List of posts"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new post",
+        "description": "Create a new post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "The post title"
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "The post content"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Posts"],
+        "responses": {
+          "201": {
+            "description": "Post created successfully"
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "http://localhost:3000/api"
+        }
+      ]
+    },
+    "/posts/{postId}": {
+      "delete": {
+        "summary": "Delete a post",
+        "description": "Delete a post by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "postId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Posts"],
+        "responses": {
+          "204": {
+            "description": "Post deleted successfully"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a post",
+        "description": "Update a post by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "postId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "The post title"
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "The post content"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Posts"],
+        "responses": {
+          "200": {
+            "description": "Post updated successfully"
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "http://localhost:3000/api"
+        }
+      ]
+    },
+    "/posts/my-posts": {
+      "get": {
+        "summary": "Get my posts",
+        "description": "Retrieve a list of posts created by the current user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Posts"],
+        "responses": {
+          "200": {
+            "description": "List of posts"
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "http://localhost:3000/api"
+        }
+      ]
+    },
+    "/users": {
+      "get": {
+        "summary": "Get user",
+        "description": "Retrieve user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Users"],
+        "responses": {
+          "200": {
+            "description": "User details"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new user",
+        "description": "Create a new user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The user's name"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "The user's email address"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "The user's password"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Users"],
+        "responses": {
+          "201": {
+            "description": "User created successfully"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a user",
+        "description": "Update a user by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The user's name"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "The user's email address"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Users"],
+        "responses": {
+          "200": {
+            "description": "User updated successfully"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a user",
+        "description": "Delete a user by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Users"],
+        "responses": {
+          "204": {
+            "description": "User deleted successfully"
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "http://localhost:3000/api"
+        }
+      ]
+    },
+    "/users/login": {
+      "post": {
+        "summary": "Login",
+        "description": "Login a user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "The user's email address"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "The user's password"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Users"],
+        "responses": {
+          "200": {
+            "description": "Logged in successfully"
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "http://localhost:3000/api"
+        }
+      ]
+    },
+    "/users/logout": {
+      "post": {
+        "summary": "Logout",
+        "description": "Logout the current user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Users"],
+        "responses": {
+          "200": {
+            "description": "Logged out successfully"
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "http://localhost:3000/api"
+        }
+      ]
+    },
+    "/users/verify-email/{id}/{token}": {
+      "get": {
+        "summary": "Verify email",
+        "description": "Verify a user's email address",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "path",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": ["Users"],
+        "responses": {
+          "200": {
+            "description": "Email verified successfully"
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "http://localhost:3000/api"
+        }
+      ]
+    },
+    "/users/refresh-token": {
+      "post": {
+        "summary": "Refresh token",
+        "description": "Refresh the current user's token",
+        "tags": ["Users"],
+        "responses": {
+          "200": {
+            "description": "Token refreshed successfully"
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "http://localhost:3000/api"
+        }
+      ]
+    },
+    "/users/forgot-password": {
+      "post": {
+        "summary": "Forgot password",
+        "description": "Send a password reset email",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "The user's email address"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Users"],
+        "responses": {
+          "200": {
+            "description": "Password reset email sent successfully"
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "http://localhost:3000/api"
+        }
+      ]
+    },
+    "/users/reset-password/{id}/{token}": {
+      "post": {
+        "summary": "Reset password",
+        "description": "Reset a user's password",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "path",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "type": "string",
+                    "description": "The new password"
+                  },
+                  "confirmPassword": {
+                    "type": "string",
+                    "description": "The confirmed new password"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Users"],
+        "responses": {
+          "200": {
+            "description": "Password reset successfully"
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "http://localhost:3000/api"
+        }
+      ]
+    },
+    "/users/change-password": {
+      "post": {
+        "summary": "Change password",
+        "description": "Change the current user's password",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "oldPassword": {
+                    "type": "string",
+                    "description": "The current password"
+                  },
+                  "newPassword": {
+                    "type": "string",
+                    "description": "The new password"
+                  },
+                  "confirmNewPassword": {
+                    "type": "string",
+                    "description": "The confirmed new password"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Users"],
+        "responses": {
+          "200": {
+            "description": "Password changed successfully"
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "http://localhost:3000/api"
+        }
+      ]
+    },
+    "/comments": {
+      "get": {
+        "summary": "Get all comments",
+        "description": "Retrieve a list of all comments",
+        "tags": ["Comments"],
+        "responses": {
+          "200": {
+            "description": "List of comments"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new comment",
+        "description": "Create a new comment",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "postId": {
+                    "type": "integer",
+                    "description": "The post ID"
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "The comment content"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Comments"],
+        "responses": {
+          "201": {
+            "description": "Comment created successfully"
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "http://localhost:3000/api"
+        }
+      ]
+    },
+    "/comments/{commentId}": {
+      "get": {
+        "summary": "Get a comment",
+        "description": "Retrieve a comment by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "commentId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": ["Comments"],
+        "responses": {
+          "200": {
+            "description": "Comment details"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a comment",
+        "description": "Update a comment by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "commentId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "string",
+                    "description": "The updated comment content"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Comments"],
+        "responses": {
+          "200": {
+            "description": "Comment updated successfully"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a comment",
+        "description": "Delete a comment by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "commentId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Comments"],
+        "responses": {
+          "204": {
+            "description": "Comment deleted successfully"
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "http://localhost:3000/api"
+        }
+      ]
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

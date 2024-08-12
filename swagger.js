@@ -1,6 +1,7 @@
 const { BASE_URL } = require("./config/index");
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+const swaggerJson = require("./swagger.json");
 const options = {
   definition: {
     openapi: "3.0.0",
@@ -34,12 +35,23 @@ const swaggerSpec = swaggerJsdoc(options);
 
 function swaggerDocs(app, port) {
   // Swagger Page
-  app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  // app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use(
+    "/docs",
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerJson, {
+      cors: false,
+      explorer: true,
+      url: BASE_URL,
+      validatorUrl: null,
+    })
+  );
 
   // Documentation in JSON format
   app.get("/docs.json", (req, res) => {
     res.setHeader("Content-Type", "application/json");
-    res.send(swaggerSpec);
+    // res.send(swaggerSpec);
+    res.send(swaggerJson);
   });
 }
 
