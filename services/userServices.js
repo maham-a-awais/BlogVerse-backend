@@ -4,7 +4,7 @@ const { sendingMail } = require("../nodemailer/mailing");
 const { User } = require("../models/index");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const { hash, compareHash } = require("../utils/helpers/bcryptHelper");
-const { EMAIL } = require("../config");
+const { EMAIL, BASE_URL } = require("../config");
 const { signAccessToken, verifyToken } = require("../utils/helpers/jwtHelper");
 const {
   getResponse,
@@ -40,7 +40,7 @@ const userSignUpService = async (fullName, email, password) => {
           from: EMAIL,
           to: `${email}`,
           subject: "Account Verification Link",
-          html: `<h1>Please verify your account</h1><br><p>Hello ${fullName},To verify your account, please click on the link below:</p><br><a href=http://localhost:3000/api/users/verify-email/${user.id}/${verifyToken}>Verification Link</a>`,
+          html: `<h1>Please verify your account</h1><br><p>Hello ${fullName},To verify your account, please click on the link below:</p><br><a href=${BASE_URL}/users/verify-email/${user.id}/${verifyToken}>Verification Link</a>`,
         });
         const response = getResponse(
           StatusCodes.CREATED,
@@ -183,7 +183,7 @@ const userForgotPassword = async (email) => {
       from: EMAIL,
       to: `${email}`,
       subject: "Password Reset Link",
-      html: `<h1>Please reset your password</h1><br><p>Hello ${user.fullName}, please click on the link below:</p><br><a href=http://localhost:3000/api/users/reset-password/${user.id}/${token}>Reset your password</a>`,
+      html: `<h1>Please reset your password</h1><br><p>Hello ${user.fullName}, please click on the link below:</p><br><a href=${BASE_URL}/users/reset-password/${user.id}/${token}>Reset your password</a>`,
     });
 
     if (!errorSendingMail) {
