@@ -21,17 +21,13 @@ module.exports.sendingMail = async ({ from, to, subject, html }) => {
       subject,
       html,
     };
-    await transporter.sendMail(mailOptions);
-    logger.info(SUCCESS_MESSAGES.USER.EMAIL_SENT);
-    return true;
-    // transporter.sendMail(mailOptions, (err, info) => {
-    //   if (err) {
-    //     logger.error(ERROR_MESSAGES.USER.EMAIL_NOT_SENT, err);
-    //     return err;
-    //   } else logger.info(SUCCESS_MESSAGES.USER.EMAIL_SENT);
-    // });
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        logger.error(ERROR_MESSAGES.USER.EMAIL_NOT_SENT, err);
+        return err;
+      } else logger.info(SUCCESS_MESSAGES.USER.EMAIL_SENT);
+    });
   } catch (error) {
-    logger.error(ERROR_MESSAGES.USER.EMAIL_NOT_SENT, error);
-    throw error;
+    logger.error(error);
   }
 };
