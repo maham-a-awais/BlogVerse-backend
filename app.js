@@ -14,6 +14,7 @@ const {
   ERROR_MESSAGES,
   SUCCESS_MESSAGES,
 } = require("./utils/constants/constants");
+const { sequelize } = require("./models");
 
 const app = express();
 app.use(express.json());
@@ -50,6 +51,16 @@ function errorHandler(err, req, res, next) {
     );
 }
 
+const syncSequelize = async () => {
+  try {
+    await sequelize.authenticate();
+    await sequelize.sync();
+    logger.info("Sequelize successful");
+  } catch (error) {
+    logger.error(`Error with syncing sequelize: ${error}`);
+  }
+};
+
 // db.authenticate()
 //   .then(() => logger.info(SUCCESS_MESSAGES.DATABASE_CONN))
 //   .catch((err) => logger.error(ERROR_MESSAGES.DATABASE_ERROR + err));
@@ -59,6 +70,7 @@ app.use("/api", apiRouter);
 swagger(app);
 
 const port = PORT || 3000;
-app.listen(port, (err, res) => {
+app.listen(port, async (err, res) => {
   logger.info(SUCCESS_MESSAGES.SERVER + port);
+  await syncSequelize();
 });
