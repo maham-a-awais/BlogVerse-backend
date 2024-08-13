@@ -18,11 +18,7 @@ const {
 const signUp = async (req, res) => {
   const { email, fullName, password } = req.body;
   const response = await userSignUpService(fullName, email, password);
-  return res
-    .status(response.statusCode)
-    .cookie("accessToken", response.accessToken, cookieOptions)
-    .cookie("refreshToken", response.refreshToken, cookieOptions)
-    .json(response);
+  return sendResponse(res, response);
 };
 
 const verifyEmail = async (req, res) => {
