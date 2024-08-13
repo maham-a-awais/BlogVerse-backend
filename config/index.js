@@ -13,6 +13,7 @@ module.exports = {
   JWT_EXPIRATION: process.env.JWT_EXPIRATION,
   PASSWORD_RESET_EXPIRATION: process.env.PASSWORD_RESET_EXPIRATION,
   JWT_REFRESH_EXPIRATION: process.env.JWT_REFRESH_EXPIRATION,
+  DB_URL: process.env.POSTGRES_URL,
   cookieOptions: {
     httpOnly: true,
     secure: true,
