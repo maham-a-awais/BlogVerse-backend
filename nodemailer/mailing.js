@@ -8,12 +8,6 @@ const {
 
 module.exports.sendingMail = async ({ from, to, subject, html }) => {
   try {
-    let mailOptions = {
-      from,
-      to,
-      subject,
-      html,
-    };
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -21,13 +15,23 @@ module.exports.sendingMail = async ({ from, to, subject, html }) => {
         pass: EMAIL_PASSWORD,
       },
     });
-    transporter.sendMail(mailOptions, (err, info) => {
-      if (err) {
-        logger.error(ERROR_MESSAGES.USER.EMAIL_NOT_SENT, err);
-        return err;
-      } else logger.info(SUCCESS_MESSAGES.USER.EMAIL_SENT);
-    });
+    let mailOptions = {
+      from,
+      to,
+      subject,
+      html,
+    };
+    await transporter.sendMail(mailOptions);
+    logger.info(SUCCESS_MESSAGES.USER.EMAIL_SENT);
+    return true;
+    // transporter.sendMail(mailOptions, (err, info) => {
+    //   if (err) {
+    //     logger.error(ERROR_MESSAGES.USER.EMAIL_NOT_SENT, err);
+    //     return err;
+    //   } else logger.info(SUCCESS_MESSAGES.USER.EMAIL_SENT);
+    // });
   } catch (error) {
-    logger.error(error);
+    logger.error(ERROR_MESSAGES.USER.EMAIL_NOT_SENT, error);
+    throw error;
   }
 };
