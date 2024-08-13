@@ -27,6 +27,12 @@ if (process.env.ENV === "development") {
     ],
     exitOnError: false,
   });
-
+  module.exports = logger;
+} else {
+  const logger = winston.createLogger({
+    levels: winston.config.npm.levels,
+    transports: [new winston.transports.Console(options.console)],
+    exitOnError: false,
+  });
   module.exports = logger;
 }
