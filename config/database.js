@@ -4,8 +4,6 @@ const { Pool } = require("pg");
 
 const pool = new Pool({
   connectionString: process.env.POSTGRES_URL + "?sslmode=require",
-  max: 5,
-  idleTimeoutMillis: 10000,
 });
 
 const db = new sequelize(DATABASE, USERNAME, PASSWORD, {
