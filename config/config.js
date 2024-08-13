@@ -16,6 +16,11 @@ module.exports = {
     dialect: process.env.DIALECT,
   },
   production: {
-    database: process.env.POSTGRES_URL,
+    use_env_variable: process.env.POSTGRES_URL,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    dialect: process.env.DIALECT,
   },
 };
