@@ -181,8 +181,6 @@ npx sequelize-cli db:seed:undo:all
 
 - **GET /posts**: Get all posts
 - **GET /posts/my-posts**: Get my posts
-- **GET /posts/search**: Search All posts
-- **GET /posts/search-my-posts**: Search My posts
 - **POST /posts**: Create a new post
 - **PUT /posts/:postId**: Update post by ID
 - **DELETE /posts/postId**: Delete post by ID
