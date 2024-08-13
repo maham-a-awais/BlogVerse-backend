@@ -1,4 +1,5 @@
 const winston = require("winston");
+const fs = require("fs");
 
 const options = {
   file: {
@@ -17,6 +18,10 @@ const options = {
     colorize: true,
   },
 };
+
+if (!fs.existsSync("./logs")) {
+  fs.mkdirSync("./logs");
+}
 
 const logger = winston.createLogger({
   levels: winston.config.npm.levels,

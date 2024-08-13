@@ -12,12 +12,11 @@ const db = new sequelize(DATABASE, USERNAME, PASSWORD, {
   pool: pool,
 });
 
-module.exports = db;
-
 pool.connect((err) => {
   if (err) throw err;
   console.log("Connect to PostgreSQL successfully!");
 });
+module.exports = db;
 
 //const config = require("./config")
 //const sequelize = new sequelize(config[env]);
