@@ -19,6 +19,12 @@ const { Pool } = require("pg");
 
 const db = new sequelize(process.env.POSTGRES_URL, {
   dialect: "postgres",
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
 });
 module.exports = db;
 
