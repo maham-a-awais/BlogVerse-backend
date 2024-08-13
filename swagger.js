@@ -42,7 +42,7 @@ function swaggerDocs(app, port) {
     swaggerUi.setup(swaggerJson, {
       cors: false,
       explorer: true,
-      url: BASE_URL,
+      url: process.env.BASE_URL,
       validatorUrl: null,
     })
   );

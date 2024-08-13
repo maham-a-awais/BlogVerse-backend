@@ -478,10 +478,6 @@
                   "password": {
                     "type": "string",
                     "description": "The new password"
-                  },
-                  "confirmPassword": {
-                    "type": "string",
-                    "description": "The confirmed new password"
                   }
                 }
               }
