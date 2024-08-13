@@ -21,7 +21,7 @@ module.exports.sendingMail = async ({ from, to, subject, html }) => {
         pass: EMAIL_PASSWORD,
       },
     });
-    await transporter.sendMail(mailOptions, (err, info) => {
+    transporter.sendMail(mailOptions, (err, info) => {
       if (err) {
         logger.error(ERROR_MESSAGES.USER.EMAIL_NOT_SENT, err);
         return err;
