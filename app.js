@@ -18,7 +18,18 @@ const {
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+
+const corsOptions = {
+  allow_credentials: true,
+  origin: `http://localhost:${PORT}/api`,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  maxAge: 3600,
+};
+
+app.use(cors(corsOptions));
+
+// app.use(cors());
 app.use(cookieParser());
 app.use(helmet());
 
