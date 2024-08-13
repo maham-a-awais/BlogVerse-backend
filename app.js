@@ -58,6 +58,7 @@ app.use("/api", apiRouter);
 
 swagger(app);
 
-app.listen(PORT, (err, res) => {
-  logger.info(SUCCESS_MESSAGES.SERVER + PORT);
+const port = PORT || 3000;
+app.listen(port, (err, res) => {
+  logger.info(SUCCESS_MESSAGES.SERVER + port);
 });

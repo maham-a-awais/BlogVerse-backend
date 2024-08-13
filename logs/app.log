@@ -2268,3 +2268,5 @@
 {"level":"info","message":{"exp":1723527047,"iat":1723523447,"id":16}}
 {"level":"info","message":"Server is listening on port 3000"}
 {"level":"info","message":"Database connected!"}
+{"level":"info","message":"Server is listening on port 3000"}
+{"level":"info","message":"Database connected!"}
