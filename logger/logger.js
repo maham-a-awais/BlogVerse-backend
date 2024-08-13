@@ -1,5 +1,4 @@
 const winston = require("winston");
-const fs = require("fs");
 
 const options = {
   file: {
@@ -19,17 +18,15 @@ const options = {
   },
 };
 
-if (!fs.existsSync("./logs")) {
-  fs.mkdirSync("./logs");
+if (process.env.ENV === "development") {
+  const logger = winston.createLogger({
+    levels: winston.config.npm.levels,
+    transports: [
+      new winston.transports.File(options.file),
+      new winston.transports.Console(options.console),
+    ],
+    exitOnError: false,
+  });
+
+  module.exports = logger;
 }
-
-const logger = winston.createLogger({
-  levels: winston.config.npm.levels,
-  transports: [
-    new winston.transports.File(options.file),
-    new winston.transports.Console(options.console),
-  ],
-  exitOnError: false,
-});
-
-module.exports = logger;
