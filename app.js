@@ -50,9 +50,9 @@ function errorHandler(err, req, res, next) {
     );
 }
 
-db.authenticate()
-  .then(() => logger.info(SUCCESS_MESSAGES.DATABASE_CONN))
-  .catch((err) => logger.error(ERROR_MESSAGES.DATABASE_ERROR + err));
+// db.authenticate()
+//   .then(() => logger.info(SUCCESS_MESSAGES.DATABASE_CONN))
+//   .catch((err) => logger.error(ERROR_MESSAGES.DATABASE_ERROR + err));
 
 app.use("/api", apiRouter);
 
