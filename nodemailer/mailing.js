@@ -14,19 +14,48 @@ module.exports.sendingMail = async ({ from, to, subject, html }) => {
         user: EMAIL,
         pass: EMAIL_PASSWORD,
       },
+      secure: true,
     });
+
+    await new Promise((resolve, reject) => {
+      // verify connection configuration
+      transporter.verify(function (error, success) {
+        if (error) {
+          console.log(error);
+          reject(error);
+        } else {
+          console.log("Server is ready to take our messages");
+          resolve(success);
+        }
+      });
+    });
+
     let mailOptions = {
       from,
       to,
       subject,
       html,
     };
-    transporter.sendMail(mailOptions, (err, info) => {
-      if (err) {
-        logger.error(ERROR_MESSAGES.USER.EMAIL_NOT_SENT, err);
-        return err;
-      } else logger.info(SUCCESS_MESSAGES.USER.EMAIL_SENT);
+
+    await new Promise((resolve, reject) => {
+      // send mail
+      transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+          logger.error(ERROR_MESSAGES.USER.EMAIL_NOT_SENT, err);
+          reject(err);
+        } else {
+          logger.info(SUCCESS_MESSAGES.USER.EMAIL_SENT);
+          resolve(info);
+        }
+      });
     });
+
+    // transporter.sendMail(mailOptions, (err, info) => {
+    //   if (err) {
+    //     logger.error(ERROR_MESSAGES.USER.EMAIL_NOT_SENT, err);
+    //     return err;
+    //   } else logger.info(SUCCESS_MESSAGES.USER.EMAIL_SENT);
+    // });
   } catch (error) {
     logger.error(error);
   }
