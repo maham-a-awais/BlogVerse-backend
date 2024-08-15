@@ -202,7 +202,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
+                  "fullName": {
                     "type": "string",
                     "description": "The user's name"
                   },
@@ -229,16 +229,6 @@
       "put": {
         "summary": "Update a user",
         "description": "Update a user by ID",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -274,16 +264,6 @@
       "delete": {
         "summary": "Delete a user",
         "description": "Delete a user by ID",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
         "security": [
           {
             "bearerAuth": []
@@ -403,7 +383,23 @@
         "tags": ["Users"],
         "responses": {
           "200": {
-            "description": "Token refreshed successfully"
+            "description": "Token refreshed successfully",
+            "requestBody": {
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string",
+                        "description": "The user's email address"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -515,10 +511,6 @@
                   "newPassword": {
                     "type": "string",
                     "description": "The new password"
-                  },
-                  "confirmNewPassword": {
-                    "type": "string",
-                    "description": "The confirmed new password"
                   }
                 }
               }
