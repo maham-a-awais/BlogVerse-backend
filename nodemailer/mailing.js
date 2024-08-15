@@ -6,15 +6,14 @@ const {
   SUCCESS_MESSAGES,
 } = require("../utils/constants/constants");
 
-module.exports.sendingMail = async ({ from, to, subject, html }) => {
+module.exports.sendingMail = async ({ to, subject, html }) => {
   try {
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      service: "Gmail",
       auth: {
         user: EMAIL,
         pass: EMAIL_PASSWORD,
       },
-      secure: true,
     });
 
     await new Promise((resolve, reject) => {
@@ -30,25 +29,30 @@ module.exports.sendingMail = async ({ from, to, subject, html }) => {
       });
     });
 
-    let mailOptions = {
-      from,
+    // let mailOptions = {
+    //   from,
+    //   to,
+    //   subject,
+    //   html,
+    // };
+
+    await transporter.sendMail({
       to,
       subject,
       html,
-    };
-
-    await new Promise((resolve, reject) => {
-      // send mail
-      transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-          logger.error(ERROR_MESSAGES.USER.EMAIL_NOT_SENT, err);
-          reject(err);
-        } else {
-          logger.info(SUCCESS_MESSAGES.USER.EMAIL_SENT);
-          resolve(info);
-        }
-      });
     });
+    // await new Promise((resolve, reject) => {
+    //   // send mail
+    //   transporter.sendMail(mailOptions, (err, info) => {
+    //     if (err) {
+    //       logger.error(ERROR_MESSAGES.USER.EMAIL_NOT_SENT, err);
+    //       reject(err);
+    //     } else {
+    //       logger.info(SUCCESS_MESSAGES.USER.EMAIL_SENT);
+    //       resolve(info);
+    //     }
+    //   });
+    // });
 
     // transporter.sendMail(mailOptions, (err, info) => {
     //   if (err) {

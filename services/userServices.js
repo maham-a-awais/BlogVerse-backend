@@ -36,8 +36,7 @@ const userSignUpService = async (fullName, email, password) => {
     if (user) {
       const verifyToken = signAccessToken({ id: user.id });
       if (!verifyToken.statusCode) {
-        sendingMail({
-          from: EMAIL,
+        await sendingMail({
           to: `${email}`,
           subject: "Account Verification Link",
           html: `<h1>Please verify your account</h1><br><p>Hello ${fullName},To verify your account, please click on the link below:</p><br><a href=${BASE_URL}/users/verify-email/${user.id}/${verifyToken}>Verification Link</a>`,
