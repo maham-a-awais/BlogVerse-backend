@@ -130,7 +130,7 @@ const getAllRepliesService = async (postId, parentCommentId, limit, offset) => {
         ReasonPhrases.OK,
         {
           replies: replies.rows,
-          totalPages,
+          totalReplies,
         }
       );
 

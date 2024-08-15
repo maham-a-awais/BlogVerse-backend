@@ -20,14 +20,6 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// const corsOptions = {
-//   allow_credentials: true,
-//   origin: `http://localhost:${PORT}/api`,
-//   methods: ["GET", "POST", "PUT", "DELETE"],
-//   allowedHeaders: ["Content-Type", "Authorization"],
-//   maxAge: 3600,
-// };
-
 app.use(cors({ origin: "*", credentials: true }));
 app.use(cookieParser());
 app.use(helmet());
@@ -60,10 +52,6 @@ const syncSequelize = async () => {
     logger.error(`Error with syncing sequelize: ${error}`);
   }
 };
-
-// db.authenticate()
-//   .then(() => logger.info(SUCCESS_MESSAGES.DATABASE_CONN))
-//   .catch((err) => logger.error(ERROR_MESSAGES.DATABASE_ERROR + err));
 
 app.use("/api", apiRouter);
 
