@@ -381,21 +381,21 @@
         "summary": "Refresh token",
         "description": "Refresh the current user's token",
         "requestBody": {
-              "required": true,
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "refreshToken": {
-                        "type": "string",
-                        "description": "The user's refresh token"
-                      }
-                    }
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "refreshToken": {
+                    "type": "string",
+                    "description": "The user's refresh token"
                   }
                 }
               }
             }
+          }
+        },
         "tags": ["Users"],
         "responses": {
           "200": {
