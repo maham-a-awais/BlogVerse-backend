@@ -18,6 +18,7 @@ const createPostSchema = joi
       "number.empty": "Category cannot be empty",
       "any.require": "Category is required.",
     }),
+    image: joi.string().optional(),
   })
   .options({ abortEarly: false });
 
