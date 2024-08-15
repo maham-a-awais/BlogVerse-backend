@@ -31,14 +31,14 @@
         "description": "Retrieve a list of all posts",
         "parameters": [
           {
-            "in": "path",
+            "in": "query",
             "name": "title",
             "schema": {
               "type": "string"
             }
           },
           {
-            "in": "path",
+            "in": "query",
             "name": "categoryId",
             "schema": {
               "type": "integer"
@@ -199,14 +199,14 @@
         "description": "Retrieve a list of posts created by the current user",
         "parameters": [
           {
-            "in": "path",
+            "in": "query",
             "name": "title",
             "schema": {
               "type": "string"
             }
           },
           {
-            "in": "path",
+            "in": "query",
             "name": "categoryId",
             "schema": {
               "type": "integer"
