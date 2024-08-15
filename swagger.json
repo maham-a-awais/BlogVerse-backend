@@ -380,11 +380,7 @@
       "post": {
         "summary": "Refresh token",
         "description": "Refresh the current user's token",
-        "tags": ["Users"],
-        "responses": {
-          "200": {
-            "description": "Token refreshed successfully",
-            "requestBody": {
+        "requestBody": {
               "required": true,
               "content": {
                 "application/json": {
@@ -400,10 +396,13 @@
                 }
               }
             }
+        "tags": ["Users"],
+        "responses": {
+          "200": {
+            "description": "Token refreshed successfully"
           }
         }
       },
-
       "servers": [
         {
           "url": "https://blogv2-flame.vercel.app/api"
