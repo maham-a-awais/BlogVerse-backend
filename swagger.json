@@ -581,10 +581,20 @@
         }
       ]
     },
-    "/comments": {
+    "/comments/{postId}": {
       "get": {
         "summary": "Get all comments",
         "description": "Retrieve a list of all comments",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "postId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "tags": ["Comments"],
         "responses": {
           "200": {
@@ -602,13 +612,13 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "postId": {
-                    "type": "integer",
-                    "description": "The post ID"
-                  },
-                  "content": {
+                  "body": {
                     "type": "string",
-                    "description": "The comment content"
+                    "description": "The comment body"
+                  },
+                  "parentCommentId": {
+                    "type": "integer",
+                    "description": "The parent comment"
                   }
                 }
               }
@@ -633,14 +643,22 @@
         }
       ]
     },
-    "/comments/{commentId}": {
+    "/comments/{postId}/{parentCommentId}": {
       "get": {
-        "summary": "Get a comment",
-        "description": "Retrieve a comment by ID",
+        "summary": "Get replies",
+        "description": "Retrieve all replies of a comment by ID",
         "parameters": [
           {
             "in": "path",
-            "name": "commentId",
+            "name": "postId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "path",
+            "name": "parentCommentId",
             "required": true,
             "schema": {
               "type": "integer"
@@ -654,10 +672,26 @@
           }
         }
       },
+
+      "servers": [
+        {
+          "url": "https://blogv2-flame.vercel.app/api"
+        }
+      ]
+    },
+    "/comments/{postId}/{id}": {
       "put": {
         "summary": "Update a comment",
         "description": "Update a comment by ID",
         "parameters": [
+          {
+            "in": "path",
+            "name": "postId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
           {
             "in": "path",
             "name": "commentId",
@@ -668,7 +702,6 @@
           }
         ],
         "requestBody": {
-          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -701,6 +734,14 @@
         "parameters": [
           {
             "in": "path",
+            "name": "postId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "path",
             "name": "commentId",
             "required": true,
             "schema": {
@@ -719,12 +760,7 @@
             "description": "Comment deleted successfully"
           }
         }
-      },
-      "servers": [
-        {
-          "url": "https://blogv2-flame.vercel.app/api"
-        }
-      ]
+      }
     }
   },
   "components": {
