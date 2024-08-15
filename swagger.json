@@ -605,6 +605,16 @@
       "post": {
         "summary": "Create a new comment",
         "description": "Create a new comment",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "postId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
