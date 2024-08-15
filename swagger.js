@@ -1,4 +1,4 @@
-const { BASE_URL } = require("./config/index");
+const { BASE_URL, CUSTOM_CSS_URL } = require("./config/index");
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJson = require("./swagger.json");
@@ -42,8 +42,9 @@ function swaggerDocs(app, port) {
     swaggerUi.setup(swaggerJson, {
       cors: false,
       explorer: true,
-      url: process.env.BASE_URL,
+      url: BASE_URL,
       validatorUrl: null,
+      customCssUrl: CUSTOM_CSS_URL,
     })
   );
 
