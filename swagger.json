@@ -29,6 +29,22 @@
       "get": {
         "summary": "Get all posts",
         "description": "Retrieve a list of all posts",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "title",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "categoryId",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "tags": ["Posts"],
         "responses": {
           "200": {
@@ -50,9 +66,21 @@
                     "type": "string",
                     "description": "The post title"
                   },
-                  "content": {
+                  "body": {
                     "type": "string",
                     "description": "The post content"
+                  },
+                  "minTimeToRead": {
+                    "type": "integer",
+                    "description": "The post reading time"
+                  },
+                  "categoryId": {
+                    "type": "integer",
+                    "description": "The category of the post"
+                  },
+                  "image": {
+                    "type": "string",
+                    "description": "The image of the post"
                   }
                 }
               }
@@ -117,7 +145,6 @@
           }
         ],
         "requestBody": {
-          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -127,9 +154,21 @@
                     "type": "string",
                     "description": "The post title"
                   },
-                  "content": {
+                  "body": {
                     "type": "string",
-                    "description": "The post content"
+                    "description": "The post body"
+                  },
+                  "minTimeToRead": {
+                    "type": "integer",
+                    "description": "The post reading time"
+                  },
+                  "categoryId": {
+                    "type": "integer",
+                    "description": "The category of the post"
+                  },
+                  "image": {
+                    "type": "string",
+                    "description": "The image of the post"
                   }
                 }
               }
@@ -158,6 +197,22 @@
       "get": {
         "summary": "Get my posts",
         "description": "Retrieve a list of posts created by the current user",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "title",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "categoryId",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "security": [
           {
             "bearerAuth": []
@@ -239,9 +294,9 @@
                     "type": "string",
                     "description": "The user's name"
                   },
-                  "email": {
+                  "image": {
                     "type": "string",
-                    "description": "The user's email address"
+                    "description": "The user's avatar image"
                   }
                 }
               }
