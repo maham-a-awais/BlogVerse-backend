@@ -17,16 +17,6 @@ const {
 
 const userSignUpService = async (fullName, email, password) => {
   try {
-    // const validationResult = await validate(email);
-
-    // if (!validationResult.valid) {
-    //   return getResponse(
-    //     StatusCodes.BAD_REQUEST,
-    //     ERROR_MESSAGES.USER.EMAIL_INVALID,
-    //     ReasonPhrases.BAD_REQUEST
-    //   );
-    // }
-
     const user = await User.create({
       fullName,
       email,
@@ -178,8 +168,7 @@ const userForgotPassword = async (email) => {
     }
 
     const token = signAccessToken({ id: user.id });
-    const errorSendingMail = sendingMail({
-      from: EMAIL,
+    const errorSendingMail = await sendingMail({
       to: `${email}`,
       subject: "Password Reset Link",
       html: `<h1>Please reset your password</h1><br><p>Hello ${user.fullName}, please click on the link below:</p><br><a href=${BASE_URL}/users/reset-password/${user.id}/${token}>Reset your password</a>`,
