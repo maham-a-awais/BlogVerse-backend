@@ -77,10 +77,6 @@
                   "categoryId": {
                     "type": "integer",
                     "description": "The category of the post"
-                  },
-                  "image": {
-                    "type": "string",
-                    "description": "The image of the post"
                   }
                 }
               }
@@ -165,10 +161,6 @@
                   "categoryId": {
                     "type": "integer",
                     "description": "The category of the post"
-                  },
-                  "image": {
-                    "type": "string",
-                    "description": "The image of the post"
                   }
                 }
               }
