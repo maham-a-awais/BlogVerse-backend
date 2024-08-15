@@ -17,15 +17,15 @@ const {
 
 const userSignUpService = async (fullName, email, password) => {
   try {
-    const validationResult = await validate(email);
+    // const validationResult = await validate(email);
 
-    if (!validationResult.valid) {
-      return getResponse(
-        StatusCodes.BAD_REQUEST,
-        ERROR_MESSAGES.USER.EMAIL_INVALID,
-        ReasonPhrases.BAD_REQUEST
-      );
-    }
+    // if (!validationResult.valid) {
+    //   return getResponse(
+    //     StatusCodes.BAD_REQUEST,
+    //     ERROR_MESSAGES.USER.EMAIL_INVALID,
+    //     ReasonPhrases.BAD_REQUEST
+    //   );
+    // }
 
     const user = await User.create({
       fullName,
