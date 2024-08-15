@@ -230,13 +230,12 @@
         "summary": "Update a user",
         "description": "Update a user by ID",
         "requestBody": {
-          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
+                  "fullName": {
                     "type": "string",
                     "description": "The user's name"
                   },
@@ -320,7 +319,7 @@
       ]
     },
     "/users/logout": {
-      "post": {
+      "get": {
         "summary": "Logout",
         "description": "Logout the current user",
         "security": [
