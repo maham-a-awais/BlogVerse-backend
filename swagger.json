@@ -704,7 +704,7 @@
           },
           {
             "in": "path",
-            "name": "commentId",
+            "name": "id",
             "required": true,
             "schema": {
               "type": "integer"
@@ -752,7 +752,7 @@
           },
           {
             "in": "path",
-            "name": "commentId",
+            "name": "id",
             "required": true,
             "schema": {
               "type": "integer"
