@@ -168,25 +168,16 @@ const userForgotPassword = async (email) => {
     }
 
     const token = signAccessToken({ id: user.id });
-    const errorSendingMail = await sendingMail({
+    await sendingMail({
       to: `${email}`,
       subject: "Password Reset Link",
       html: `<h1>Please reset your password</h1><br><p>Hello ${user.fullName}, please click on the link below:</p><br><a href=${BASE_URL}/users/reset-password/${user.id}/${token}>Reset your password</a>`,
     });
-
-    if (!errorSendingMail) {
-      return getResponse(
-        StatusCodes.INTERNAL_SERVER_ERROR,
-        ERROR_MESSAGES.USER.EMAIL_NOT_SENT,
-        ReasonPhrases.INTERNAL_SERVER_ERROR
-      );
-    } else {
-      return getResponse(
-        StatusCodes.OK,
-        SUCCESS_MESSAGES.USER.RESET_EMAIL_SENT,
-        ReasonPhrases.OK
-      );
-    }
+    return getResponse(
+      StatusCodes.OK,
+      SUCCESS_MESSAGES.USER.RESET_EMAIL_SENT,
+      ReasonPhrases.OK
+    );
   } catch (error) {
     logger.error(error);
     return getResponse(
