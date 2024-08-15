@@ -391,9 +391,9 @@
                   "schema": {
                     "type": "object",
                     "properties": {
-                      "email": {
+                      "refreshToken": {
                         "type": "string",
-                        "description": "The user's email address"
+                        "description": "The user's refresh token"
                       }
                     }
                   }
@@ -403,6 +403,7 @@
           }
         }
       },
+
       "servers": [
         {
           "url": "https://blogv2-flame.vercel.app/api"
