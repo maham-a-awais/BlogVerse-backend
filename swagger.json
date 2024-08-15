@@ -717,7 +717,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "content": {
+                  "body": {
                     "type": "string",
                     "description": "The updated comment content"
                   }
