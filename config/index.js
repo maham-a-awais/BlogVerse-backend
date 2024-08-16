@@ -15,6 +15,9 @@ module.exports = {
   JWT_REFRESH_EXPIRATION: process.env.JWT_REFRESH_EXPIRATION,
   DB_URL: process.env.POSTGRES_URL,
   CUSTOM_CSS_URL: process.env.CSS_URL,
+  CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+  CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
   cookieOptions: {
     httpOnly: true,
     secure: true,
