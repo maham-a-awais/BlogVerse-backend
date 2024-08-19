@@ -4,7 +4,7 @@ const { sendingMail } = require("../nodemailer/mailing");
 const { User } = require("../models/index");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const { hash, compareHash } = require("../utils/helpers/bcryptHelper");
-const { EMAIL, BASE_URL } = require("../config");
+const { BASE_URL } = require("../config");
 const { signAccessToken, verifyToken } = require("../utils/helpers/jwtHelper");
 const {
   getResponse,
@@ -14,6 +14,7 @@ const {
   ERROR_MESSAGES,
   SUCCESS_MESSAGES,
 } = require("../utils/constants/constants");
+const cloudinary = require("../cloudinary/cloudinary");
 
 const userSignUpService = async (fullName, email, password) => {
   try {
@@ -281,9 +282,26 @@ const userByIdService = async (id) => {
 const updateUserService = async (id, fullName, avatar) => {
   try {
     const findUser = await User.findByPk(id);
-
     if (findUser) {
-      await findUser.update({ fullName, avatar }, { where: { id } });
+      let uploadOptions;
+      if (!findUser.avatar) {
+        uploadOptions = {
+          upload_preset: "unsigned_preset",
+        };
+      } else {
+        uploadOptions = {
+          upload_preset: "ml_default",
+          public_id: findUser.avatar,
+        };
+      }
+      const uploadedImage = await cloudinary.uploader.upload(
+        avatar,
+        uploadOptions
+      );
+      await findUser.update(
+        { fullName, avatar: uploadedImage.public_id },
+        { where: { id } }
+      );
       return getResponse(
         StatusCodes.OK,
         SUCCESS_MESSAGES.USER.UPDATED,
