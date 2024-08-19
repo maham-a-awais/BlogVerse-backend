@@ -39,15 +39,9 @@ const userLoginSchema = joi
         "string.email": "Invalid email format.",
       })
       .options({ abortEarly: false }),
-    password: joi
-      .string()
-      .pattern(new RegExp("^[a-zA-Z0–9@]{6,30}$"))
-      .required()
-      .messages({
-        "string.empty": "Password cannot be empty",
-        "string.pattern.base":
-          'Password must contain only letters, numbers, or "@" and be between 6 and 30 characters long.',
-      }),
+    password: joi.string().required().messages({
+      "string.empty": "Password cannot be empty",
+    }),
   })
   .options({ abortEarly: false });
 
