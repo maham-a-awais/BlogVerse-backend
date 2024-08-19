@@ -283,6 +283,7 @@ const updateUserService = async (id, fullName, avatar) => {
   try {
     const findUser = await User.findByPk(id);
     if (findUser) {
+      console.log(cloudinary.config());
       let uploadOptions;
       if (!findUser.avatar) {
         uploadOptions = {
