@@ -1,4 +1,6 @@
-const { v2: cloudinary } = require("cloudinary");
+const {
+  v2: { cloudinary },
+} = require("cloudinary");
 const {
   CLOUDINARY_CLOUD_NAME,
   CLOUDINARY_API_SECRET,
