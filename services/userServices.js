@@ -4,7 +4,7 @@ const { sendingMail } = require("../nodemailer/mailing");
 const { User } = require("../models/index");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const { hash, compareHash } = require("../utils/helpers/bcryptHelper");
-const { BASE_URL } = require("../config");
+const { BASE_URL, CLOUDINARY_CLOUD_NAME } = require("../config");
 const { signAccessToken, verifyToken } = require("../utils/helpers/jwtHelper");
 const {
   getResponse,
@@ -283,7 +283,8 @@ const updateUserService = async (id, fullName, avatar) => {
   try {
     const findUser = await User.findByPk(id);
     if (findUser) {
-      console.log(cloudinary.config());
+      console.log(cloudinary);
+      console.log(CLOUDINARY_CLOUD_NAME);
       let uploadOptions;
       if (!findUser.avatar) {
         uploadOptions = {
