@@ -13,7 +13,11 @@ const userSignupSchema = joi
     }),
     password: joi
       .string()
-      .pattern(new RegExp("^[a-zA-Z0–9@]{6,30}$"))
+      .pattern(
+        new RegExp(
+          "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{6,30}$"
+        )
+      )
       .required()
       .messages({
         "string.empty": "Password cannot be empty",
