@@ -297,10 +297,18 @@ const updateUserService = async (id, fullName, avatar) => {
       //     public_id: findUser.avatar,
       //   };
       // }
+      const timestamp = Math.floor(Date.now() / 1000);
+      const signature = cloudinary.utils.api_sign_request(
+        { timestamp, upload_preset: "unsigned_preset" },
+        process.env.CLOUDINARY_API_SECRET
+      );
+
       const uploadedImage = await cloudinary.uploader.upload(
         avatar,
         {
+          timestamp,
           upload_preset: "unsigned_preset",
+          signature,
         },
         (err, res) => {
           if (err) console.log(err);
