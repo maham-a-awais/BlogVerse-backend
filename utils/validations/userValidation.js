@@ -15,14 +15,14 @@ const userSignupSchema = joi
       .string()
       .pattern(
         new RegExp(
-          "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{6,30}$"
+          "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{7,30}$"
         )
       )
       .required()
       .messages({
         "string.empty": "Password cannot be empty",
         "string.pattern.base":
-          'Password must contain only letters, numbers, or "@" and be between 6 and 30 characters long.',
+          "Password must contain only letters, numbers, or special characters and be between 8 and 30 characters long.",
       }),
   })
   .options({ abortEarly: false });
@@ -59,12 +59,16 @@ const resetPasswordSchema = joi
   .object({
     password: joi
       .string()
-      .pattern(new RegExp("^[a-zA-Z0–9@]{6,30}$"))
+      .pattern(
+        new RegExp(
+          "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{7,30}$"
+        )
+      )
       .required()
       .messages({
         "string.empty": "Password cannot be empty",
         "string.pattern.base":
-          'Password must contain only letters, numbers, or "@" and be between 6 and 30 characters long.',
+          "Password must contain only letters, numbers, or special characters and be between 8 and 30 characters long.",
       }),
   })
   .options({ abortEarly: false });
@@ -87,12 +91,16 @@ const changePasswordSchema = joi
     }),
     newPassword: joi
       .string()
-      .pattern(new RegExp("^[a-zA-Z0–9@]{6,30}$"))
+      .pattern(
+        new RegExp(
+          "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{7,30}$"
+        )
+      )
       .required()
       .messages({
         "string.empty": "Password cannot be empty",
         "string.pattern.base":
-          'Password must contain only letters, numbers, or "@" and be between 6 and 30 characters long.',
+          "Password must contain only letters, numbers, or special characters and be between 8 and 30 characters long.",
       }),
   })
   .options({ abortEarly: false });
