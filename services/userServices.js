@@ -395,7 +395,7 @@ const changePasswordService = async (userId, oldPassword, newPassword) => {
       where: { id: userId },
     });
 
-    if (user && compareHash(oldPassword, user.password)) {
+    if (user && (await compareHash(oldPassword, user.password))) {
       const newHashedPassword = await hash(newPassword);
       await user.update({ password: newHashedPassword });
       return getResponse(
