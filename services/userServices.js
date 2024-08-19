@@ -283,22 +283,30 @@ const updateUserService = async (id, fullName, avatar) => {
   try {
     const findUser = await User.findByPk(id);
     if (findUser) {
-      console.log(cloudinary);
-      console.log(CLOUDINARY_CLOUD_NAME);
-      let uploadOptions;
-      if (!findUser.avatar) {
-        uploadOptions = {
-          upload_preset: "unsigned_preset",
-        };
-      } else {
-        uploadOptions = {
-          upload_preset: "ml_default",
-          public_id: findUser.avatar,
-        };
-      }
+      // console.log(cloudinary);
+      // console.log(CLOUDINARY_CLOUD_NAME);
+      // let uploadOptions;
+      // if (!findUser.avatar) {
+      //   uploadOptions = {
+      //     upload_preset: "unsigned_preset",
+      //     allowed,
+      //   };
+      // } else {
+      //   uploadOptions = {
+      //     upload_preset: "ml_default",
+      //     public_id: findUser.avatar,
+      //   };
+      // }
       const uploadedImage = await cloudinary.uploader.upload(
         avatar,
-        uploadOptions
+        {
+          upload_preset: "unsigned_preset",
+          allowed_formats: ["png", "jpg", "ico", "svg", "webp"],
+        },
+        (err, res) => {
+          if (err) console.log(err);
+          console.log(res);
+        }
       );
       await findUser.update(
         { fullName, avatar: uploadedImage.public_id },
