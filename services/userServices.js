@@ -301,7 +301,6 @@ const updateUserService = async (id, fullName, avatar) => {
         avatar,
         {
           upload_preset: "unsigned_preset",
-          allowed_formats: ["png", "jpg", "ico", "svg", "webp"],
         },
         (err, res) => {
           if (err) console.log(err);
