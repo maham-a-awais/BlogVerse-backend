@@ -155,10 +155,14 @@ const calculatePagination = (count, limit, offset) => {
   return { totalPages, currentPage };
 };
 
-const getPosts = async (where, limit, offset) => {
+const getPosts = async (findItems, limit, offset) => {
   try {
     const posts = await post.findAndCountAll({
-      where,
+      where: {
+        ...(Object.keys(findItems).length > 0 && {
+          [Op.or]: findItems,
+        }),
+      },
       include: [
         {
           model: category,
@@ -169,6 +173,7 @@ const getPosts = async (where, limit, offset) => {
           attributes: ["fullName", "avatar"],
         },
       ],
+      order: [["createdAt", "DESC"]],
       limit,
       offset,
     });
@@ -206,20 +211,20 @@ const getMyPostService = async (
   limit,
   offset
 ) => {
-  const where = {
+  const findItems = {
     userId,
     ...(title && { title: { [Op.iLike]: `%${title}%` } }),
     ...(categoryId && { categoryId }),
   };
-  return getPosts(where, limit, offset);
+  return getPosts(findItems, limit, offset);
 };
 
 const getAllPostService = async ({ title, categoryId }, limit, offset) => {
-  const where = {
+  const findItems = {
     ...(title && { title: { [Op.iLike]: `%${title}%` } }),
     ...(categoryId && { categoryId }),
   };
-  return getPosts(where, limit, offset);
+  return getPosts(findItems, limit, offset);
 };
 
 module.exports = {
