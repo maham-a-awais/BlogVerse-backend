@@ -75,10 +75,9 @@ const resetPasswordSchema = joi
 
 const updateUserSchema = joi
   .object({
-    avatar: joi.string(),
-    fullName: joi.string().messages({
+    avatar: joi.string().optional(),
+    fullName: joi.string().optional().messages({
       "string.empty": "Please enter your full name",
-      "any.require": "Full Name is required.",
     }),
   })
   .options({ abortEarly: false });

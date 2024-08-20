@@ -4,12 +4,7 @@ const { sendingMail } = require("../nodemailer/mailing");
 const { User } = require("../models/index");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const { hash, compareHash } = require("../utils/helpers/bcryptHelper");
-const {
-  BASE_URL,
-  CLOUDINARY_CLOUD_NAME,
-  CLOUDINARY_API_SECRET,
-  CLOUDINARY_API_KEY,
-} = require("../config");
+const { BASE_URL } = require("../config");
 const { signAccessToken, verifyToken } = require("../utils/helpers/jwtHelper");
 const {
   getResponse,
