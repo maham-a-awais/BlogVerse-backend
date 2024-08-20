@@ -176,6 +176,10 @@ const getMyPostService = async (
             model: category,
             attributes: ["name"],
           },
+          {
+            model: User,
+            attributes: ["fullName"],
+          },
         ],
         order: [["createdAt", "DESC"]],
         limit,
@@ -226,6 +230,7 @@ const getAllPostService = async ({ title, categoryId }, limit, offset) => {
       ...(categoryId && { categoryId }),
     };
 
+    //YET TO EXCLUDE CATEGORYID
     const posts = await post.findAndCountAll({
       where: {
         ...(Object.keys(findItems).length > 0 && {
@@ -236,6 +241,10 @@ const getAllPostService = async ({ title, categoryId }, limit, offset) => {
         {
           model: category,
           attributes: ["name"],
+        },
+        {
+          model: User,
+          attributes: ["fullName"],
         },
       ],
       order: [["createdAt", "DESC"]],
