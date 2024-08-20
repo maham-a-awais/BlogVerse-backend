@@ -149,94 +149,16 @@ const deletePostService = async (userId, postId) => {
   }
 };
 
-const getMyPostService = async (
-  userId,
-  { title, categoryId },
-  limit,
-  offset
-) => {
-  try {
-    const user = await User.findByPk(userId);
-
-    if (user) {
-      const findItems = {
-        ...(title && { title: { [Op.iLike]: `%${title}%` } }),
-        ...(categoryId && { categoryId }),
-      };
-
-      const posts = await post.findAndCountAll({
-        where: {
-          userId,
-          ...(Object.keys(findItems).length > 0 && {
-            [Op.or]: findItems,
-          }),
-        },
-        include: [
-          {
-            model: category,
-            attributes: ["name"],
-          },
-          {
-            model: User,
-            attributes: ["fullName"],
-          },
-        ],
-        order: [["createdAt", "DESC"]],
-        limit,
-        offset,
-      });
-
-      const totalPages = Math.ceil(posts.count / limit);
-      const currentPage = Math.floor(offset / limit) + 1;
-
-      if (posts.rows) {
-        return getResponse(
-          StatusCodes.OK,
-          SUCCESS_MESSAGES.POST.RETRIEVED,
-          ReasonPhrases.OK,
-          {
-            posts: posts.rows,
-            totalPages,
-            currentPage,
-          }
-        );
-      }
-      return getResponse(
-        StatusCodes.NOT_FOUND,
-        ERROR_MESSAGES.POST.NOT_FOUND,
-        ReasonPhrases.NOT_FOUND
-      );
-    } else {
-      return getResponse(
-        StatusCodes.NOT_FOUND,
-        ERROR_MESSAGES.USER.NOT_FOUND,
-        ReasonPhrases.NOT_FOUND
-      );
-    }
-  } catch (error) {
-    logger.error(error.message);
-    return getResponse(
-      StatusCodes.INTERNAL_SERVER_ERROR,
-      ERROR_MESSAGES.POST.RETRIEVAL_FAILED,
-      ReasonPhrases.INTERNAL_SERVER_ERROR
-    );
-  }
+const calculatePagination = (count, limit, offset) => {
+  const totalPages = Math.ceil(count / limit);
+  const currentPage = Math.floor(offset / limit) + 1;
+  return { totalPages, currentPage };
 };
 
-const getAllPostService = async ({ title, categoryId }, limit, offset) => {
+const getPosts = async (where, limit, offset) => {
   try {
-    const findItems = {
-      ...(title && { title: { [Op.iLike]: `%${title}%` } }),
-      ...(categoryId && { categoryId }),
-    };
-
-    //YET TO EXCLUDE CATEGORYID
     const posts = await post.findAndCountAll({
-      where: {
-        ...(Object.keys(findItems).length > 0 && {
-          [Op.or]: findItems,
-        }),
-      },
+      where,
       include: [
         {
           model: category,
@@ -244,26 +166,22 @@ const getAllPostService = async ({ title, categoryId }, limit, offset) => {
         },
         {
           model: User,
-          attributes: ["fullName"],
+          attributes: ["fullName", "avatar"],
         },
       ],
-      order: [["createdAt", "DESC"]],
       limit,
       offset,
     });
 
-    const totalPages = Math.ceil(posts.count / limit);
-    const currentPage = Math.floor(offset / limit) + 1;
-
-    if (posts.rows) {
+    const pagination = calculatePagination(post.count, limit, offset);
+    if (post.rows) {
       return getResponse(
         StatusCodes.OK,
         SUCCESS_MESSAGES.POST.RETRIEVED,
         ReasonPhrases.OK,
         {
           posts: posts.rows,
-          totalPages,
-          currentPage,
+          ...pagination,
         }
       );
     }
@@ -280,6 +198,28 @@ const getAllPostService = async ({ title, categoryId }, limit, offset) => {
       ReasonPhrases.INTERNAL_SERVER_ERROR
     );
   }
+};
+
+const getMyPostService = async (
+  userId,
+  { title, categoryId },
+  limit,
+  offset
+) => {
+  const where = {
+    userId,
+    ...(title && { title: { [Op.iLike]: `%${title}%` } }),
+    ...(categoryId && { categoryId }),
+  };
+  return getPosts(where, limit, offset);
+};
+
+const getAllPostService = async ({ title, categoryId }, limit, offset) => {
+  const where = {
+    ...(title && { title: { [Op.iLike]: `%${title}%` } }),
+    ...(categoryId && { categoryId }),
+  };
+  return getPosts(where, limit, offset);
 };
 
 module.exports = {
