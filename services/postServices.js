@@ -171,6 +171,12 @@ const getMyPostService = async (
             [Op.or]: findItems,
           }),
         },
+        include: [
+          {
+            model: category,
+            attributes: ["name"],
+          },
+        ],
         order: [["createdAt", "DESC"]],
         limit,
         offset,
@@ -226,6 +232,12 @@ const getAllPostService = async ({ title, categoryId }, limit, offset) => {
           [Op.or]: findItems,
         }),
       },
+      include: [
+        {
+          model: category,
+          attributes: ["name"],
+        },
+      ],
       order: [["createdAt", "DESC"]],
       limit,
       offset,
