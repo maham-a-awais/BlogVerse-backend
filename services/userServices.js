@@ -4,7 +4,12 @@ const { sendingMail } = require("../nodemailer/mailing");
 const { User } = require("../models/index");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const { hash, compareHash } = require("../utils/helpers/bcryptHelper");
-const { BASE_URL, CLOUDINARY_CLOUD_NAME } = require("../config");
+const {
+  BASE_URL,
+  CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_API_SECRET,
+  CLOUDINARY_API_KEY,
+} = require("../config");
 const { signAccessToken, verifyToken } = require("../utils/helpers/jwtHelper");
 const {
   getResponse,
@@ -302,6 +307,9 @@ const updateUserService = async (id, fullName, avatar) => {
         { timestamp, upload_preset: "unsigned_preset" },
         process.env.CLOUDINARY_API_SECRET
       );
+      console.log(CLOUDINARY_CLOUD_NAME);
+      console.log(CLOUDINARY_API_KEY);
+      console.log(CLOUDINARY_API_SECRET);
 
       const uploadedImage = await cloudinary.uploader.upload(
         avatar,
@@ -309,6 +317,7 @@ const updateUserService = async (id, fullName, avatar) => {
           timestamp,
           upload_preset: "unsigned_preset",
           signature,
+          api_key: process.env.CLOUDINARY_API_KEY,
         },
         (err, res) => {
           if (err) console.log(err);
