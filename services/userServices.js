@@ -28,6 +28,12 @@ const {
   CLOUDINARY_API_KEY,
 } = require("../config/index");
 
+cloudinary.config({
+  cloud_name: CLOUDINARY_CLOUD_NAME,
+  api_key: CLOUDINARY_API_KEY,
+  api_secret: CLOUDINARY_API_SECRET,
+});
+
 const userSignUpService = async (fullName, email, password) => {
   try {
     // const validationResult = await validate(email);
@@ -309,12 +315,6 @@ const updateUserService = async (id, fullName, avatar) => {
       //     public_id: findUser.avatar,
       //   };
       // }
-
-      cloudinary.config({
-        cloud_name: CLOUDINARY_CLOUD_NAME,
-        api_key: CLOUDINARY_API_KEY,
-        api_secret: CLOUDINARY_API_SECRET,
-      });
 
       const uploadedImage = await cloudinary.uploader.upload(
         avatar,
