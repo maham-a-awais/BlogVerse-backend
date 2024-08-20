@@ -178,8 +178,8 @@ const getPosts = async (findItems, limit, offset) => {
       offset,
     });
 
-    const pagination = calculatePagination(post.count, limit, offset);
-    if (post.rows) {
+    const pagination = calculatePagination(posts.count, limit, offset);
+    if (posts.rows) {
       return getResponse(
         StatusCodes.OK,
         SUCCESS_MESSAGES.POST.RETRIEVED,
