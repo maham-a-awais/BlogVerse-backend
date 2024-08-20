@@ -184,12 +184,12 @@ const getPosts = async (where, limit, offset) => {
           ...pagination,
         }
       );
-    }
-    return getResponse(
-      StatusCodes.NOT_FOUND,
-      ERROR_MESSAGES.POST.NOT_FOUND,
-      ReasonPhrases.NOT_FOUND
-    );
+    } else
+      return getResponse(
+        StatusCodes.NOT_FOUND,
+        ERROR_MESSAGES.POST.NOT_FOUND,
+        ReasonPhrases.NOT_FOUND
+      );
   } catch (error) {
     logger.error(error.message);
     return getResponse(
