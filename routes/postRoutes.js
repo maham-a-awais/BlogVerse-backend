@@ -16,11 +16,11 @@ const {
 } = require("../controllers/postController");
 
 router.get("/", getAllPosts);
-router.get("/:postId", getPostById);
 
 //PROTECTED ROUTES
 router.delete("/:postId", authenticate, deletePost);
 router.get("/my-posts", authenticate, getMyPosts);
+router.get("/:postId", getPostById);
 router.post(
   "/",
   authenticate,
