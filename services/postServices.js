@@ -229,10 +229,7 @@ const getAllPostService = async ({ title, categoryId }, limit, offset) => {
 
 const getPostByIdService = async ({ postId }) => {
   try {
-    const fetchPost = await post.findByPk({
-      where: {
-        id: postId,
-      },
+    const fetchPost = await post.findByPk(postId, {
       include: [
         {
           model: category,
