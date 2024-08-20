@@ -19,14 +19,7 @@ const {
   ERROR_MESSAGES,
   SUCCESS_MESSAGES,
 } = require("../utils/constants/constants");
-// const cloudinary = require("../cloudinary/cloudinary");
-
-const cloudinary = require("cloudinary").v2;
-const {
-  CLOUDINARY_CLOUD_NAME,
-  CLOUDINARY_API_SECRET,
-  CLOUDINARY_API_KEY,
-} = require("../config/index");
+const cloudinary = require("../cloudinary/cloudinary");
 
 const userSignUpService = async (fullName, email, password) => {
   try {
@@ -310,11 +303,11 @@ const updateUserService = async (id, fullName, avatar) => {
       //   };
       // }
 
-      cloudinary.config({
-        cloud_name: CLOUDINARY_CLOUD_NAME,
-        api_key: CLOUDINARY_API_KEY,
-        api_secret: CLOUDINARY_API_SECRET,
-      });
+      // cloudinary.config({
+      //   cloud_name: CLOUDINARY_CLOUD_NAME,
+      //   api_key: CLOUDINARY_API_KEY,
+      //   api_secret: CLOUDINARY_API_SECRET,
+      // });
 
       const uploadedImage = await cloudinary.uploader.upload(
         avatar,
