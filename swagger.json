@@ -102,6 +102,26 @@
       ]
     },
     "/posts/{postId}": {
+      "get": {
+        "summary": "Retrieve a post",
+        "description": "Retrieve a post by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "postId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": ["Posts"],
+        "responses": {
+          "204": {
+            "description": "Post retrieved successfully"
+          }
+        }
+      },
       "delete": {
         "summary": "Delete a post",
         "description": "Delete a post by ID",

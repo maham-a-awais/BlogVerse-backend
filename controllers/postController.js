@@ -3,6 +3,7 @@ const {
   createPostService,
   getAllPostService,
   getMyPostService,
+  getPostByIdService,
   updatePostService,
   deletePostService,
 } = require("../services/postServices");
@@ -56,10 +57,16 @@ const getAllPosts = async (req, res) => {
   return res.status(response.statusCode).json(response);
 };
 
+const getPostById = async (req, res) => {
+  const response = await getPostByIdService(req.params);
+  return res.status(response.statusCode).json(response);
+};
+
 module.exports = {
   createPost,
   updatePost,
   deletePost,
   getMyPosts,
   getAllPosts,
+  getPostById,
 };

@@ -227,10 +227,51 @@ const getAllPostService = async ({ title, categoryId }, limit, offset) => {
   return getPosts(findItems, limit, offset);
 };
 
+const getPostByIdService = async ({ postId }) => {
+  try {
+    const fetchPost = await post.findByPk({
+      where: {
+        id: postId,
+      },
+      include: [
+        {
+          model: category,
+          attributes: ["name"],
+        },
+        {
+          model: User,
+          attributes: ["fullName", "avatar"],
+        },
+      ],
+    });
+    if (fetchPost)
+      return getResponse(
+        StatusCodes.OK,
+        SUCCESS_MESSAGES.POST.RETRIEVED,
+        ReasonPhrases.OK,
+        fetchPost
+      );
+    else
+      return getResponse(
+        StatusCodes.NOT_FOUND,
+        ERROR_MESSAGES.POST.NOT_FOUND,
+        ReasonPhrases.NOT_FOUND
+      );
+  } catch (error) {
+    logger.error(error.message);
+    return getResponse(
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      ERROR_MESSAGES.POST.RETRIEVAL_FAILED,
+      ReasonPhrases.INTERNAL_SERVER_ERROR
+    );
+  }
+};
+
 module.exports = {
   createPostService,
   getAllPostService,
   getMyPostService,
+  getPostByIdService,
   updatePostService,
   deletePostService,
 };

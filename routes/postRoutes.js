@@ -10,11 +10,13 @@ const {
   createPost,
   getAllPosts,
   getMyPosts,
+  getPostById,
   updatePost,
   deletePost,
 } = require("../controllers/postController");
 
 router.get("/", getAllPosts);
+router.get("/:postId", getPostById);
 
 //PROTECTED ROUTES
 router.delete("/:postId", authenticate, deletePost);
