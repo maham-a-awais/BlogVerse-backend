@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "CASCADE",
         as: "parentComment",
       });
+      this.belongsTo(models.User, { foreignKey: "userId" });
     }
   }
   Comment.init(
