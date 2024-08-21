@@ -79,6 +79,12 @@ const getAllCommentService = async (postId, limit, offset) => {
   try {
     const comments = await Comment.findAndCountAll({
       where: { postId, parentCommentId: null },
+      include: [
+        {
+          model: User,
+          attributes: ["fullName", "avatar"],
+        },
+      ],
       order: [["createdAt", "DESC"]],
       limit,
       offset,
@@ -116,6 +122,12 @@ const getAllRepliesService = async (postId, parentCommentId, limit, offset) => {
   try {
     const replies = await Comment.findAndCountAll({
       where: { postId, parentCommentId },
+      include: [
+        {
+          model: User,
+          attributes: ["fullName", "avatar"],
+        },
+      ],
       order: [["createdAt"]],
       limit,
       offset,
