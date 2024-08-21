@@ -1,7 +1,7 @@
 const logger = require("../logger/logger");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const { getResponse } = require("../utils/helpers/getResponse");
-const { post, Comment } = require("../models/index");
+const { User, post, Comment } = require("../models/index");
 const {
   ERROR_MESSAGES,
   SUCCESS_MESSAGES,
