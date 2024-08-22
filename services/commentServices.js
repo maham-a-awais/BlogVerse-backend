@@ -90,7 +90,9 @@ const getAllCommentService = async (postId, limit, offset) => {
       offset,
     });
 
-    const totalComments = Math.ceil(comments.count / limit);
+    const totalCommentPage = Math.ceil(comments.count / limit);
+    const currentCommentPage = Math.floor(offset / limit) + 1;
+    const totalCount = comments.count;
 
     if (comments.rows && comments.rows.length > 0)
       return getResponse(
@@ -99,7 +101,9 @@ const getAllCommentService = async (postId, limit, offset) => {
         ReasonPhrases.OK,
         {
           comments: comments.rows,
-          totalComments,
+          totalCount,
+          currentCommentPage,
+          totalCommentPage,
         }
       );
 
@@ -133,7 +137,9 @@ const getAllRepliesService = async (postId, parentCommentId, limit, offset) => {
       offset,
     });
 
-    const totalReplies = Math.ceil(replies.count / limit);
+    const totalRepliesPage = Math.ceil(replies.count / limit);
+    const currentRepliesPage = Math.floor(offset / limit) + 1;
+    const totalCount = replies.count;
 
     if (replies.rows)
       return getResponse(
@@ -142,7 +148,9 @@ const getAllRepliesService = async (postId, parentCommentId, limit, offset) => {
         ReasonPhrases.OK,
         {
           replies: replies.rows,
-          totalReplies,
+          totalCount,
+          currentRepliesPage,
+          totalRepliesPage,
         }
       );
 
