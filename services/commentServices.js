@@ -82,7 +82,7 @@ const getAllCommentService = async (postId, limit, offset) => {
       include: [
         {
           model: User,
-          attributes: ["fullName", "avatar"],
+          attributes: ["fullName", "avatar", "email"],
         },
       ],
       order: [["createdAt", "DESC"]],
@@ -125,7 +125,7 @@ const getAllRepliesService = async (postId, parentCommentId, limit, offset) => {
       include: [
         {
           model: User,
-          attributes: ["fullName", "avatar"],
+          attributes: ["fullName", "avatar", "email"],
         },
       ],
       order: [["createdAt"]],
