@@ -23,7 +23,9 @@ const {
   updateUserSchema,
   changePasswordSchema,
 } = require("../utils/validations/userValidation");
-const upload = require("../middleware/multer");
+// const upload = require("../middleware/multer");
+const multer = require("multer");
+const upload = multer({ dest: "./uploads/" });
 
 router.post("/login", validationMiddleware(userLoginSchema), login);
 router.post("/refresh-token", refreshToken);

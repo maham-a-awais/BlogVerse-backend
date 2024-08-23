@@ -74,6 +74,7 @@ updateUser = async (req, res) => {
   const {
     file: { avatar },
   } = req;
+  logger.info(req);
   //   console.log(userAvatar);
   const response = await updateUserService(userId, fullName, avatar);
   // }
