@@ -355,9 +355,7 @@ const updateUserService = async (id, fullName, avatar) => {
         StatusCodes.OK,
         SUCCESS_MESSAGES.USER.UPDATED,
         ReasonPhrases.OK,
-        {
-          fileUrl: data.secure_url,
-        }
+        uploadedImageData.secure_url
       );
     } else {
       return getResponse(
