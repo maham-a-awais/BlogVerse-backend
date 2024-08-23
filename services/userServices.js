@@ -4,7 +4,13 @@ const { sendingMail } = require("../nodemailer/mailing");
 const { User } = require("../models/index");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const { hash, compareHash } = require("../utils/helpers/bcryptHelper");
-const { BASE_URL } = require("../config");
+const {
+  BASE_URL,
+  CLOUDINARY_API_KEY,
+  CLOUDINARY_API_SECRET,
+  CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_UPLOAD_PRESET,
+} = require("../config");
 const { signAccessToken, verifyToken } = require("../utils/helpers/jwtHelper");
 const {
   getResponse,
@@ -14,7 +20,14 @@ const {
   ERROR_MESSAGES,
   SUCCESS_MESSAGES,
 } = require("../utils/constants/constants");
-const cloudinary = require("../cloudinary/cloudinary");
+const cloudinary = require("cloudinary").v2;
+const formidable = require("formidable");
+
+cloudinary.config({
+  api_key: CLOUDINARY_API_KEY,
+  api_secret: CLOUDINARY_API_SECRET,
+  cloud_name: CLOUDINARY_CLOUD_NAME,
+});
 
 const userSignUpService = async (fullName, email, password) => {
   try {
@@ -304,24 +317,36 @@ const updateUserService = async (id, fullName, avatar) => {
       //   api_secret: CLOUDINARY_API_SECRET,
       // });
 
-      const uploadedImage = await cloudinary.uploader.upload(
-        avatar,
-        {
-          upload_preset: "unsigned_preset",
-        },
-        (err, res) => {
-          if (err) console.log(err);
-          console.log(res);
-        }
-      );
+      console.log(CLOUDINARY_API_KEY);
+      console.log(CLOUDINARY_API_SECRET);
+      console.log(CLOUDINARY_UPLOAD_PRESET);
+      console.log(avatar);
+
+      const file = await new Promise((resolve, reject) => {
+        const form = formidable();
+        form.parse(req, (err, fields, files) => {
+          if (err) return reject(err);
+        });
+        form.on("avatar", (formName, file) => {
+          resolve(avatar);
+        });
+      });
+
+      const data = await cloudinary.uploader.upload(file.path, {
+        upload_preset: CLOUDINARY_UPLOAD_PRESET,
+      });
+
       await findUser.update(
-        { fullName, avatar: uploadedImage.public_id },
+        { fullName, avatar: data.public_id },
         { where: { id } }
       );
       return getResponse(
         StatusCodes.OK,
         SUCCESS_MESSAGES.USER.UPDATED,
-        ReasonPhrases.OK
+        ReasonPhrases.OK,
+        {
+          fileUrl: data.secure_url,
+        }
       );
     } else {
       return getResponse(
