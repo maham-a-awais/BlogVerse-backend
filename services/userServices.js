@@ -323,7 +323,7 @@ const updateUserService = async (id, fullName, avatar) => {
       console.log(avatar);
 
       const file = await new Promise((resolve, reject) => {
-        const form = formidable.IncomingForm();
+        const form = new formidable.IncomingForm();
         form.parse(req, (err, fields, files) => {
           if (err) return reject(err);
         });
