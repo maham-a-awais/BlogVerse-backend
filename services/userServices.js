@@ -341,7 +341,7 @@ const updateUserService = async (id, fullName, avatar) => {
       const uploadResponse = await fetch(
         `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
         {
-          method: POST,
+          method: "POST",
           body: avatar,
         }
       );
