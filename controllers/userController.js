@@ -72,7 +72,7 @@ updateUser = async (req, res) => {
   //   console.log("File path is : ");
   //   console.log(req.file.path);
   const {
-    file: { avatar },
+    file: { path: avatar },
   } = req;
   logger.info(req);
   //   console.log(userAvatar);
