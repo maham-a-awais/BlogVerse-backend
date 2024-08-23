@@ -68,7 +68,8 @@ updateUser = async (req, res) => {
   const {
     file: { path: avatar },
   } = req;
-  const { fullName } = req.body;
+  const { fullName, avatar: userAvatar } = req.body;
+  console.log(userAvatar);
   const response = await updateUserService(userId, fullName, avatar);
   return sendResponse(res, response);
 };
