@@ -296,66 +296,17 @@ const updateUserService = async (id, fullName, avatar) => {
   try {
     const findUser = await User.findByPk(id);
     if (findUser) {
-      // console.log(cloudinary);
-      // console.log(CLOUDINARY_CLOUD_NAME);
-      // let uploadOptions;
-      // if (!findUser.avatar) {
-      //   uploadOptions = {
-      //     upload_preset: "unsigned_preset",
-      //     allowed,
-      //   };
-      // } else {
-      //   uploadOptions = {
-      //     upload_preset: "ml_default",
-      //     public_id: findUser.avatar,
-      //   };
-      // }
-
-      // cloudinary.config({
-      //   cloud_name: CLOUDINARY_CLOUD_NAME,
-      //   api_key: CLOUDINARY_API_KEY,
-      //   api_secret: CLOUDINARY_API_SECRET,
-      // });
-
-      // https://api.cloudinary.com/v1_1/dg8ai32i5/image/upload
-
-      // console.log(CLOUDINARY_API_KEY);
-      // console.log(CLOUDINARY_API_SECRET);
-      // console.log(CLOUDINARY_UPLOAD_PRESET);
-      // console.log(avatar);
-
-      // const file = await new Promise((resolve, reject) => {
-      //   const form = new formidable.IncomingForm();
-      //   form.parse(req, (err, fields, files) => {
-      //     if (err) return reject(err);
-      //   });
-      //   form.on("avatar", (formName, avatar) => {
-      //     resolve(avatar);
-      //   });
-      // });
-
-      // const data = await cloudinary.uploader.upload(file.path, {
-      //   upload_preset: CLOUDINARY_UPLOAD_PRESET,
-      // });
-
-      const uploadResponse = await fetch(
-        `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
-        {
-          method: "POST",
-          body: avatar,
-        }
-      );
-
-      const uploadedImageData = await uploadResponse.json();
+      const uploadedImage = await cloudinary.uploader.upload(avatar);
+      console.log(uploadedImage);
       await findUser.update(
-        { fullName, avatar: uploadedImageData.secure_url },
+        { fullName, avatar: uploadedImage.secure_url },
         { where: { id } }
       );
       return getResponse(
         StatusCodes.OK,
         SUCCESS_MESSAGES.USER.UPDATED,
         ReasonPhrases.OK,
-        uploadedImageData.secure_url
+        uploadedImage.secure_url
       );
     } else {
       return getResponse(

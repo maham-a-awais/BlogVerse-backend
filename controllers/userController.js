@@ -63,7 +63,12 @@ getUserById = async (req, res) => {
 
 updateUser = async (req, res) => {
   const userId = req.user.id;
-  const { fullName, avatar } = req.body;
+  console.log("File path is : ");
+  console.log(req.file.path);
+  const {
+    file: { path: avatar },
+  } = req;
+  const { fullName } = req.body;
   const response = await updateUserService(userId, fullName, avatar);
   return sendResponse(res, response);
 };

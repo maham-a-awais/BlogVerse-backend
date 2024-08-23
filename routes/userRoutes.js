@@ -23,6 +23,7 @@ const {
   updateUserSchema,
   changePasswordSchema,
 } = require("../utils/validations/userValidation");
+const upload = require("../middleware/multer");
 
 router.post("/login", validationMiddleware(userLoginSchema), login);
 router.post("/refresh-token", refreshToken);
@@ -47,6 +48,7 @@ router.put(
   "/",
   authenticate,
   validationMiddleware(updateUserSchema),
+  upload.single("avatar"),
   updateUser
 );
 router.post(
