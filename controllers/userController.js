@@ -71,12 +71,12 @@ updateUser = async (req, res) => {
   // else {
   //   console.log("File path is : ");
   //   console.log(req.file.path);
-  const {
-    file: { filename: avatar },
-  } = req;
-  logger.info(req);
+  // const {
+  //   file: { filename: avatar },
+  // } = req;
+  // logger.info(req);
   //   console.log(userAvatar);
-  const response = await updateUserService(userId, fullName, avatar);
+  const response = await updateUserService(userId, fullName, req.file.path);
   // }
   return sendResponse(res, response);
 };
