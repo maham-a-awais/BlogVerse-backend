@@ -75,7 +75,7 @@ const createCommentService = async (userId, postId, body, parentCommentId) => {
   }
 };
 
-const getAllCommentService = async (postId, limit, offset) => {
+const getAllCommentService = async (postId, { limit, offset }) => {
   try {
     const comments = await Comment.findAndCountAll({
       where: { postId, parentCommentId: null },

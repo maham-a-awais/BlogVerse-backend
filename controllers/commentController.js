@@ -22,7 +22,7 @@ const createComment = async (req, res) => {
 
 const getAllComments = async (req, res) => {
   const postId = req.params.postId;
-  const response = await getAllCommentService(postId, 3, 0);
+  const response = await getAllCommentService(postId, req.query);
   return sendResponse(res, response);
 };
 
