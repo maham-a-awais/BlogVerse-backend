@@ -296,7 +296,7 @@ const updateUserService = async (id, fullName, avatar) => {
   try {
     const findUser = await User.findByPk(id);
     if (findUser) {
-      const uploadedImage = await cloudinary.uploader.upload(avatar.path);
+      const uploadedImage = await cloudinary.uploader.upload(avatar);
       console.log(uploadedImage);
       await findUser.update(
         { fullName, avatar: uploadedImage.secure_url },
