@@ -48,12 +48,12 @@ const deletePost = async (req, res) => {
 
 const getMyPosts = async (req, res) => {
   const { id: userId } = req.user;
-  const response = await getMyPostService(userId, req.query, 10, 0);
+  const response = await getMyPostService(userId, req.query);
   return res.status(response.statusCode).json(response);
 };
 
 const getAllPosts = async (req, res) => {
-  const response = await getAllPostService(req.query, 10, 0);
+  const response = await getAllPostService(req.query);
   return res.status(response.statusCode).json(response);
 };
 

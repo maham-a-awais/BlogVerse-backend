@@ -207,9 +207,7 @@ const getPosts = async (findItems, limit, offset) => {
 
 const getMyPostService = async (
   userId,
-  { title, categoryId },
-  limit,
-  offset
+  { title, categoryId, offset, limit }
 ) => {
   const findItems = {
     userId,
@@ -219,7 +217,7 @@ const getMyPostService = async (
   return getPosts(findItems, limit, offset);
 };
 
-const getAllPostService = async ({ title, categoryId }, limit, offset) => {
+const getAllPostService = async ({ title, categoryId, offset, limit }) => {
   const findItems = {
     ...(title && { title: { [Op.iLike]: `%${title}%` } }),
     ...(categoryId && { categoryId }),
