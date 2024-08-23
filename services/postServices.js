@@ -155,10 +155,11 @@ const calculatePagination = (count, limit, offset) => {
   return { totalPages, currentPage };
 };
 
-const getPosts = async (findItems, limit, offset) => {
+const getPosts = async (findItems, limit, offset, userId = null) => {
   try {
     const posts = await post.findAndCountAll({
       where: {
+        ...(userId && { userId }),
         ...(Object.keys(findItems).length > 0 && {
           [Op.or]: findItems,
         }),
@@ -210,11 +211,10 @@ const getMyPostService = async (
   { title, categoryId, offset, limit }
 ) => {
   const findItems = {
-    userId,
     ...(title && { title: { [Op.iLike]: `%${title}%` } }),
     ...(categoryId && { categoryId }),
   };
-  return getPosts(findItems, limit, offset);
+  return getPosts(findItems, limit, offset, userId);
 };
 
 const getAllPostService = async ({ title, categoryId, offset, limit }) => {
