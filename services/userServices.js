@@ -24,9 +24,9 @@ const cloudinary = require("cloudinary").v2;
 const formidable = require("formidable");
 
 cloudinary.config({
-  api_key: CLOUDINARY_API_KEY,
-  api_secret: CLOUDINARY_API_SECRET,
-  cloud_name: CLOUDINARY_CLOUD_NAME,
+  api_key: "219276792713361",
+  api_secret: "93bjLciNeb9KGJ15qjv-DatXtCs",
+  cloud_name: "dg8ai32i5",
 });
 
 const userSignUpService = async (fullName, email, password) => {
