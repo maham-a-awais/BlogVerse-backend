@@ -14,7 +14,7 @@ const { SUCCESS_MESSAGES } = require("./utils/constants/constants");
 const app = express();
 
 //MIDDLEWARES
-app.use(express.json());
+app.use(express.json({ limit: "60mb" }));
 app.use(express.urlencoded({ extended: false, limit: "50mb" }));
 
 app.use(
