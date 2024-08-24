@@ -8,6 +8,7 @@ const {
   ERROR_MESSAGES,
   SUCCESS_MESSAGES,
 } = require("../utils/constants/constants");
+const cloudinary = require("../cloudinary/cloudinary");
 
 const createPostService = async (
   userId,
@@ -28,13 +29,17 @@ const createPostService = async (
       });
 
       if (categoryExists) {
+        const uploadedImage = await cloudinary.uploader.upload(image, {
+          upload_preset: "unsigned_preset",
+        });
         const newPost = await post.create({
           userId: userId,
           categoryId,
           title,
           body,
           minTimeToRead,
-          image,
+          image: uploadedImage.secure_url,
+          thumbnail: uploadedImage.public_id,
         });
         return getResponse(
           StatusCodes.CREATED,
@@ -73,13 +78,17 @@ const updatePostService = async (
     const user = await User.findByPk(userId);
 
     if (user) {
+      const uploadedImage = await cloudinary.uploader.upload(image, {
+        upload_preset: "unsigned_preset",
+      });
       const updatePost = post.update(
         {
           title,
           body,
           minTimeToRead,
           categoryId,
-          image,
+          image: uploadedImage.secure_url,
+          thumbnail: uploadedImage.public_id,
         },
         { where: { id: postId } }
       );
