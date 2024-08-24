@@ -18,7 +18,7 @@ const createPostSchema = joi
       "number.empty": "Category cannot be empty",
       "any.require": "Category is required.",
     }),
-    image: joi.string().optional(),
+    image: joi.required(),
   })
   .options({ abortEarly: false });
 
@@ -36,6 +36,7 @@ const updatePostSchema = joi
     categoryId: joi.number().messages({
       "number.empty": "Category cannot be empty",
     }),
+    image: joi.optional(),
   })
   .options({ abortEarly: false });
 
