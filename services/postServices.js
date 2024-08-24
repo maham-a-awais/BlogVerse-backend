@@ -171,7 +171,7 @@ const getPosts = async (findItems, limit, offset, userId = null) => {
         },
         {
           model: User,
-          attributes: ["fullName", "avatar"],
+          attributes: ["fullName", "avatarUrl", "avatarId"],
         },
       ],
       order: [["createdAt", "DESC"]],
@@ -235,7 +235,7 @@ const getPostByIdService = async ({ postId }) => {
         },
         {
           model: User,
-          attributes: ["fullName", "avatar"],
+          attributes: ["fullName", "avatarUrl", "avatarId"],
         },
       ],
     });
