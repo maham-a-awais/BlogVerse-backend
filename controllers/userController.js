@@ -76,10 +76,7 @@ updateUser = async (req, res) => {
   // } = req;
   // logger.info(req);
   //   console.log(userAvatar);
-  let response;
-  if (req.file)
-    response = await updateUserService(userId, fullName, req.files.file.path);
-  else logger.info("no file");
+  const response = await updateUserService(userId, fullName, req.file);
   // }
   return sendResponse(res, response);
 };
