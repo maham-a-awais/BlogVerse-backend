@@ -289,7 +289,11 @@ const updateUserService = async (id, fullName, avatar) => {
 
       console.log(uploadedImage);
       await findUser.update(
-        { fullName, avatar: uploadedImage.secure_url },
+        {
+          fullName,
+          avatarUrl: uploadedImage.secure_url,
+          avatarId: uploadedImage.public_id,
+        },
         { where: { id } }
       );
       return getResponse(
