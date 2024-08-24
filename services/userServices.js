@@ -4,13 +4,7 @@ const { sendingMail } = require("../nodemailer/mailing");
 const { User } = require("../models/index");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const { hash, compareHash } = require("../utils/helpers/bcryptHelper");
-const {
-  BASE_URL,
-  CLOUDINARY_API_KEY,
-  CLOUDINARY_API_SECRET,
-  CLOUDINARY_CLOUD_NAME,
-  CLOUDINARY_UPLOAD_PRESET,
-} = require("../config");
+const { BASE_URL } = require("../config");
 const { signAccessToken, verifyToken } = require("../utils/helpers/jwtHelper");
 const {
   getResponse,
@@ -20,14 +14,7 @@ const {
   ERROR_MESSAGES,
   SUCCESS_MESSAGES,
 } = require("../utils/constants/constants");
-const cloudinary = require("cloudinary").v2;
-const formidable = require("formidable");
-
-cloudinary.config({
-  api_key: "219276792713361",
-  api_secret: "93bjLciNeb9KGJ15qjv-DatXtCs",
-  cloud_name: "dg8ai32i5",
-});
+const cloudinary = require("../cloudinary/cloudinary");
 
 const userSignUpService = async (fullName, email, password) => {
   try {
@@ -296,7 +283,9 @@ const updateUserService = async (id, fullName, avatar) => {
   try {
     const findUser = await User.findByPk(id);
     if (findUser) {
-      const uploadedImage = await cloudinary.uploader.upload(avatar);
+      const uploadedImage = await cloudinary.uploader.upload(avatar, {
+        upload_preset: "unsigned_preset",
+      });
 
       // const uploadedImage = await cloudinary.uploader
       //   .upload_stream(

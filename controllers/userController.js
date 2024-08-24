@@ -63,7 +63,7 @@ getUserById = async (req, res) => {
 
 updateUser = async (req, res) => {
   const userId = req.user.id;
-  const { fullName } = req.body;
+  const { fullName, avatar } = req.body;
   // const response = await updateUserService(userId, fullName, userAvatar);
   // let response;
   // if (userAvatar)
@@ -76,7 +76,7 @@ updateUser = async (req, res) => {
   // } = req;
   // logger.info(req);
   //   console.log(userAvatar);
-  const response = await updateUserService(userId, fullName, req.file);
+  const response = await updateUserService(userId, fullName, avatar);
   // }
   return sendResponse(res, response);
 };
