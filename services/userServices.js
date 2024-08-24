@@ -296,7 +296,27 @@ const updateUserService = async (id, fullName, avatar) => {
   try {
     const findUser = await User.findByPk(id);
     if (findUser) {
-      const uploadedImage = await cloudinary.uploader.upload(avatar.buffer);
+      // const uploadedImage = await cloudinary.uploader.upload(avatar.buffer);
+
+      const uploadedImage = await cloudinary.uploader
+        .upload_stream(
+          {
+            resource_type: "image",
+          },
+          (err, result) => {
+            if (err) {
+              console.error(err);
+              res.status(500).send({ message: "Error uploading image" });
+            } else {
+              res.send({
+                message: `Image uploaded successfully with name ${name}`,
+                url: result.secure_url,
+              });
+            }
+          }
+        )
+        .end(avatar.buffer);
+
       console.log(uploadedImage);
       await findUser.update(
         { fullName, avatar: uploadedImage.secure_url },
