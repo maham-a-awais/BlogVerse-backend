@@ -302,7 +302,7 @@ const updateUserService = async (id, fullName, avatar) => {
         StatusCodes.OK,
         SUCCESS_MESSAGES.USER.UPDATED,
         ReasonPhrases.OK,
-        uploadedImage.secure_url
+        uploadedImage.secure_url || null
       );
     } else {
       return getResponse(
