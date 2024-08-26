@@ -290,20 +290,34 @@ const updateUserService = async (id, fullName, avatar) => {
         });
 
       console.log(uploadedImage);
-      await findUser.update(
-        {
-          fullName,
-          avatarUrl: uploadedImage.secure_url || null,
-          avatarId: uploadedImage.public_id || null,
-        },
-        { where: { id } }
-      );
-      return getResponse(
-        StatusCodes.OK,
-        SUCCESS_MESSAGES.USER.UPDATED,
-        ReasonPhrases.OK,
-        uploadedImage.secure_url || null
-      );
+      if (uploadedImage) {
+        await findUser.update(
+          {
+            fullName,
+            avatarUrl: uploadedImage.secure_url,
+            avatarId: uploadedImage.public_id,
+          },
+          { where: { id } }
+        );
+        return getResponse(
+          StatusCodes.OK,
+          SUCCESS_MESSAGES.USER.UPDATED,
+          ReasonPhrases.OK,
+          uploadedImage.secure_url
+        );
+      } else {
+        await findUser.update(
+          {
+            fullName,
+          },
+          { where: { id } }
+        );
+        return getResponse(
+          StatusCodes.OK,
+          SUCCESS_MESSAGES.USER.UPDATED,
+          ReasonPhrases.OK
+        );
+      }
     } else {
       return getResponse(
         StatusCodes.NOT_FOUND,
