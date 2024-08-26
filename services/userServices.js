@@ -39,7 +39,7 @@ const userSignUpService = async (fullName, email, password) => {
         await sendingMail({
           to: `${email}`,
           subject: "Account Verification Link",
-          html: `<h1>Please verify your account</h1><br><p>Hello ${fullName},To verify your account, please click on the link below:</p><br><a href=${FRONTEND_BASE_URL}/users/verify-email/${user.id}/${verifyToken}>Verification Link</a>`,
+          html: `<h1>Please verify your account</h1><br><p>Hello ${fullName},To verify your account, please click on the link below:</p><br><a href=${FRONTEND_BASE_URL}/verify-email/${user.id}/${verifyToken}>Verification Link</a>`,
         });
         const response = getResponse(
           StatusCodes.CREATED,
@@ -181,7 +181,7 @@ const userForgotPassword = async (email) => {
     await sendingMail({
       to: `${email}`,
       subject: "Password Reset Link",
-      html: `<h1>Please reset your password</h1><br><p>Hello ${user.fullName}, please click on the link below:</p><br><a href=${FRONTEND_BASE_URL}/users/reset-password/${user.id}/${token}>Reset your password</a>`,
+      html: `<h1>Please reset your password</h1><br><p>Hello ${user.fullName}, please click on the link below:</p><br><a href=${FRONTEND_BASE_URL}/reset-password/${user.id}/${token}>Reset your password</a>`,
     });
     return getResponse(
       StatusCodes.OK,
