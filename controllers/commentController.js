@@ -28,7 +28,11 @@ const getAllComments = async (req, res) => {
 
 const getReplies = async (req, res) => {
   const { postId, parentCommentId } = req.params;
-  const response = await getAllRepliesService(postId, parentCommentId, 3, 0);
+  const response = await getAllRepliesService(
+    postId,
+    parentCommentId,
+    req.query
+  );
   return sendResponse(res, response);
 };
 

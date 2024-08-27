@@ -122,7 +122,11 @@ const getAllCommentService = async (postId, { limit, offset }) => {
   }
 };
 
-const getAllRepliesService = async (postId, parentCommentId, limit, offset) => {
+const getAllRepliesService = async (
+  postId,
+  parentCommentId,
+  { limit, offset }
+) => {
   try {
     const replies = await Comment.findAndCountAll({
       where: { postId, parentCommentId },
