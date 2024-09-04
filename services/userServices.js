@@ -1,32 +1,16 @@
 const logger = require("../logger/logger");
-const { validate } = require("deep-email-validator");
-const { sendingMail } = require("../nodemailer/mailing");
 const { User } = require("../models/index");
+const { sendingMail } = require("../nodemailer/mailing");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const { hash, compareHash } = require("../utils/helpers/bcryptHelper");
 const { FRONTEND_BASE_URL } = require("../config");
 const { signAccessToken, verifyToken } = require("../utils/helpers/jwtHelper");
-const {
-  getResponse,
-  addTokenToResponse,
-} = require("../utils/helpers/getResponse");
-const {
-  ERROR_MESSAGES,
-  SUCCESS_MESSAGES,
-} = require("../utils/constants/constants");
+const { getResponse, addTokenToResponse } = require("../utils/helpers/getResponse");
+const { ERROR_MESSAGES, SUCCESS_MESSAGES } = require("../utils/constants/constants");
 const cloudinary = require("../cloudinary/cloudinary");
 
 const userSignUpService = async (fullName, email, password) => {
   try {
-    // const validationResult = await validate(email);
-    // if (!validationResult.valid) {
-    //   return getResponse(
-    //     StatusCodes.BAD_REQUEST,
-    //     ERROR_MESSAGES.USER.EMAIL_INVALID,
-    //     ReasonPhrases.BAD_REQUEST
-    //   );
-    // }
-
     const user = await User.create({
       fullName,
       email,
@@ -75,16 +59,12 @@ const verifyEmailService = async (token, id) => {
         if (verifyUser.isVerified) {
           return getResponse(
             StatusCodes.OK,
-            ERROR_MESSAGES.USER.EMAIL_ALREADY_VERIFIED +
-              SUCCESS_MESSAGES.USER.PLEASE_LOG_IN,
+            ERROR_MESSAGES.USER.EMAIL_ALREADY_VERIFIED + SUCCESS_MESSAGES.USER.PLEASE_LOG_IN,
             ReasonPhrases.OK,
             verifyUser
           );
         } else {
-          const updateUser = await User.update(
-            { isVerified: true },
-            { where: { id } }
-          );
+          const updateUser = await User.update({ isVerified: true }, { where: { id } });
           if (!updateUser) {
             return getResponse(
               StatusCodes.INTERNAL_SERVER_ERROR,
@@ -117,19 +97,15 @@ const verifyEmailService = async (token, id) => {
   }
 };
 
-const userLoginService = async (email, password) => {
+const userLoginService = async (email, password, remember) => {
   try {
     const user = await User.findOne({ where: { email } });
 
     if (user) {
       if (await compareHash(password, user.password)) {
         if (user.isVerified) {
-          const response = getResponse(
-            200,
-            SUCCESS_MESSAGES.USER.LOGGED_IN,
-            ReasonPhrases.OK
-          );
-          return addTokenToResponse(response, user);
+          const response = getResponse(200, SUCCESS_MESSAGES.USER.LOGGED_IN, ReasonPhrases.OK);
+          return addTokenToResponse(response, user, remember);
         } else {
           return getResponse(
             StatusCodes.UNAUTHORIZED,
@@ -183,11 +159,7 @@ const userForgotPassword = async (email) => {
       subject: "Password Reset Link",
       html: `<h1>Please reset your password</h1><br><p>Hello ${user.fullName}, please click on the link below:</p><br><a href=${FRONTEND_BASE_URL}/reset-password/${user.id}/${token}>Reset your password</a>`,
     });
-    return getResponse(
-      StatusCodes.OK,
-      SUCCESS_MESSAGES.USER.RESET_EMAIL_SENT,
-      ReasonPhrases.OK
-    );
+    return getResponse(StatusCodes.OK, SUCCESS_MESSAGES.USER.RESET_EMAIL_SENT, ReasonPhrases.OK);
   } catch (error) {
     logger.error(error);
     return getResponse(
@@ -208,8 +180,7 @@ const resetPasswordService = async (id, token, password) => {
         await User.update({ password: hashPassword }, { where: { id } });
         return getResponse(
           200,
-          SUCCESS_MESSAGES.USER.PASSWORD_RESET_SUCCESS +
-            SUCCESS_MESSAGES.USER.PLEASE_LOG_IN,
+          SUCCESS_MESSAGES.USER.PASSWORD_RESET_SUCCESS + SUCCESS_MESSAGES.USER.PLEASE_LOG_IN,
           ReasonPhrases.OK
         );
       } else {
@@ -312,11 +283,7 @@ const updateUserService = async (id, fullName, avatar) => {
           },
           { where: { id } }
         );
-        return getResponse(
-          StatusCodes.OK,
-          SUCCESS_MESSAGES.USER.UPDATED,
-          ReasonPhrases.OK
-        );
+        return getResponse(StatusCodes.OK, SUCCESS_MESSAGES.USER.UPDATED, ReasonPhrases.OK);
       }
     } else {
       return getResponse(
@@ -341,11 +308,7 @@ const deleteUserService = async (id) => {
 
     if (user) {
       await user.destroy();
-      return getResponse(
-        StatusCodes.OK,
-        SUCCESS_MESSAGES.USER.DELETED,
-        ReasonPhrases.OK
-      );
+      return getResponse(StatusCodes.OK, SUCCESS_MESSAGES.USER.DELETED, ReasonPhrases.OK);
     } else {
       return getResponse(
         StatusCodes.NOT_FOUND,
@@ -369,11 +332,7 @@ const userLogoutService = async (id) => {
     const user = await User.findByPk(id);
 
     if (user) {
-      return getResponse(
-        StatusCodes.OK,
-        SUCCESS_MESSAGES.USER.LOG_OUT,
-        ReasonPhrases.OK
-      );
+      return getResponse(StatusCodes.OK, SUCCESS_MESSAGES.USER.LOG_OUT, ReasonPhrases.OK);
     } else {
       return getResponse(
         StatusCodes.NOT_FOUND,
@@ -427,11 +386,7 @@ const changePasswordService = async (userId, oldPassword, newPassword) => {
     if (user && (await compareHash(oldPassword, user.password))) {
       const newHashedPassword = await hash(newPassword);
       await user.update({ password: newHashedPassword });
-      return getResponse(
-        StatusCodes.OK,
-        SUCCESS_MESSAGES.USER.PASSWORD_CHANGED,
-        ReasonPhrases.OK
-      );
+      return getResponse(StatusCodes.OK, SUCCESS_MESSAGES.USER.PASSWORD_CHANGED, ReasonPhrases.OK);
     } else {
       return getResponse(
         StatusCodes.UNAUTHORIZED,

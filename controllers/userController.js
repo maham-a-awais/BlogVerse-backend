@@ -28,8 +28,8 @@ const verifyEmail = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
-  const response = await userLoginService(email, password);
+  const { email, password, remember } = req.body;
+  const response = await userLoginService(email, password, remember);
   return res
     .status(response.statusCode)
     .cookie("accessToken", response.accessToken, cookieOptions)
@@ -89,11 +89,7 @@ refreshToken = async (req, res) => {
 changePassword = async (req, res) => {
   const userId = req.user.id;
   const { oldPassword, newPassword } = req.body;
-  const response = await changePasswordService(
-    userId,
-    oldPassword,
-    newPassword
-  );
+  const response = await changePasswordService(userId, oldPassword, newPassword);
   return sendResponse(res, response);
 };
 

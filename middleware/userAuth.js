@@ -5,7 +5,6 @@ const { getResponse, sendResponse } = require("../utils/helpers/getResponse");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const { ERROR_MESSAGES } = require("../utils/constants/constants");
 const { SECRET_KEY } = require("../config");
-const { response } = require("express");
 
 const userExists = async (req, res, next) => {
   try {

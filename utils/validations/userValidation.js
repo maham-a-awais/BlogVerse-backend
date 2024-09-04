@@ -13,11 +13,7 @@ const userSignupSchema = joi
     }),
     password: joi
       .string()
-      .pattern(
-        new RegExp(
-          "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{7,30}$"
-        )
-      )
+      .pattern(new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{7,30}$"))
       .required()
       .messages({
         "string.empty": "Password cannot be empty",
@@ -42,6 +38,7 @@ const userLoginSchema = joi
     password: joi.string().required().messages({
       "string.empty": "Password cannot be empty",
     }),
+    remember: joi.boolean().optional(),
   })
   .options({ abortEarly: false });
 
@@ -59,11 +56,7 @@ const resetPasswordSchema = joi
   .object({
     password: joi
       .string()
-      .pattern(
-        new RegExp(
-          "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{7,30}$"
-        )
-      )
+      .pattern(new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{7,30}$"))
       .required()
       .messages({
         "string.empty": "Password cannot be empty",
@@ -88,11 +81,7 @@ const changePasswordSchema = joi
     }),
     newPassword: joi
       .string()
-      .pattern(
-        new RegExp(
-          "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{7,30}$"
-        )
-      )
+      .pattern(new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{7,30}$"))
       .required()
       .messages({
         "string.empty": "Password cannot be empty",

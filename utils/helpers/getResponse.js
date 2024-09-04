@@ -14,8 +14,8 @@ const sendResponse = (res, response) => {
   return res.status(response.statusCode).json(response);
 };
 
-const addTokenToResponse = (response, user) => {
-  response.accessToken = signAccessToken({ id: user.id });
+const addTokenToResponse = (response, user, remember) => {
+  response.accessToken = signAccessToken({ id: user.id }, remember);
   response.refreshToken = signRefreshToken({ id: user.id });
   return response;
 };

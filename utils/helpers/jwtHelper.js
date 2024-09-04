@@ -4,6 +4,7 @@ const {
   JWT_EXPIRATION,
   JWT_REFRESH_EXPIRATION,
   PASSWORD_RESET_EXPIRATION,
+  JWT_REMEMBER_EXPIRATION,
 } = require("../../config");
 const { getResponse } = require("./getResponse");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
@@ -11,10 +12,10 @@ const logger = require("../../logger/logger");
 const { ERROR_MESSAGES } = require("../constants/constants");
 
 module.exports = {
-  signAccessToken: (payload) => {
+  signAccessToken: (payload, remember = false) => {
     try {
       return jwt.sign(payload, SECRET_KEY, {
-        expiresIn: JWT_EXPIRATION,
+        expiresIn: remember ? JWT_REMEMBER_EXPIRATION : JWT_EXPIRATION,
       });
     } catch (error) {
       logger.error(error.message);
