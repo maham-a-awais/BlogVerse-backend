@@ -14,12 +14,14 @@ const { ERROR_MESSAGES } = require("../constants/constants");
 module.exports = {
   signAccessToken: (payload, remember = false) => {
     try {
+      const expiryTime = remember ? JWT_REMEMBER_EXPIRATION : JWT_EXPIRATION;
+      logger.info("expiry time:", expiryTime);
       return jwt.sign(payload, SECRET_KEY, {
-        expiresIn: remember ? JWT_REMEMBER_EXPIRATION : JWT_EXPIRATION,
+        expiresIn: expiryTime,
       });
     } catch (error) {
       logger.error(error.message);
-      getResponse(
+      return getResponse(
         StatusCodes.INTERNAL_SERVER_ERROR,
         ERROR_MESSAGES.TOKEN.SIGN,
         ReasonPhrases.INTERNAL_SERVER_ERROR
