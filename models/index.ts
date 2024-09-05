@@ -8,7 +8,7 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.js")[env];
 const con = require("../config/index");
-const db = {};
+export const db = {};
 const pg = require("pg");
 
 let sequelize;
@@ -34,10 +34,7 @@ fs.readdirSync(__dirname)
     );
   })
   .forEach((file) => {
-    const model = require(path.join(__dirname, file))(
-      sequelize,
-      Sequelize.DataTypes
-    );
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
   });
 
@@ -49,5 +46,3 @@ Object.keys(db).forEach((modelName) => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-
-module.exports = db;

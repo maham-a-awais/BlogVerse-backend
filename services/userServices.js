@@ -1,4 +1,4 @@
-const logger = require("../logger/logger");
+const logger = require("../logger");
 const { User } = require("../models/index");
 const { sendingMail } = require("../nodemailer/mailing");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");

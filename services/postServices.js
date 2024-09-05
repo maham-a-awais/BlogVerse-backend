@@ -1,23 +1,13 @@
 const sequelize = require("sequelize");
 const Op = sequelize.Op;
-const logger = require("../logger/logger");
+const logger = require("../logger");
 const { User, post, category } = require("../models/index");
 const { getResponse } = require("../utils/helpers/getResponse");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
-const {
-  ERROR_MESSAGES,
-  SUCCESS_MESSAGES,
-} = require("../utils/constants/constants");
+const { ERROR_MESSAGES, SUCCESS_MESSAGES } = require("../utils/constants/constants");
 const cloudinary = require("../cloudinary/cloudinary");
 
-const createPostService = async (
-  userId,
-  title,
-  body,
-  minTimeToRead,
-  categoryId,
-  image
-) => {
+const createPostService = async (userId, title, body, minTimeToRead, categoryId, image) => {
   try {
     const user = await User.findByPk(userId);
 
@@ -65,15 +55,7 @@ const createPostService = async (
   }
 };
 
-const updatePostService = async (
-  userId,
-  postId,
-  title,
-  body,
-  minTimeToRead,
-  categoryId,
-  image
-) => {
+const updatePostService = async (userId, postId, title, body, minTimeToRead, categoryId, image) => {
   try {
     const user = await User.findByPk(userId);
 
@@ -94,11 +76,7 @@ const updatePostService = async (
       );
 
       if (updatePost)
-        return getResponse(
-          StatusCodes.OK,
-          SUCCESS_MESSAGES.POST.UPDATED,
-          ReasonPhrases.OK
-        );
+        return getResponse(StatusCodes.OK, SUCCESS_MESSAGES.POST.UPDATED, ReasonPhrases.OK);
       else
         return getResponse(
           StatusCodes.INTERNAL_SERVER_ERROR,
@@ -136,11 +114,7 @@ const deletePostService = async (userId, postId) => {
           ReasonPhrases.NOT_FOUND
         );
       await post.destroy({ where: { id: postId } });
-      return getResponse(
-        StatusCodes.OK,
-        SUCCESS_MESSAGES.POST.DELETED,
-        ReasonPhrases.OK
-      );
+      return getResponse(StatusCodes.OK, SUCCESS_MESSAGES.POST.DELETED, ReasonPhrases.OK);
     } else {
       return getResponse(
         StatusCodes.NOT_FOUND,
@@ -190,15 +164,10 @@ const getPosts = async (findItems, limit, offset, userId = null) => {
 
     const pagination = calculatePagination(posts.count, limit, offset);
     if (posts.rows) {
-      return getResponse(
-        StatusCodes.OK,
-        SUCCESS_MESSAGES.POST.RETRIEVED,
-        ReasonPhrases.OK,
-        {
-          posts: posts.rows,
-          ...pagination,
-        }
-      );
+      return getResponse(StatusCodes.OK, SUCCESS_MESSAGES.POST.RETRIEVED, ReasonPhrases.OK, {
+        posts: posts.rows,
+        ...pagination,
+      });
     } else
       return getResponse(
         StatusCodes.NOT_FOUND,
@@ -215,10 +184,7 @@ const getPosts = async (findItems, limit, offset, userId = null) => {
   }
 };
 
-const getMyPostService = async (
-  userId,
-  { title, categoryId, offset, limit }
-) => {
+const getMyPostService = async (userId, { title, categoryId, offset, limit }) => {
   const findItems = {
     ...(title && { title: { [Op.iLike]: `%${title}%` } }),
     ...(categoryId && { categoryId }),

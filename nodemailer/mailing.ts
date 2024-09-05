@@ -1,11 +1,14 @@
-const logger = require("../logger/logger");
-const nodemailer = require("nodemailer");
-const { EMAIL, EMAIL_PASSWORD } = require("../config");
+import { logger } from "../logger";
+import nodemailer from "nodemailer";
+import { config } from "../config";
+import { GENERAL_INFO, SUCCESS_MESSAGES } from "../utils/constants";
 
-module.exports.sendingMail = async ({ to, subject, html }) => {
+const { EMAIL, EMAIL_PASSWORD } = config;
+
+export const sendingMail = async ({ to, subject, html }: MailOptions): Promise<void> => {
   try {
     const transporter = nodemailer.createTransport({
-      service: "Gmail",
+      service: GENERAL_INFO.EMAIL_SERVICE,
       auth: {
         user: EMAIL,
         pass: EMAIL_PASSWORD,
@@ -18,7 +21,7 @@ module.exports.sendingMail = async ({ to, subject, html }) => {
           console.log(error);
           reject(error);
         } else {
-          console.log("Server is ready to take our messages");
+          console.log(SUCCESS_MESSAGES.SUCCESS);
           resolve(success);
         }
       });

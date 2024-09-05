@@ -1,4 +1,4 @@
-const winston = require("winston");
+import winston from "winston";
 
 const options = {
   file: {
@@ -18,8 +18,10 @@ const options = {
   },
 };
 
+export let logger: winston.Logger;
+
 if (process.env.ENV === "development") {
-  const logger = winston.createLogger({
+  logger = winston.createLogger({
     levels: winston.config.npm.levels,
     transports: [
       new winston.transports.File(options.file),
@@ -27,12 +29,10 @@ if (process.env.ENV === "development") {
     ],
     exitOnError: false,
   });
-  module.exports = logger;
 } else {
-  const logger = winston.createLogger({
+  logger = winston.createLogger({
     levels: winston.config.npm.levels,
     transports: [new winston.transports.Console(options.console)],
     exitOnError: false,
   });
-  module.exports = logger;
 }

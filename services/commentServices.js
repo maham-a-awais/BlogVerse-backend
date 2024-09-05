@@ -1,11 +1,8 @@
-const logger = require("../logger/logger");
+const logger = require("../logger");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const { getResponse } = require("../utils/helpers/getResponse");
 const { User, post, Comment } = require("../models/index");
-const {
-  ERROR_MESSAGES,
-  SUCCESS_MESSAGES,
-} = require("../utils/constants/constants");
+const { ERROR_MESSAGES, SUCCESS_MESSAGES } = require("../utils/constants/constants");
 
 const createCommentService = async (userId, postId, body, parentCommentId) => {
   try {
@@ -95,17 +92,12 @@ const getAllCommentService = async (postId, { limit, offset }) => {
     const totalCount = comments.count;
 
     if (comments.rows && comments.rows.length > 0)
-      return getResponse(
-        StatusCodes.OK,
-        SUCCESS_MESSAGES.COMMENT.RETRIEVED,
-        ReasonPhrases.OK,
-        {
-          comments: comments.rows,
-          totalCount,
-          currentCommentPage,
-          totalCommentPage,
-        }
-      );
+      return getResponse(StatusCodes.OK, SUCCESS_MESSAGES.COMMENT.RETRIEVED, ReasonPhrases.OK, {
+        comments: comments.rows,
+        totalCount,
+        currentCommentPage,
+        totalCommentPage,
+      });
 
     return getResponse(
       StatusCodes.NOT_FOUND,
@@ -122,11 +114,7 @@ const getAllCommentService = async (postId, { limit, offset }) => {
   }
 };
 
-const getAllRepliesService = async (
-  postId,
-  parentCommentId,
-  { limit, offset }
-) => {
+const getAllRepliesService = async (postId, parentCommentId, { limit, offset }) => {
   try {
     const replies = await Comment.findAndCountAll({
       where: { postId, parentCommentId },
@@ -146,17 +134,12 @@ const getAllRepliesService = async (
     const totalCount = replies.count;
 
     if (replies.rows)
-      return getResponse(
-        StatusCodes.OK,
-        SUCCESS_MESSAGES.COMMENT.REPLIES,
-        ReasonPhrases.OK,
-        {
-          replies: replies.rows,
-          totalCount,
-          currentRepliesPage,
-          totalRepliesPage,
-        }
-      );
+      return getResponse(StatusCodes.OK, SUCCESS_MESSAGES.COMMENT.REPLIES, ReasonPhrases.OK, {
+        replies: replies.rows,
+        totalCount,
+        currentRepliesPage,
+        totalRepliesPage,
+      });
 
     return getResponse(
       StatusCodes.NOT_FOUND,
@@ -222,11 +205,7 @@ const deleteCommentService = async (userId, postId, id) => {
       where: { userId, postId, id },
     });
 
-    return getResponse(
-      StatusCodes.OK,
-      SUCCESS_MESSAGES.COMMENT.DELETED,
-      ReasonPhrases.OK
-    );
+    return getResponse(StatusCodes.OK, SUCCESS_MESSAGES.COMMENT.DELETED, ReasonPhrases.OK);
   } catch (error) {
     logger.error(error.message);
     return getResponse(

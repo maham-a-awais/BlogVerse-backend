@@ -1,4 +1,4 @@
-const logger = require("../logger/logger");
+const logger = require("../logger");
 const { getResponse, sendResponse } = require("../utils/helpers/getResponse");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 
@@ -10,11 +10,7 @@ const validationMiddleware = (schema) => {
         logger.error(error.message);
         sendResponse(
           res,
-          getResponse(
-            StatusCodes.BAD_REQUEST,
-            error.message,
-            ReasonPhrases.BAD_REQUEST
-          )
+          getResponse(StatusCodes.BAD_REQUEST, error.message, ReasonPhrases.BAD_REQUEST)
         );
         // res
         //   .status(StatusCodes.BAD_REQUEST)

@@ -1,12 +1,12 @@
-const jwt = require("jsonwebtoken");
-const logger = require("../logger/logger");
-const { User } = require("../models/index");
-const { getResponse, sendResponse } = require("../utils/helpers/getResponse");
-const { StatusCodes, ReasonPhrases } = require("http-status-codes");
-const { ERROR_MESSAGES } = require("../utils/constants/constants");
-const { SECRET_KEY } = require("../config");
+import { verifyToken } from "../utils/helpers/jwtHelper";
+import { User } from "../models/index";
+import { logger } from "../logger";
+import { sendResponse, getResponse } from "../utils/helpers/getResponse";
+import { StatusCodes, ReasonPhrases } from "http-status-codes";
+import { ERROR_MESSAGES, KEYS } from "../utils/constants";
+import { Request, Response, NextFunction } from "express";
 
-const userExists = async (req, res, next) => {
+export const userExists = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const user = await User.findOne({
       where: {
@@ -37,9 +37,9 @@ const userExists = async (req, res, next) => {
   }
 };
 
-const authenticate = async (req, res, next) => {
+export const authenticate = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const authHeader = req.header("Authorization");
+    const authHeader = req.header(KEYS.AUTHORIZATION);
     if (!authHeader) {
       return sendResponse(
         res,
@@ -51,11 +51,12 @@ const authenticate = async (req, res, next) => {
       );
     }
     const token = authHeader.split(" ")[1];
-    const decodedToken = jwt.verify(token, SECRET_KEY);
+    // const decodedToken = jwt.verify(token, SECRET_KEY);
+    const decodedToken = verifyToken(token);
     req.user = decodedToken;
     next();
   } catch (error) {
-    logger.error(error.message);
+    logger.error(error);
     return sendResponse(
       res,
       getResponse(
@@ -66,5 +67,3 @@ const authenticate = async (req, res, next) => {
     );
   }
 };
-
-module.exports = { userExists, authenticate };
