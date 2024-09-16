@@ -2,9 +2,18 @@ import { logger } from "../logger";
 import nodemailer from "nodemailer";
 import { config } from "../config";
 import { GENERAL_INFO, SUCCESS_MESSAGES } from "../utils/constants";
+import { MailOptions } from "../types";
 
 const { EMAIL, EMAIL_PASSWORD } = config;
 
+/**
+ * Sends an email using nodemailer
+ * @param {MailOptions} mailOptions - options for the email
+ * @param {string} mailOptions.to - the recipient of the email
+ * @param {string} mailOptions.subject - the subject of the email
+ * @param {string} mailOptions.html - the content of the email in html format
+ * @returns {Promise<void>} - a promise that resolves if the email is sent successfully
+ */
 export const sendingMail = async ({ to, subject, html }: MailOptions): Promise<void> => {
   try {
     const transporter = nodemailer.createTransport({

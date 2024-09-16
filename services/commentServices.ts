@@ -1,10 +1,27 @@
-const logger = require("../logger");
-const { StatusCodes, ReasonPhrases } = require("http-status-codes");
-const { getResponse } = require("../utils/helpers/getResponse");
-const { User, post, Comment } = require("../models/index");
-const { ERROR_MESSAGES, SUCCESS_MESSAGES } = require("../utils/constants/constants");
+import { logger } from "../logger";
+import { getResponse } from "../utils/helpers/getResponse";
+import { StatusCodes, ReasonPhrases } from "http-status-codes";
+import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "../utils/constants";
+import { User } from "../models/user";
+import { post } from "../models/post";
+import { Comment } from "../models/comment";
+import { CustomResponse } from "../types";
+import { CommentRequestQuery } from "../types";
 
-const createCommentService = async (userId, postId, body, parentCommentId) => {
+/**
+ * Creates a new comment for a given post and user
+ * @param userId - id of the user creating the comment
+ * @param postId - id of the post for which the comment is being created
+ * @param body - the text of the comment
+ * @param parentCommentId - the id of the parent comment if this is a reply. If not provided, this comment is not a reply.
+ * @returns a response object with the comment data if successful, otherwise an error response
+ */
+export const createCommentService = async (
+  userId: number,
+  postId: number,
+  body: string,
+  parentCommentId: number
+): Promise<CustomResponse> => {
   try {
     const findPost = await post.findByPk(postId);
 
@@ -63,16 +80,25 @@ const createCommentService = async (userId, postId, body, parentCommentId) => {
       ReasonPhrases.INTERNAL_SERVER_ERROR
     );
   } catch (error) {
-    logger.error(error.message);
-    return getResponse(
-      StatusCodes.INTERNAL_SERVER_ERROR,
-      ERROR_MESSAGES.COMMENT.CREATION_FAILED,
-      ReasonPhrases.INTERNAL_SERVER_ERROR
-    );
+    error instanceof Error && logger.error(error.message);
   }
+  return getResponse(
+    StatusCodes.INTERNAL_SERVER_ERROR,
+    ERROR_MESSAGES.COMMENT.CREATION_FAILED,
+    ReasonPhrases.INTERNAL_SERVER_ERROR
+  );
 };
 
-const getAllCommentService = async (postId, { limit, offset }) => {
+/**
+ * Retrieves all comments for a given post
+ * @param postId - id of the post
+ * @param { limit, offset } - pagination parameters
+ * @returns a response object with the list of comments
+ */
+export const getAllCommentService = async (
+  postId: number,
+  { limit, offset }: CommentRequestQuery
+) => {
   try {
     const comments = await Comment.findAndCountAll({
       where: { postId, parentCommentId: null },
@@ -83,6 +109,7 @@ const getAllCommentService = async (postId, { limit, offset }) => {
         },
       ],
       order: [["createdAt", "DESC"]],
+
       limit,
       offset,
     });
@@ -105,16 +132,27 @@ const getAllCommentService = async (postId, { limit, offset }) => {
       ReasonPhrases.NOT_FOUND
     );
   } catch (error) {
-    logger.error(error.message);
-    return getResponse(
-      StatusCodes.INTERNAL_SERVER_ERROR,
-      ERROR_MESSAGES.COMMENT.RETRIEVAL_FAILED,
-      ReasonPhrases.INTERNAL_SERVER_ERROR
-    );
+    error instanceof Error && logger.error(error.message);
   }
+  return getResponse(
+    StatusCodes.INTERNAL_SERVER_ERROR,
+    ERROR_MESSAGES.COMMENT.RETRIEVAL_FAILED,
+    ReasonPhrases.INTERNAL_SERVER_ERROR
+  );
 };
 
-const getAllRepliesService = async (postId, parentCommentId, { limit, offset }) => {
+/**
+ * Retrieves all replies of a given comment
+ * @param postId - id of the post
+ * @param parentCommentId - id of the parent comment
+ * @param { limit, offset } - pagination parameters
+ * @returns a response object with the list of replies and pagination information
+ */
+export const getAllRepliesService = async (
+  postId: number,
+  parentCommentId: number,
+  { limit, offset }: CommentRequestQuery
+): Promise<CustomResponse> => {
   try {
     const replies = await Comment.findAndCountAll({
       where: { postId, parentCommentId },
@@ -124,7 +162,7 @@ const getAllRepliesService = async (postId, parentCommentId, { limit, offset }) 
           attributes: ["fullName", "avatarUrl", "avatarId", "email"],
         },
       ],
-      order: [["createdAt"]],
+      order: [["createdAt", "DESC"]],
       limit,
       offset,
     });
@@ -147,16 +185,29 @@ const getAllRepliesService = async (postId, parentCommentId, { limit, offset }) 
       ReasonPhrases.NOT_FOUND
     );
   } catch (error) {
-    logger.error(error.message);
-    return getResponse(
-      StatusCodes.INTERNAL_SERVER_ERROR,
-      ERROR_MESSAGES.COMMENT.REPLIES_FAILED,
-      ReasonPhrases.INTERNAL_SERVER_ERROR
-    );
+    error instanceof Error && logger.error(error.message);
   }
+  return getResponse(
+    StatusCodes.INTERNAL_SERVER_ERROR,
+    ERROR_MESSAGES.COMMENT.REPLIES_FAILED,
+    ReasonPhrases.INTERNAL_SERVER_ERROR
+  );
 };
 
-const updateCommentService = async (userId, postId, id, body) => {
+/**
+ * Updates a comment by ID
+ * @param userId - id of the user creating the comment
+ * @param postId - id of the post for which the comment is being created
+ * @param id - id of the comment to be updated
+ * @param body - the text of the comment
+ * @returns a response object with the updated comment data if successful, otherwise an error response
+ */
+export const updateCommentService = async (
+  userId: number,
+  postId: number,
+  id: number,
+  body: string
+): Promise<CustomResponse> => {
   try {
     const comment = await Comment.findOne({ where: { id, userId } });
 
@@ -166,6 +217,7 @@ const updateCommentService = async (userId, postId, id, body) => {
         ERROR_MESSAGES.COMMENT.NOT_FOUND,
         ReasonPhrases.NOT_FOUND
       );
+
     const updatedComment = await Comment.update(
       { body },
       {
@@ -181,16 +233,27 @@ const updateCommentService = async (userId, postId, id, body) => {
         updatedComment
       );
   } catch (error) {
-    logger.error(error.message);
-    return getResponse(
-      StatusCodes.INTERNAL_SERVER_ERROR,
-      ERROR_MESSAGES.COMMENT.UPDATED_FAILED,
-      ReasonPhrases.INTERNAL_SERVER_ERROR
-    );
+    error instanceof Error && logger.error(error.message);
   }
+  return getResponse(
+    StatusCodes.INTERNAL_SERVER_ERROR,
+    ERROR_MESSAGES.COMMENT.UPDATE_FAILED,
+    ReasonPhrases.INTERNAL_SERVER_ERROR
+  );
 };
 
-const deleteCommentService = async (userId, postId, id) => {
+/**
+ * Deletes a comment by ID
+ * @param userId - id of the user creating the comment
+ * @param postId - id of the post for which the comment is being created
+ * @param id - id of the comment to be deleted
+ * @returns a response object with the deleted comment data if successful, otherwise an error response
+ */
+export const deleteCommentService = async (
+  userId: number,
+  postId: number,
+  id: number
+): Promise<CustomResponse> => {
   try {
     const comment = await Comment.findOne({ where: { id, userId, postId } });
 
@@ -207,19 +270,11 @@ const deleteCommentService = async (userId, postId, id) => {
 
     return getResponse(StatusCodes.OK, SUCCESS_MESSAGES.COMMENT.DELETED, ReasonPhrases.OK);
   } catch (error) {
-    logger.error(error.message);
+    error instanceof Error && logger.error(error.message);
     return getResponse(
       StatusCodes.INTERNAL_SERVER_ERROR,
-      ERROR_MESSAGES.COMMENT.DELETED_FAILED,
+      ERROR_MESSAGES.COMMENT.DELETION_FAILED,
       ReasonPhrases.INTERNAL_SERVER_ERROR
     );
   }
-};
-
-module.exports = {
-  createCommentService,
-  getAllCommentService,
-  getAllRepliesService,
-  updateCommentService,
-  deleteCommentService,
 };

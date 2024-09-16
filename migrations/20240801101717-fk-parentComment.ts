@@ -1,8 +1,8 @@
-"use strict";
+import { QueryInterface, DataTypes } from "sequelize";
 
 /** @type {import('sequelize-cli').Migration} */
-module.exports = {
-  up: async (queryInterface, Sequelize) => {
+export = {
+  up: async (queryInterface: QueryInterface, Sequelize: typeof DataTypes) => {
     await queryInterface.sequelize.query(`
       ALTER TABLE "Comments"
       DROP CONSTRAINT "Comments_parentCommentId_fkey";
@@ -17,7 +17,7 @@ module.exports = {
     `);
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface: QueryInterface) => {
     await queryInterface.sequelize.query(`
       ALTER TABLE "Comments"
       DROP CONSTRAINT "Comments_parentCommentId_fkey";

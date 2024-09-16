@@ -3,7 +3,7 @@ import { COMMENT_VALIDATION, VALIDATION_KEYS } from "../constants";
 
 const { EMPTY_STRING_KEY, REQUIRE_KEY } = VALIDATION_KEYS;
 
-const createCommentSchema = joi
+export const createCommentSchema = joi
   .object({
     body: joi
       .string()
@@ -16,12 +16,10 @@ const createCommentSchema = joi
   })
   .options({ abortEarly: false });
 
-const updateCommentSchema = joi
+export const updateCommentSchema = joi
   .object({
     body: joi.string().messages({
       [EMPTY_STRING_KEY]: COMMENT_VALIDATION.EMPTY_COMMENT,
     }),
   })
   .options({ abortEarly: false });
-
-module.exports = { createCommentSchema, updateCommentSchema };

@@ -1,14 +1,14 @@
-"use strict";
+import { QueryInterface, DataTypes } from "sequelize";
 
 /** @type {import('sequelize-cli').Migration} */
-module.exports = {
-  async up(queryInterface, Sequelize) {
+export = {
+  async up(queryInterface: QueryInterface, Sequelize: typeof DataTypes) {
     await queryInterface.addColumn("Users", "avatar", {
       type: Sequelize.TEXT,
     });
   },
 
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface: QueryInterface) {
     await queryInterface.removeColumn("Users", "avatar");
   },
 };

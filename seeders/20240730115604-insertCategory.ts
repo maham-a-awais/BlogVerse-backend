@@ -1,8 +1,8 @@
-"use strict";
+import { QueryInterface } from "sequelize";
 
 /** @type {import('sequelize-cli').Migration} */
-module.exports = {
-  async up(queryInterface, Sequelize) {
+export = {
+  async up(queryInterface: QueryInterface) {
     const categories = [
       { name: "Technology", createdAt: new Date(), updatedAt: new Date() },
       { name: "Sports", createdAt: new Date(), updatedAt: new Date() },
@@ -18,7 +18,7 @@ module.exports = {
     await queryInterface.bulkInsert("categories", categories, {});
   },
 
-  async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete("categories", null, {});
+  async down(queryInterface: QueryInterface) {
+    await queryInterface.bulkDelete("categories", {}, {});
   },
 };

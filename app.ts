@@ -1,62 +1,66 @@
-import dotenv from "dotenv";
+import { config as dotenvConfig } from "dotenv";
 import express, { Request, Response, NextFunction, Router } from "express";
-import cookieParser from "cookie-parser";
 import helmet from "helmet";
-import cors from "cors";
+import cors, { CorsOptions } from "cors";
 import { logger } from "./logger/index";
-// import swagger from "./swagger";
+import bodyParser from "body-parser";
+// import { swaggerDocs } from "./swagger";
 import { router } from "./routes/index";
 import { config } from "./config/index";
 import { SUCCESS_MESSAGES } from "./utils/constants";
-// import { sequelize } from "./models";
-// import { logErrors, errorHandler } from "./middleware/errorHandlers";
-// import { SUCCESS_MESSAGES } from "./utils/constants/constants";
+import { logErrors } from "./middleware/errorHandlers";
+import { sequelizeConnection } from "./config/database";
 
-dotenv.config();
+dotenvConfig();
 const { PORT } = config;
 const app = express();
-const apiRouter = Router();
+// const apiRouter = Router();
 
 // MIDDLEWARES
+app.use(bodyParser.json());
 app.use(express.json({ limit: "60mb" }));
-app.use(express.urlencoded({ extended: false, limit: "50mb" }));
+app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
-app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    maxAge: 3600, // 1 hour
-  })
-);
-app.use(cookieParser());
+const corsOptions: CorsOptions = {
+  origin: "*",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  maxAge: 3600, // 1 hour
+};
+app.use(cors(corsOptions));
+
 app.use(helmet());
 
-// app.use(logErrors as (err: Error, req: Request, res: Response, next: NextFunction) => void);
-// app.use(errorHandler as (err: Error, req: Request, res: Response, next: NextFunction) => void);
+app.use((err: Error, req: Request, res: Response, next: NextFunction) =>
+  logErrors(err, req, res, next)
+);
+// app.use(errorHandler);
 
 // SYNCHING SEQUELIZE WITH DATABASE
-// const syncSequelize = async () => {
-//   try {
-//     await sequelize.authenticate();
-//     await sequelize.sync();
-//     logger.info("Sequelize successful");
-//   } catch (error) {
-//     logger.error(`Error with syncing sequelize: ${error}`);
-//   }
-// };
+const syncSequelize = async () => {
+  try {
+    await sequelizeConnection.authenticate();
+    await sequelizeConnection.sync();
+
+    logger.info("Sequelize successful");
+  } catch (error) {
+    logger.error(`Error with syncing sequelize: ${error}`);
+  }
+};
 
 app.use("/api/v1", router);
 
-// swagger(app);
+// console.log(swaggerDocs);
+// logger.info(swaggerDocs);
+// swaggerDocs(app);
 
-const port = PORT || 4000;
+const port = PORT || 3000;
 app.listen(port, async (err?: Error) => {
   if (err) {
     logger.error(err);
   } else {
-    logger.info(`${SUCCESS_MESSAGES.SERVER} ${port}`);
-    // await syncSequelize();
+    logger.info(`${SUCCESS_MESSAGES.SERVER}${port}`);
+    await syncSequelize();
   }
 });
